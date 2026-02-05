@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SMALDINI | Art Direction</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400&display=swap" rel="stylesheet">
+    <style>
+        @font-face {
+            font-family: "Golden Way";
+            src: url("https://db.onlinewebfonts.com/t/3e0837459a2661b5a1b6600580dfc5f2.eot");
+            src: url("https://db.onlinewebfonts.com/t/3e0837459a2661b5a1b6600580dfc5f2.eot?#iefix")format("embedded-opentype"),
+            url("https://db.onlinewebfonts.com/t/3e0837459a2661b5a1b6600580dfc5f2.woff2")format("woff2"),
+            url("https://db.onlinewebfonts.com/t/3e0837459a2661b5a1b6600580dfc5f2.woff")format("woff"),
+            url("https://db.onlinewebfonts.com/t/3e0837459a2661b5a1b6600580dfc5f2.ttf")format("truetype"),
+            url("https://db.onlinewebfonts.com/t/3e0837459a2661b5a1b6600580dfc5f2.svg#Golden Way")format("svg");
+        }
+
+        :root {
+            --nav-bg: #f4f4f4;
+            --overlay-bg: #111111;
+            --text-dark: #1a1a1a;
+            --nav-width: 75px;
+            --transition-snap: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background-color: #ffffff; color: var(--text-dark); overflow-x: hidden; }
+
+        /* Barra Lateral */
+        .side-nav {
+            position: fixed; left: 0; top: 0; height: 100vh; width: var(--nav-width);
+            background-color: var(--nav-bg); display: flex; flex-direction: column;
+            align-items: center; justify-content: space-between; padding: 25px 0;
+            z-index: 2000; border-right: 1px solid rgba(0,0,0,0.05);
+        }
+        .side-nav.active { background-color: transparent; border-right: 1px solid rgba(255,255,255,0.1); }
+        .side-nav.active .hamb-line { background-color: #fff; }
+
+        .brand-logo { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; }
+        .menu-trigger { cursor: pointer; display: flex; flex-direction: column; gap: 4px; z-index: 2100; }
+        .hamb-line { width: 20px; height: 1px; background-color: var(--text-dark); transition: 0.2s; }
+        .vertical-brand { writing-mode: vertical-rl; text-transform: uppercase; font-size: 10px; letter-spacing: 4px; transform: rotate(180deg); font-weight: 100; }
+        .social-links a { text-decoration: none; color: var(--text-dark); font-size: 10px; font-weight: 300; display: block; margin: 8px 0; }
+
+        /* Overlay Menú */
+        .menu-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: var(--overlay-bg); z-index: 1500;
+            display: flex; flex-direction: column; justify-content: center; padding-left: 120px;
+            clip-path: circle(0% at 37px 50%); transition: clip-path 0.5s ease-in-out;
+        }
+        .menu-overlay.open { clip-path: circle(150% at 37px 50%); }
+
+        .large-nav a {
+            display: block; 
+            font-size: 9vh; 
+            font-weight: 100;
+            color: transparent;
+            -webkit-text-stroke: 0.3px rgba(255,255,255,0.2);
+            text-decoration: none;
+            line-height: 1.2; 
+            text-transform: uppercase; 
+            transition: all 0.3s ease;
+            letter-spacing: 2px;
+        }
+        .large-nav a:hover { 
+            color: #fff; 
+            -webkit-text-stroke: 0.3px #fff;
+            padding-left: 10px;
+        }
+
+        .contact-footer { color: #fff; font-size: 11px; font-weight: 100; opacity: 0.5; margin-top: 30px; line-height: 1.8; }
+
+        /* Content Wrapper */
+        .content-wrapper { margin-left: var(--nav-width); padding: 0 40px; }
+
+        /* HEADER CONFIGURADO */
+        .header-main {
+            position: sticky;
+            top: 0;
+            background-color: #ffffff;
+            z-index: 100;
+            height: 18vw;
+            display: flex;
+            align-items: center;
+            padding: 60px 0 20px 0;
+            transition: var(--transition-snap);
+            overflow: hidden;
+        }
+
+        .scrolling-name { 
+            font-family: 'Golden Way', serif;
+            font-size: 15vw; 
+            font-weight: 100;
+            margin: 0; 
+            line-height: 1; 
+            letter-spacing: 0.02em;
+            transition: var(--transition-snap);
+            transform-origin: left center; 
+            display: inline-block;
+            white-space: nowrap;
+        }
+
+        /* HEADER AL HACER SCROLL (SHRUNK) */
+        .header-main.shrunk { 
+            height: 80px; 
+            padding: 10px 0; 
+            border-bottom: 1px solid rgba(0,0,0,0.05); 
+        }
+
+        .header-main.shrunk .scrolling-name { 
+            transform: scale(0.18); 
+        }
+
+    </style>
+</head>
+<body>
+
+    <nav class="side-nav">
+        <div class="nav-top">
+            <a href="https://ibb.co/H1s1Vpx" target="_blank">
+                <img src="https://i.ibb.co/H1s1Vpx/image-72198c.jpg" alt="Logo MS" class="brand-logo">
+            </a>
+        </div>
+        <div class="menu-trigger" onclick="toggleMenu()">
+            <div class="hamb-line"></div>
+            <div class="hamb-line"></div>
+        </div>
+        <div class="nav-middle">
+            <div class="vertical-brand">SMALDINI</div>
+        </div>
+        <div class="nav-bottom">
+            <div class="social-links">
+                <a href="#">ENG</a><a href="#">IT</a><a href="#">IG</a><a href="#">FB</a><a href="#">VM</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="menu-overlay" id="menuOverlay">
+        <nav class="large-nav">
+            <a href="#">Cine</a>
+            <a href="#">Teatro</a>
+            <a href="#">Tv</a>
+            <a href="#">Publicidad</a>
+        </nav>
+        <div class="contact-footer">
+            <p>Díaz Vélez 3393 2º H, CABA</p>
+            <p>+54 9 (011) 15-5009-9121</p>
+            <p>marianosmaldini@gmail.com</p>
+            <p>Buenos Aires, Argentina | ARG & ITA</p>
+        </div>
+    </div>
+
+    <main class="content-wrapper">
+        <header class="header-main" id="stickyHeader">
+            <h1 class="scrolling-name">SMALDINI</h1>
+        </header>
+
+        <section style="min-height: 200vh;"></section> 
+    </main>
+
+    <script>
+        const header = document.getElementById("stickyHeader");
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 20) { header.classList.add("shrunk"); }
+            else { header.classList.remove("shrunk"); }
+        }, { passive: true });
+
+        function toggleMenu() {
+            const overlay = document.getElementById('menuOverlay');
+            const sideNav = document.querySelector('.side-nav');
+            const lines = document.querySelectorAll('.hamb-line');
+            overlay.classList.toggle('open');
+            sideNav.classList.toggle('active');
+            if (overlay.classList.contains('open')) {
+                lines[0].style.transform = "rotate(45deg) translate(2px, 2px)";
+                lines[1].style.transform = "rotate(-45deg) translate(2px, -2px)";
+            } else {
+                lines[0].style.transform = "none";
+                lines[1].style.transform = "none";
+            }
+        }
+    </script>
+</body>
+</html>
