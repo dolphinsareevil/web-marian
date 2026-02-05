@@ -26,6 +26,9 @@
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Inter', sans-serif; background-color: #ffffff; color: var(--text-dark); overflow-x: hidden; }
+        
+        /* Bloqueo de scroll cuando el menú está abierto */
+        body.menu-open { overflow: hidden; }
 
         /* Barra Lateral */
         .side-nav {
@@ -53,7 +56,8 @@
             background-color: var(--overlay-bg);
             background-image: url('https://images.unsplash.com/photo-1478720568477-152d9b164e26?w=1920&q=80');
             background-size: cover;
-            background-position: center;
+            background-position: center center;
+            background-repeat: no-repeat;
             z-index: 1500;
             display: flex; 
             flex-direction: column; 
@@ -99,12 +103,18 @@
 
         .contact-footer { 
             color: #fff; 
-            font-size: 11px; 
-            font-weight: 100; 
-            opacity: 0.5; 
+            font-size: 13px; 
+            font-weight: 300; 
             margin-top: 30px; 
             line-height: 1.8; 
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 15px;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            max-width: fit-content;
         }
+        .contact-footer p { opacity: 0.9; }
 
         /* Content Wrapper */
         .content-wrapper { margin-left: var(--nav-width); padding: 0 40px; }
@@ -150,13 +160,11 @@
 
         /* ========== RESPONSIVE MOBILE ========== */
         @media screen and (max-width: 768px) {
-            /* Content wrapper mobile */
             .content-wrapper {
                 padding: 0 15px;
                 margin-left: var(--nav-width);
             }
 
-            /* Header mobile - OVERFLOW VISIBLE */
             .header-main {
                 height: 20vw;
                 padding: 40px 0 15px 0;
@@ -169,20 +177,18 @@
             }
 
             .header-main.shrunk {
-                height: 60px;
-                padding: 8px 0;
-                overflow: hidden;
+                height: 75px; 
+                padding: 10px 0;
             }
 
-            /* SCALE AUMENTADO PARA MÓVILES */
             .header-main.shrunk .scrolling-name {
-                transform: scale(0.25);
+                transform: scale(0.35);
             }
 
-            /* Menú overlay mobile */
             .menu-overlay {
                 padding-left: 90px;
                 padding-right: 20px;
+                background-position: center center;
             }
 
             .large-nav {
@@ -194,14 +200,14 @@
                 letter-spacing: 1px;
                 line-height: 1.3;
                 margin-bottom: 5px;
-                color: rgba(255,255,255,0.65);
-                -webkit-text-stroke: 0.5px rgba(255,255,255,0.45);
             }
 
             .contact-footer {
-                font-size: 10px;
+                font-size: 12px;
                 margin-top: 25px;
-                line-height: 1.7;
+                padding: 15px;
+                width: 100%;
+                max-width: 280px;
             }
         }
 
@@ -211,7 +217,6 @@
                 padding: 0 10px;
             }
 
-            /* Header optimizado para pantallas pequeñas */
             .header-main {
                 height: 22vw;
                 padding: 30px 0 10px 0;
@@ -220,81 +225,24 @@
 
             .scrolling-name {
                 font-size: 12vw;
-                letter-spacing: -0.02em;
             }
 
             .header-main.shrunk {
-                height: 55px;
-                padding: 6px 0;
-                overflow: hidden;
+                height: 65px;
             }
 
-            /* SCALE AUMENTADO PARA MÓVILES PEQUEÑOS */
             .header-main.shrunk .scrolling-name {
-                transform: scale(0.22);
+                transform: scale(0.4);
             }
 
-            /* Menú overlay para pantallas muy pequeñas */
             .menu-overlay {
                 padding-left: 80px;
                 padding-right: 15px;
             }
 
-            .large-nav {
-                margin-bottom: 35px;
-            }
-
-            .large-nav a {
-                font-size: 13vw;
-                line-height: 1.25;
-                margin-bottom: 3px;
-                color: rgba(255,255,255,0.7);
-                -webkit-text-stroke: 0.5px rgba(255,255,255,0.5);
-            }
-
             .contact-footer {
-                font-size: 9px;
-                margin-top: 20px;
-                line-height: 1.6;
-            }
-        }
-
-        /* ========== RESPONSIVE LANDSCAPE MOBILE ========== */
-        @media screen and (max-height: 600px) and (orientation: landscape) {
-            .header-main {
-                height: 30vh;
-                padding: 25px 0 10px 0;
-                overflow: visible;
-            }
-
-            .scrolling-name {
-                font-size: 26vh;
-            }
-
-            .header-main.shrunk {
-                height: 50px;
-                overflow: hidden;
-            }
-
-            /* SCALE AUMENTADO PARA LANDSCAPE */
-            .header-main.shrunk .scrolling-name {
-                transform: scale(0.20);
-            }
-
-            .large-nav {
-                margin-bottom: 30px;
-            }
-
-            .large-nav a {
-                font-size: 8vh;
-                line-height: 1.1;
-                margin-bottom: 2px;
-            }
-
-            .contact-footer {
-                font-size: 9px;
-                margin-top: 15px;
-                line-height: 1.5;
+                font-size: 11px;
+                max-width: 240px;
             }
         }
 
@@ -330,7 +278,7 @@
             <a href="#">Publicidad</a>
         </nav>
         <div class="contact-footer">
-            <p>Díaz Vélez 3393 2º H, CABA</p>
+            <p><strong>Díaz Vélez 3393 2º H</strong>, CABA</p>
             <p>+54 9 (011) 15-5009-9121</p>
             <p>marianosmaldini@gmail.com</p>
             <p>Buenos Aires, Argentina | ARG & ITA</p>
@@ -356,8 +304,14 @@
             const overlay = document.getElementById('menuOverlay');
             const sideNav = document.querySelector('.side-nav');
             const lines = document.querySelectorAll('.hamb-line');
+            const body = document.body;
+
             overlay.classList.toggle('open');
             sideNav.classList.toggle('active');
+            
+            // MODIFICACIÓN: Bloqueo de scroll al abrir el menú
+            body.classList.toggle('menu-open');
+
             if (overlay.classList.contains('open')) {
                 lines[0].style.transform = "rotate(45deg) translate(2px, 2px)";
                 lines[1].style.transform = "rotate(-45deg) translate(2px, -2px)";
