@@ -94,7 +94,7 @@
             align-items: center;
             padding: 60px 0 20px 0;
             transition: var(--transition-snap);
-            overflow: hidden;
+            overflow: visible;
         }
 
         .scrolling-name { 
@@ -114,7 +114,8 @@
         .header-main.shrunk { 
             height: 80px; 
             padding: 10px 0; 
-            border-bottom: 1px solid rgba(0,0,0,0.05); 
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            overflow: hidden;
         }
 
         .header-main.shrunk .scrolling-name { 
@@ -123,32 +124,35 @@
 
         /* ========== RESPONSIVE MOBILE ========== */
         @media screen and (max-width: 768px) {
-            /* Content wrapper mobile - más padding para que SMALDINI se vea completo */
+            /* Content wrapper mobile */
             .content-wrapper {
-                padding: 0 20px;
+                padding: 0 15px;
+                margin-left: var(--nav-width);
             }
 
-            /* Header mobile - ajustado para mostrar palabra completa */
+            /* Header mobile - OVERFLOW VISIBLE */
             .header-main {
-                height: 22vw;
+                height: 20vw;
                 padding: 40px 0 15px 0;
+                overflow: visible;
             }
 
             .scrolling-name {
-                font-size: 17vw;
-                letter-spacing: 0.01em;
+                font-size: 13vw;
+                letter-spacing: -0.01em;
             }
 
             .header-main.shrunk {
                 height: 60px;
                 padding: 8px 0;
+                overflow: hidden;
             }
 
             .header-main.shrunk .scrolling-name {
                 transform: scale(0.16);
             }
 
-            /* Menú overlay mobile - más compacto y legible */
+            /* Menú overlay mobile */
             .menu-overlay {
                 padding-left: 90px;
                 padding-right: 20px;
@@ -173,23 +177,25 @@
         /* ========== RESPONSIVE SMALL MOBILE ========== */
         @media screen and (max-width: 480px) {
             .content-wrapper {
-                padding: 0 15px;
+                padding: 0 10px;
             }
 
             /* Header optimizado para pantallas pequeñas */
             .header-main {
-                height: 25vw;
+                height: 22vw;
                 padding: 30px 0 10px 0;
+                overflow: visible;
             }
 
             .scrolling-name {
-                font-size: 19vw;
-                letter-spacing: 0;
+                font-size: 12vw;
+                letter-spacing: -0.02em;
             }
 
             .header-main.shrunk {
                 height: 55px;
                 padding: 6px 0;
+                overflow: hidden;
             }
 
             .header-main.shrunk .scrolling-name {
@@ -222,6 +228,7 @@
             .header-main {
                 height: 30vh;
                 padding: 25px 0 10px 0;
+                overflow: visible;
             }
 
             .scrolling-name {
@@ -230,6 +237,7 @@
 
             .header-main.shrunk {
                 height: 50px;
+                overflow: hidden;
             }
 
             .large-nav a {
