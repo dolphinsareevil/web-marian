@@ -36,12 +36,14 @@
         }
         .side-nav.active { background-color: transparent; border-right: 1px solid rgba(255,255,255,0.1); }
         .side-nav.active .hamb-line { background-color: #fff; }
+        .side-nav.active .social-links a { color: #fff; }
+        .side-nav.active .vertical-brand { color: #fff; }
 
         .brand-logo { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; }
         .menu-trigger { cursor: pointer; display: flex; flex-direction: column; gap: 4px; z-index: 2100; }
         .hamb-line { width: 20px; height: 1px; background-color: var(--text-dark); transition: 0.2s; }
         .vertical-brand { writing-mode: vertical-rl; text-transform: uppercase; font-size: 10px; letter-spacing: 4px; transform: rotate(180deg); font-weight: 100; }
-        .social-links a { text-decoration: none; color: var(--text-dark); font-size: 10px; font-weight: 300; display: block; margin: 8px 0; }
+        .social-links a { text-decoration: none; color: var(--text-dark); font-size: 10px; font-weight: 300; display: block; margin: 8px 0; transition: color 0.2s; }
 
         /* Overlay Menú */
         .menu-overlay {
@@ -75,7 +77,7 @@
         /* Content Wrapper */
         .content-wrapper { margin-left: var(--nav-width); padding: 0 40px; }
 
-        /* HEADER CONFIGURADO */
+        /* HEADER */
         .header-main {
             position: sticky;
             top: 0;
@@ -102,7 +104,6 @@
             white-space: nowrap;
         }
 
-        /* HEADER AL HACER SCROLL (SHRUNK) */
         .header-main.shrunk { 
             height: 80px; 
             padding: 10px 0; 
@@ -111,6 +112,160 @@
 
         .header-main.shrunk .scrolling-name { 
             transform: scale(0.18); 
+        }
+
+        /* ========== RESPONSIVE MOBILE ========== */
+        @media screen and (max-width: 768px) {
+            :root {
+                --nav-width: 60px;
+            }
+
+            .side-nav {
+                width: var(--nav-width);
+                padding: 20px 0;
+            }
+
+            .brand-logo {
+                width: 32px;
+                height: 32px;
+            }
+
+            .hamb-line {
+                width: 18px;
+            }
+
+            .vertical-brand {
+                font-size: 8px;
+                letter-spacing: 3px;
+            }
+
+            .social-links a {
+                font-size: 9px;
+                margin: 6px 0;
+            }
+
+            /* Menú overlay mobile */
+            .menu-overlay {
+                padding-left: 80px;
+                padding-right: 20px;
+            }
+
+            .large-nav a {
+                font-size: 12vw;
+                letter-spacing: 1px;
+            }
+
+            .contact-footer {
+                font-size: 10px;
+                margin-top: 25px;
+                line-height: 1.6;
+            }
+
+            /* Content wrapper mobile */
+            .content-wrapper {
+                margin-left: var(--nav-width);
+                padding: 0 20px;
+            }
+
+            /* Header mobile */
+            .header-main {
+                height: 25vw;
+                padding: 40px 0 15px 0;
+            }
+
+            .scrolling-name {
+                font-size: 20vw;
+            }
+
+            .header-main.shrunk {
+                height: 60px;
+                padding: 8px 0;
+            }
+
+            .header-main.shrunk .scrolling-name {
+                transform: scale(0.15);
+            }
+        }
+
+        /* ========== RESPONSIVE SMALL MOBILE ========== */
+        @media screen and (max-width: 480px) {
+            :root {
+                --nav-width: 50px;
+            }
+
+            .side-nav {
+                padding: 15px 0;
+            }
+
+            .brand-logo {
+                width: 28px;
+                height: 28px;
+            }
+
+            .hamb-line {
+                width: 16px;
+            }
+
+            .vertical-brand {
+                font-size: 7px;
+                letter-spacing: 2px;
+            }
+
+            .social-links a {
+                font-size: 8px;
+                margin: 5px 0;
+            }
+
+            .menu-overlay {
+                padding-left: 60px;
+                padding-right: 15px;
+            }
+
+            .large-nav a {
+                font-size: 13vw;
+                line-height: 1.1;
+            }
+
+            .contact-footer {
+                font-size: 9px;
+                margin-top: 20px;
+            }
+
+            .content-wrapper {
+                padding: 0 15px;
+            }
+
+            .header-main {
+                height: 28vw;
+                padding: 30px 0 10px 0;
+            }
+
+            .scrolling-name {
+                font-size: 22vw;
+            }
+
+            .header-main.shrunk {
+                height: 50px;
+            }
+
+            .header-main.shrunk .scrolling-name {
+                transform: scale(0.12);
+            }
+        }
+
+        /* ========== RESPONSIVE LANDSCAPE MOBILE ========== */
+        @media screen and (max-height: 500px) and (orientation: landscape) {
+            .header-main {
+                height: 35vh;
+            }
+
+            .scrolling-name {
+                font-size: 30vh;
+            }
+
+            .large-nav a {
+                font-size: 10vh;
+            }
         }
 
     </style>
