@@ -45,17 +45,43 @@
 
         /* Overlay Menú */
         .menu-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background-color: var(--overlay-bg); z-index: 1500;
-            display: flex; flex-direction: column; justify-content: center; padding-left: 120px;
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%;
+            background-color: var(--overlay-bg);
+            background-image: url('https://images.unsplash.com/photo-1478720568477-152d9b164e26?w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            z-index: 1500;
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center; 
+            padding-left: 120px;
             padding-right: 40px;
-            clip-path: circle(0% at 37px 50%); transition: clip-path 0.5s ease-in-out;
+            clip-path: circle(0% at 37px 50%); 
+            transition: clip-path 0.5s ease-in-out;
+        }
+        .menu-overlay::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.75);
+            z-index: -1;
         }
         .menu-overlay.open { clip-path: circle(150% at 37px 50%); }
 
+        .large-nav {
+            margin-bottom: 60px;
+        }
+
         .large-nav a {
             display: block; 
-            font-size: 9vh; 
+            font-size: 12vh; 
             font-weight: 100;
             color: rgba(255,255,255,0.6);
             -webkit-text-stroke: 0.5px rgba(255,255,255,0.4);
@@ -159,6 +185,10 @@
                 padding-right: 20px;
             }
 
+            .large-nav {
+                margin-bottom: 40px;
+            }
+
             .large-nav a {
                 font-size: 11vw;
                 letter-spacing: 1px;
@@ -210,6 +240,10 @@
                 padding-right: 15px;
             }
 
+            .large-nav {
+                margin-bottom: 35px;
+            }
+
             .large-nav a {
                 font-size: 13vw;
                 line-height: 1.25;
@@ -245,6 +279,10 @@
             /* SCALE AUMENTADO PARA LANDSCAPE */
             .header-main.shrunk .scrolling-name {
                 transform: scale(0.20);
+            }
+
+            .large-nav {
+                margin-bottom: 30px;
             }
 
             .large-nav a {
