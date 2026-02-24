@@ -384,12 +384,10 @@
     transform: scale(1.2);
 }
 
-/* --- MARQUEE TOUCH + SNAP (MOBILE ONLY) --- */
 @media (max-width: 768px) {
+
     .marquee-container {
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-        scroll-snap-type: x mandatory;
+        overflow: hidden; /* ← clave: el resto NO se mueve */
     }
 
     .marquee {
@@ -397,16 +395,20 @@
         gap: 30px;
         padding: 0 10vw;
         width: max-content;
-        will-change: transform;
+
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scroll-snap-type: x mandatory;
+        overscroll-behavior-x: contain;
     }
 
     .work-card {
-        scroll-snap-align: center;
         flex: 0 0 auto;
+        scroll-snap-align: center;
     }
 
-    /* Ocultar scrollbar */
-    .marquee-container::-webkit-scrollbar {
+    /* ocultar scrollbar */
+    .marquee::-webkit-scrollbar {
         display: none;
     }
 }
@@ -799,19 +801,6 @@
     });
 
     renderGrid();
-
-    // --- MOBILE DRAG FIX FOR MARQUEE ---
-if (window.innerWidth <= 768) {
-    const marqueeContainer = document.querySelector('.marquee-container');
-
-    marqueeContainer.addEventListener('touchstart', () => {
-        marqueeContainer.classList.add('dragging');
-    });
-
-    marqueeContainer.addEventListener('touchend', () => {
-        marqueeContainer.classList.remove('dragging');
-    });
-}
 </script>
 </body>
 </html>
