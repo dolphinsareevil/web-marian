@@ -423,9 +423,9 @@
     <main>
         <section class="hero">
             <div class="hero-bg-container">
-                <video autoplay muted loop playsinline class="hero-bg-video">
-                    <source src="https://www.dropbox.com/scl/fi/tkg267jdh68n7g2fv52s3/TIMELAP-ARMADO.mp4?rlkey=772hpbexb7tlqr0qiodtbop33&st=r4r8cbjw&raw=1" type="video/mp4">
-                </video>
+                <video autoplay muted loop playsinline preload="auto" class="hero-bg-video">
+    <source src="https://www.dropbox.com/scl/fi/tkg267jdh68n7g2fv52s3/TIMELAP-ARMADO.mp4?rlkey=772hpbexb7tlqr0qiodtbop33&st=r4r8cbjw&raw=1" type="video/mp4">
+</video>
             </div>
             <h1 class="hero-title">Mariano<br>Smaldini</h1>
             <a href="#archivo" class="hero-cta magnetic">Explorar proyectos</a>
@@ -683,23 +683,31 @@
 
     let currentIndex = 0;
     function moveMarquee(direction) {
+        // 1. Obtenemos los elementos necesarios
         const track = document.getElementById('marquee-inner');
         const cards = track.querySelectorAll('.work-card');
         if (cards.length === 0) return;
 
+        // 2. Calculamos el ancho real de la tarjeta y su margen (espaciado)
         const cardWidth = cards[0].offsetWidth;
         const cardMargin = parseFloat(window.getComputedStyle(cards[0]).marginRight) || 0;
         const fullStep = cardWidth + cardMargin;
 
+        // 3. Actualizamos el índice (0 a 8 para tus 9 destacados)
         currentIndex = Math.max(0, Math.min(currentIndex + direction, destacadosData.length - 1));
 
+        // 4. Lógica de centrado:
+        // Calculamos cuánto espacio hay desde el borde de la pantalla al centro de la tarjeta
         const centerOffset = (window.innerWidth / 2) - (cardWidth / 2);
+        
+        // La posición final es el desplazamiento acumulado menos el margen de centrado
         const finalX = (currentIndex * fullStep) - centerOffset;
 
+        // 5. Aplicamos el movimiento
         track.style.transform = `translateX(${-finalX}px)`;
     }
 
-    // --- LÓGICA DE DESLIZAMIENTO TÁCTIL ACTIVADA ---
+    // --- LÓGICA DE DESLIZAMIENTO TÁCTIL (CORREGIDA) ---
     let touchStartX = 0;
     let touchEndX = 0;
 
@@ -709,18 +717,26 @@
 
     marqueeInner.addEventListener('touchend', e => {
         touchEndX = e.changedTouches[0].screenX;
-        const sweepDistance = touchStartX - touchEndX;
-        if (sweepDistance > 50) {
-            moveMarquee(1); // Siguiente
-        } else if (sweepDistance < -50) {
-            moveMarquee(-1); // Anterior
-        }
+        handleSwipe();
     }, {passive: true});
 
+    function handleSwipe() {
+        const sweepDistance = touchStartX - touchEndX;
+        // Si el deslizamiento es mayor a 50px, movemos
+        if (sweepDistance > 50) {
+            moveMarquee(1); // Desliza a la izquierda -> Siguiente
+        } else if (sweepDistance < -50) {
+            moveMarquee(-1); // Desliza a la derecha -> Anterior
+        }
+    }
+
+    // Aseguramos que se vea centrado al cargar la página
     window.addEventListener('load', () => moveMarquee(0));
     window.addEventListener('resize', () => moveMarquee(0));
-    setTimeout(() => moveMarquee(0), 100);
 
+    // Opcional: Para asegurar que el primer item inicie centrado al cargar o rotar el celular
+    window.addEventListener('resize', () => moveMarquee(0));
+    setTimeout(() => moveMarquee(0), 100);
     function renderGrid(filter = 'all') {
         const grid = document.getElementById('works-grid');
         const filtered = filter === 'all' ? fullArchive : fullArchive.filter(p => p.cat === filter);
@@ -756,6 +772,23 @@
     });
 
     renderGrid();
+
+    document.addEventListener('DOMContentLoaded', function() {
+    var video = document.querySelector('.hero-bg-video');
+    
+    // Intento de reproducción forzada
+    var playPromise = video.play();
+
+    if (playPromise !== undefined) {
+        playPromise.then(_ => {
+            // El video empezó a reproducirse con éxito
+        }).catch(error => {
+            // El auto-play fue preventivamente bloqueado (ej. ahorro de batería)
+            // Aquí podrías mostrar un botón de "Play" si fuera crítico
+            console.log("Autoplay bloqueado por el navegador");
+        });
+    }
+});
 </script>
 </body>
 </html>
