@@ -683,30 +683,32 @@
 
     let currentIndex = 0;
     function moveMarquee(direction) {
-        const containerWidth = window.innerWidth * 0.8 + 30; 
+        // 1. Obtenemos la primera tarjeta para medir su ancho real y su margen
+        const track = document.getElementById('marquee-inner');
+        const cards = track.querySelectorAll('.work-card');
+        if (cards.length === 0) return;
+
+        const cardWidth = cards[0].offsetWidth;
+        // Calculamos el margen derecho que definiste en el CSS (30px o 60px según el media query)
+        const cardMargin = parseFloat(window.getComputedStyle(cards[0]).marginRight);
+        const fullStep = cardWidth + cardMargin;
+
+        // 2. Actualizamos el índice sin pasarnos de los límites
         currentIndex = Math.max(0, Math.min(currentIndex + direction, destacadosData.length - 1));
-        marqueeInner.style.transform = `translateX(-${currentIndex * containerWidth}px)`;
+
+        // 3. Calculamos el offset de centrado: 
+        // Es la mitad del ancho de la pantalla menos la mitad del ancho de la tarjeta
+        const centerOffset = (window.innerWidth / 2) - (cardWidth / 2);
+        
+        // 4. Aplicamos la transformación: el paso acumulado menos el offset para que no pegue al borde izquierdo
+        const finalX = (currentIndex * fullStep) - centerOffset;
+
+        marqueeInner.style.transform = `translateX(${-finalX}px)`;
     }
 
-    // --- LÓGICA DE DESLIZAMIENTO TÁCTIL (TOUCH SWIPE) ---
-    let touchStartX = 0;
-    let touchEndX = 0;
-
-    marqueeInner.addEventListener('touchstart', e => {
-        touchStartX = e.changedTouches[0].screenX;
-    }, {passive: true});
-
-    marqueeInner.addEventListener('touchend', e => {
-        touchEndX = e.changedTouches[0].screenX;
-        handleSwipe();
-    }, {passive: true});
-
-    function handleSwipe() {
-        if (touchStartX - touchEndX > 50) moveMarquee(1); // Swipe Izquierda
-        if (touchEndX - touchStartX > 50) moveMarquee(-1); // Swipe Derecha
-    }
-    // ---------------------------------------------------
-
+    // Opcional: Para asegurar que el primer item inicie centrado al cargar o rotar el celular
+    window.addEventListener('resize', () => moveMarquee(0));
+    setTimeout(() => moveMarquee(0), 100);
     function renderGrid(filter = 'all') {
         const grid = document.getElementById('works-grid');
         const filtered = filter === 'all' ? fullArchive : fullArchive.filter(p => p.cat === filter);
