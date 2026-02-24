@@ -158,7 +158,11 @@
             .about-award { order: -1; max-width: 500px; margin-bottom: 40px; }
             .marquee-nav { display: flex; }
             .work-card { width: 80vw; margin-right: 30px; pointer-events: none; }
-            .marquee { animation: none; transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+            .marquee { 
+        animation: none; 
+        display: flex; /* Asegura que estén en línea */
+        transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1); 
+    }
             .bg-title { display: none;font-size: 25vw; }
             .work-card img { filter: grayscale(0) !important; transform: none !important; box-shadow: 0 10px 30px rgba(0,0,0,0.5) !important; }
             .project-item img { filter: grayscale(0) !important; opacity: 1 !important; }
@@ -663,43 +667,69 @@
     };
 
     // --- CARGA DE TRABAJOS DESTACADOS ACTUALIZADA ---
-    const marqueeInner = document.getElementById('marquee-inner');
-    const destacadosNombres = ["LA DICHA EN MOVIMIENTO", "Yo Nena Yo Princesa", "LA PANELISTA", "EL PRINCIPITO", "RENT"];
-    const destacadosData = fullArchive.filter(p => destacadosNombres.includes(p.title));
-    
-    // Generar HTML
-    const marqueeHTML = destacadosData.map(p => `
-        <div class="work-card">
-            <div class="mobile-img-wrapper"><img src="${p.img}"></div>
-            <h3>${p.title}</h3>
-            <p>${p.role}</p>
-        </div>
-    `).join('');
+    // --- CARGA DE TRABAJOS DESTACADOS ACTUALIZADA ---
+const marqueeInner = document.getElementById('marquee-inner');
+const destacadosNombres = ["LA DICHA EN MOVIMIENTO", "Yo Nena Yo Princesa", "LA PANELISTA", "EL PRINCIPITO", "RENT"];
+const destacadosData = fullArchive.filter(p => destacadosNombres.includes(p.title));
+
+// Generar HTML
+const marqueeHTML = destacadosData.map(p => `
+    <div class="work-card">
+        <div class="mobile-img-wrapper"><img src="${p.img}"></div>
+        <h3>${p.title}</h3>
+        <p>${p.role}</p>
+    </div>
+`).join('');
+
+// Duplicamos el contenido para permitir el efecto infinito en ambos modos
+marqueeInner.innerHTML = marqueeHTML + marqueeHTML;
     
     // En desktop duplicamos para el loop infinito, en mobile no es necesario para el swipe manual
     marqueeInner.innerHTML = (window.innerWidth > 768) ? marqueeHTML + marqueeHTML : marqueeHTML;
 
     let currentIndex = 0;
-    function moveMarquee(direction) {
-        const track = document.getElementById('marquee-inner');
-        const cards = track.querySelectorAll('.work-card');
-        if (cards.length === 0) return;
+function moveMarquee(direction) {
+    const track = document.getElementById('marquee-inner');
+    const cards = track.querySelectorAll('.work-card');
+    if (cards.length === 0) return;
 
-        const cardWidth = cards[0].offsetWidth;
-        const cardMargin = parseFloat(window.getComputedStyle(cards[0]).marginRight) || 0;
-        const fullStep = cardWidth + cardMargin;
+    const totalOriginalItems = destacadosData.length;
+    const cardWidth = cards[0].offsetWidth;
+    const cardMargin = parseFloat(window.getComputedStyle(cards[0]).marginRight) || 0;
+    const fullStep = cardWidth + cardMargin;
 
-        currentIndex = Math.max(0, Math.min(currentIndex + direction, destacadosData.length - 1));
+    currentIndex += direction;
 
+    // Lógica de infinitud
+    if (currentIndex >= totalOriginalItems) {
+        // Si pasamos el final, saltamos al inicio sin animación y luego movemos
+        track.style.transition = 'none';
+        currentIndex = 0;
         const centerOffset = (window.innerWidth / 2) - (cardWidth / 2);
+        track.style.transform = `translateX(${-(currentIndex * fullStep - centerOffset)}px)`;
         
-        // En móviles, movemos los hijos (imágenes/textos) de forma individual si se desea, 
-        // pero para mantener la consistencia visual del carrusel, desplazamos el contenedor 
-        // con una lógica que no rompa el diseño.
-        const finalX = (currentIndex * fullStep) - centerOffset;
-        track.style.transform = `translateX(${-finalX}px)`;
+        // Forzamos un reflow para que el navegador note el cambio sin animación
+        track.offsetHeight; 
+        
+        // Aplicamos el movimiento real con animación
+        track.style.transition = 'transform 0.5s cubic-bezier(0.16, 1, 0.3, 1)';
+        currentIndex = 1;
+    } else if (currentIndex < 0) {
+        // Si vamos hacia atrás del inicio
+        track.style.transition = 'none';
+        currentIndex = totalOriginalItems - 1;
+        const centerOffset = (window.innerWidth / 2) - (cardWidth / 2);
+        track.style.transform = `translateX(${-(currentIndex * fullStep - centerOffset)}px)`;
+        track.offsetHeight;
+        
+        track.style.transition = 'transform 0.5s cubic-bezier(0.16, 1, 0.3, 1)';
+        currentIndex = totalOriginalItems - 2;
     }
 
+    const centerOffset = (window.innerWidth / 2) - (cardWidth / 2);
+    const finalX = (currentIndex * fullStep) - centerOffset;
+    track.style.transform = `translateX(${-finalX}px)`;
+}
     // --- LÓGICA DE DESLIZAMIENTO TÁCTIL ---
     let touchStartX = 0;
     let touchEndX = 0;
