@@ -423,8 +423,16 @@
     <main>
         <section class="hero">
             <div class="hero-bg-container">
-                <video autoplay muted loop playsinline preload="auto" class="hero-bg-video">
-    <source src="https://www.dropbox.com/scl/fi/tkg267jdh68n7g2fv52s3/TIMELAP-ARMADO.mp4?rlkey=772hpbexb7tlqr0qiodtbop33&st=r4r8cbjw&raw=1" type="video/mp4">
+                <video 
+    autoplay 
+    muted 
+    loop 
+    playsinline 
+    preload="auto" 
+    poster="https://i.ibb.co/BHpZ65xm/MES.png" 
+    class="hero-bg-video">
+    <source src="https://www.dropbox.com/scl/fi/tkg267jdh68n7g2fv52s3/TIMELAP-ARMADO.mp4?rlkey=772hpbexb7tlqr0qiodtbop33&st=r4r8cbjw&dl=1" type="video/mp4">
+    Tu navegador no soporta videos.
 </video>
             </div>
             <h1 class="hero-title">Mariano<br>Smaldini</h1>
@@ -789,6 +797,21 @@
         });
     }
 });
+
+    window.addEventListener('load', function() {
+    const video = document.querySelector('.hero-bg-video');
+    
+    // Forzamos el play manualmente tras la carga
+    video.play().then(() => {
+      console.log("Reproducción iniciada");
+    }).catch(error => {
+      console.log("El autoplay fue bloqueado. Reintentando al primer toque.");
+      // Opcional: intentar reproducir cuando el usuario toque cualquier parte de la pantalla
+      document.addEventListener('touchstart', () => {
+        video.play();
+      }, { once: true });
+    });
+  });
 </script>
 </body>
 </html>
