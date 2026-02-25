@@ -636,34 +636,7 @@
     
     <button type="submit" class="filter-btn magnetic" style="width: fit-content; margin-top: 20px;">Enviar</button>
 </form>
-
-<div id="form-status" style="
-    position: fixed;
-    bottom: 40px;
-    left: 50%;
-    transform: translateX(-50%) translateY(20px);
-    background: rgba(20, 160, 80, 0.95);
-    color: #fff;
-    padding: 16px 28px;
-    border-radius: 40px;
-    font-family: 'Questrial', sans-serif;
-    font-size: 0.85rem;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    opacity: 0;
-    pointer-events: none;
-    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-    z-index: 99999;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.4);
-">
-    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="white" stroke-width="3">
-        <path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-    <span>Mensaje enviado</span>
-</div>
+    </div>
 </section>
     </main>
 
@@ -1192,42 +1165,27 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   });
 });
 </script>
-<script>
+
+<!-- EMAILJS SDK -->
 <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
 
 <script>
-document.addEventListener("DOMContentLoaded", function(){
-
+(function(){
   emailjs.init("TV6bsTiIZPmdOBgU2");
+})();
 
-  const form = document.getElementById("contact-form");
-  const statusBox = document.getElementById("form-status");
+document.getElementById("contact-form").addEventListener("submit", function(e){
+  e.preventDefault();
 
-  if(!form) return;
-
-  function showStatus(){
-    statusBox.style.opacity = "1";
-    statusBox.style.transform = "translateX(-50%) translateY(0)";
-    
-    setTimeout(() => {
-      statusBox.style.opacity = "0";
-      statusBox.style.transform = "translateX(-50%) translateY(20px)";
-    }, 3000);
-  }
-
-  form.addEventListener("submit", function(e){
-    e.preventDefault();
-
-    emailjs.sendForm("service_0yjdd1g", "template_25czfao", this)
-      .then(function() {
-        showStatus();
-        form.reset();
-      })
-      .catch(function(error) {
-        console.log("EmailJS error:", error);
-      });
-  });
-
+  emailjs.sendForm("service_0yjdd1g", "template_25czfao", this)
+    .then(function() {
+      alert("Mensaje enviado correctamente");
+      document.getElementById("contact-form").reset();
+    })
+    .catch(function(error) {
+      console.log("EmailJS error:", error);
+      alert("Error al enviar el mensaje");
+    });
 });
 </script>
 </body>
