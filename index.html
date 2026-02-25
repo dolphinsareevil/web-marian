@@ -9,13 +9,13 @@
         :root { --bg: #000; --text: #fff; --transition: cubic-bezier(0.16, 1, 0.3, 1); }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { background: var(--bg); color: var(--text); font-family: 'Questrial', sans-serif; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
-        
+
         @media (min-width: 769px) { * { cursor: none !important; } }
 
         /* --- PANTALLA DE CARGA --- */
         #page-transition {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: #000; z-index: 20000; display: flex; flex-direction: column; 
+            background: #000; z-index: 20000; display: flex; flex-direction: column;
             align-items: center; justify-content: center; gap: 20px;
         }
         #loader-icon { width: 60px; height: 60px; fill: #fff; opacity: 0; transform: scale(0.8); }
@@ -23,22 +23,22 @@
 
         /* CURSOR */
         #custom-cursor { position: fixed; width: 8px; height: 8px; background: #fff; border-radius: 50%; pointer-events: none; z-index: 99999; display: none; }
-        #cursor-follower { 
-            position: fixed; width: 150px; height: 150px; 
+        #cursor-follower {
+            position: fixed; width: 150px; height: 150px;
             background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0) 70%);
-            border-radius: 50%; pointer-events: none; z-index: 99998; 
+            border-radius: 50%; pointer-events: none; z-index: 99998;
             display: none; mix-blend-mode: screen;
         }
         @media (min-width: 769px) { #custom-cursor { display: block; } #cursor-follower { display: block; } }
 
         /* --- NAVEGACIÓN --- */
-        .nav-desktop { 
-            position: absolute; top: 0; width: 100%; z-index: 1000; 
-            display: none; justify-content: center; padding: 30px 0; 
-            transition: 0.5s var(--transition); 
+        .nav-desktop {
+            position: absolute; top: 0; width: 100%; z-index: 1000;
+            display: none; justify-content: center; padding: 30px 0;
+            transition: 0.5s var(--transition);
         }
         .nav-desktop.scrolled { backdrop-filter: blur(10px); background: rgba(0,0,0,0.5); padding: 15px 0; position: fixed; }
-        
+
         .nav-container {
             width: 100%; max-width: 1400px; padding: 0 8vw;
             display: flex; justify-content: space-between; align-items: center;
@@ -47,9 +47,9 @@
         .nav-logo img { height: 45px; filter: brightness(0) invert(1); transition: 0.4s var(--transition); }
 
         .nav-desktop ul { display: flex; gap: 30px; list-style: none; }
-        .nav-link { 
-            text-decoration: none; color: #fff; font-size: 0.7rem; 
-            letter-spacing: 3px; text-transform: uppercase; opacity: 0.5; 
+        .nav-link {
+            text-decoration: none; color: #fff; font-size: 0.7rem;
+            letter-spacing: 3px; text-transform: uppercase; opacity: 0.5;
             transition: 0.4s var(--transition); position: relative; padding: 5px 0;
         }
         .nav-link::after {
@@ -66,11 +66,11 @@
         .burger.active span:nth-child(2) { opacity: 0; }
         .burger.active span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
 
-        .mobile-menu { 
-            position: fixed; top: 0; left: 0; width: 100%; height: 100vh; 
+        .mobile-menu {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
             background: #000; z-index: 10000; display: flex; flex-direction: column;
-            align-items: center; justify-content: center; transform: translateY(-100%); 
-            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1); 
+            align-items: center; justify-content: center; transform: translateY(-100%);
+            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
         }
         .mobile-menu.active { transform: translateY(0); }
         .mobile-menu ul { list-style: none; text-align: left; width: 100%; padding: 0 8vw; }
@@ -127,7 +127,7 @@
         .filter-btn { background: transparent; border: 1px solid #333; color: #fff; padding: 12px 28px; font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; transition: all 0.4s var(--transition); font-family: 'Questrial'; position: relative; overflow: hidden; z-index: 1; }
         .filter-btn:hover { border-color: #fff; transform: translateY(-3px); }
         .filter-btn.active { background: #fff !important; color: #000 !important; border-color: #fff !important; }
-        
+
         .works-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 35px; }
         .project-item { position: relative; overflow: hidden; aspect-ratio: 16/10; border: 1px solid #111; transition: transform 0.6s var(--transition), opacity 0.6s var(--transition), box-shadow 0.6s var(--transition); border-radius: 12px; box-shadow: 0 15px 35px rgba(0,0,0,0.8); }
         .project-item img { width: 100%; height: 100%; object-fit: cover; opacity: 0.3; filter: grayscale(1); transition: 0.8s; border-radius: 12px; }
@@ -149,19 +149,19 @@
 
         @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-        @media (max-width: 768px) { 
-            .nav-desktop { display: none; } 
-            .hero-title { font-size: 18vw; } 
+        @media (max-width: 768px) {
+            .nav-desktop { display: none; }
+            .hero-title { font-size: 18vw; }
             .contact-container { grid-template-columns: 1fr; }
             .works-grid { grid-template-columns: 1fr; }
             .about-content { grid-template-columns: 1fr; }
             .about-award { order: -1; max-width: 500px; margin-bottom: 40px; }
             .marquee-nav { display: flex; }
             .work-card { width: 80vw; margin-right: 30px; pointer-events: none; }
-            .marquee { 
-        animation: none; 
+            .marquee {
+        animation: none;
         display: flex; /* Asegura que estén en línea */
-        transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1); 
+        transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
     }
             .bg-title { display: none;font-size: 25vw; }
             .work-card img { filter: grayscale(0) !important; transform: none !important; box-shadow: 0 10px 30px rgba(0,0,0,0.5) !important; }
@@ -466,14 +466,22 @@
 
     <main>
         <section class="hero">
-            <div class="hero-bg-container">
-                <video autoplay muted loop playsinline class="hero-bg-video">
-    <source src="https://www.dropbox.com/scl/fi/8de0q4mmjqj5kwdq5boi3/timelap-armado-online-video-cuttercom_Qd0zg8dY.mp4?rlkey=0ik9ql2dobz80mm9zsv9yp3nz&st=sxmijyqm&raw=1" type="video/mp4">
-</video>
-            </div>
-            <h1 class="hero-title">Mariano<br>Smaldini</h1>
-            <a href="#archivo" class="hero-cta magnetic">Explorar proyectos</a>
-        </section>
+    <div class="hero-bg-container">
+        <div style="padding:56.25% 0 0 0; position:relative; width:100%; height:100%;">
+            <iframe
+                src="https://player.vimeo.com/video/1168230282?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&loop=1&background=1&muted=1"
+                frameborder="0"
+                allow="autoplay; fullscreen; picture-in-picture"
+                style="position:absolute; top:50%; left:50%; width:100vw; height:100vh; min-width:177.77vh; min-height:56.25vw; transform:translate(-50%, -50%); pointer-events:none; filter: brightness(0.4);"
+                title="TIMELAPse ARMADO">
+            </iframe>
+        </div>
+        <script src="https://player.vimeo.com/api/player.js"></script>
+    </div>
+
+    <h1 class="hero-title">Mariano<br>Smaldini</h1>
+    <a href="#archivo" class="hero-cta magnetic">Explorar proyectos</a>
+</section>
 
         <section class="marquee-container" id="destacados">
             <div class="section-header">
@@ -493,35 +501,40 @@
         <h2 class="section-label">Trayectoria</h2>
     </div>
 
-    <div class="bio-main-grid">
-        <div class="bio-visual">
-            <div class="image-reveal-wrapper">
-                <img src="https://i.ibb.co/BHpZ65xm/MES.png" alt="Mariano Smaldini" class="bio-portrait">
-            </div>
-        </div>
-        
-        <div class="bio-text">
-            <div class="bio-wrapper">
-                <p class="reveal-text" id="manifesto-text">
-                    Soy un profesional del ámbito creativo y audiovisual con más de 20 años de trayectoria ininterrumpida en la industria. Desde 2005, he volcado mi pasión y formación técnica en la dirección de arte, la realización escenográfica y el montaje, trabajando en proyectos de cine, teatro, televisión, publicidad y medios digitales.
-Mi enfoque combina la visión estética con la capacidad de ejecución práctica, lo que me ha permitido liderar equipos y proyectos de gran envergadura tanto en Argentina como en el exterior.
-                </p>
-                
-                <div class="award-footer-premium" style="margin-top: 50px; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center; gap: 30px;">
-                    <img src="https://i.ibb.co/GYZCbK6/Premios-Hugo.png" alt="Premio Hugo" style="height: 120px; width: auto; filter: brightness(1.1);">
-                    <div class="award-info">
-                        <span style="font-size: 0.8rem; letter-spacing: 4px; color: rgba(255,255,255,0.4); text-transform: uppercase; font-weight: bold;">Año 2024</span>
-                        <h3 style="font-size: 1.1rem; letter-spacing: 2px; text-transform: uppercase; font-weight: 400; margin-top: 5px; line-height: 1.4;">GANADOR PREMIO HUGO<br>A LA MEJOR DISEÑO DE ESCENOGRAFÍA POR "EL PRINCIPITO"</h3>
-                    </div>
-                </div>
 
-                
-            </div>
+<div class="bio-main-grid" style="display:flex;flex-direction:column;align-items:center;gap:80px;">
+
+    <!-- Imagen superior -->
+    <div class="bio-top-image" style="max-width:500px;width:100%;">
+        <img src="https://i.ibb.co/BHpZ65xm/MES.png"
+             alt="Mariano Smaldini"
+             class="bio-portrait"
+             style="width:100%;border-radius:12px;">
+    </div>
+
+    <!-- Texto original (mantiene id para GSAP e idiomas) -->
+    <div style="max-width:850px;text-align:center;">
+        <p class="reveal-text" id="manifesto-text">
+        </p>
+    </div>
+
+    <!-- Premio más grande abajo -->
+    <div class="bio-award-big" style="display:flex;flex-direction:column;align-items:center;gap:30px;text-align:center;">
+        <img src="https://i.ibb.co/GYZCbK6/Premios-Hugo.png"
+             alt="Premio Hugo"
+             style="width:260px;height:auto;">
+
+        <div class="award-big-text">
+            <span id="award-year">Año 2024</span>
+            <h3 id="award-title">
+                GANADOR PREMIO HUGO<br>
+                A LA MEJOR DISEÑO DE ESCENOGRAFÍA POR "EL PRINCIPITO"
+            </h3>
         </div>
     </div>
+
+</div>
 </section>
-
-
 
         <section class="all-works" id="archivo">
             <div class="section-header">
@@ -546,7 +559,7 @@ Mi enfoque combina la visión estética con la capacidad de ejecución práctica
     </div>
     <div class="contact-container">
         <div style="display: flex; flex-direction: column; justify-content: flex-start;">
-            
+
             <div style="display: flex; flex-direction: column; line-height: 0.8; gap: 0; margin-bottom: 40px;">
                 <span style="font-size: clamp(4rem, 10vw, 8rem); font-weight: 900; letter-spacing: -2px;">hola.</span>
                 <span style="font-size: clamp(4rem, 10vw, 8rem); font-weight: 900; letter-spacing: -2px; opacity: 0.6;">ciao.</span>
@@ -563,7 +576,7 @@ Mi enfoque combina la visión estética con la capacidad de ejecución práctica
             </div>
 
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; font-size: 0.85rem; letter-spacing: 1px; text-transform: uppercase;">
-                            
+
             </div>
         </div>
 
@@ -585,7 +598,7 @@ Mi enfoque combina la visión estética con la capacidad de ejecución práctica
 
 <footer style="padding: 100px 8vw 40px 8vw; border-top: 1px solid rgba(255,255,255,0.05); background: #000;">
     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; align-items: start; padding-bottom: 60px;">
-        
+
         <div style="display: flex; flex-direction: column; gap: 25px; border-left: 1px solid rgba(255,255,255,0.1); padding-left: 20px;">
             <div style="text-transform: uppercase; letter-spacing: 2px;">
                 <p style="font-size: 0.65rem; opacity: 0.4; margin-bottom: 8px;">Ubicación I</p>
@@ -714,13 +727,12 @@ Mi enfoque combina la visión estética con la capacidad de ejecución práctica
         lenis.stop();
     }
 
-    document.getElementById('video-modal').onclick = function() { 
-        this.classList.remove('active'); 
-        setTimeout(() => { this.style.display='none'; document.getElementById('video-player').innerHTML=''; }, 400); 
-        lenis.start(); 
+    document.getElementById('video-modal').onclick = function() {
+        this.classList.remove('active');
+        setTimeout(() => { this.style.display='none'; document.getElementById('video-player').innerHTML=''; }, 400);
+        lenis.start();
     };
 
-    // --- CARGA DE TRABAJOS DESTACADOS ACTUALIZADA ---
     // --- CARGA DE TRABAJOS DESTACADOS ACTUALIZADA ---
 const marqueeInner = document.getElementById('marquee-inner');
 const destacadosNombres = ["LA DICHA EN MOVIMIENTO", "Yo Nena Yo Princesa", "LA PANELISTA", "EL PRINCIPITO", "RENT"];
@@ -736,9 +748,7 @@ const marqueeHTML = destacadosData.map(p => `
 `).join('');
 
 // Duplicamos el contenido para permitir el efecto infinito en ambos modos
-marqueeInner.innerHTML = marqueeHTML + marqueeHTML;
-    
-    // En desktop duplicamos para el loop infinito, en mobile no es necesario para el swipe manual
+// En desktop duplicamos para el loop infinito, en mobile no es necesario para el swipe manual
     marqueeInner.innerHTML = (window.innerWidth > 768) ? marqueeHTML + marqueeHTML : marqueeHTML;
 
     let currentIndex = 0;
@@ -761,10 +771,10 @@ function moveMarquee(direction) {
         currentIndex = 0;
         const centerOffset = (window.innerWidth / 2) - (cardWidth / 2);
         track.style.transform = `translateX(${-(currentIndex * fullStep - centerOffset)}px)`;
-        
+
         // Forzamos un reflow para que el navegador note el cambio sin animación
-        track.offsetHeight; 
-        
+        track.offsetHeight;
+
         // Aplicamos el movimiento real con animación
         track.style.transition = 'transform 0.5s cubic-bezier(0.16, 1, 0.3, 1)';
         currentIndex = 1;
@@ -775,7 +785,7 @@ function moveMarquee(direction) {
         const centerOffset = (window.innerWidth / 2) - (cardWidth / 2);
         track.style.transform = `translateX(${-(currentIndex * fullStep - centerOffset)}px)`;
         track.offsetHeight;
-        
+
         track.style.transition = 'transform 0.5s cubic-bezier(0.16, 1, 0.3, 1)';
         currentIndex = totalOriginalItems - 2;
     }
@@ -796,7 +806,7 @@ function moveMarquee(direction) {
         touchEndX = e.changedTouches[0].screenX;
         const sweepDistance = touchStartX - touchEndX;
         if (sweepDistance > 50) {
-            moveMarquee(1); 
+            moveMarquee(1);
         } else if (sweepDistance < -50) {
             moveMarquee(-1);
         }
@@ -948,7 +958,6 @@ Il mio approccio unisce visione estetica e capacità esecutiva pratica, permette
   }
 };
 
-
 /* APPLY LANGUAGE SAFELY */
 function applyLang(lang){
 
@@ -1027,7 +1036,6 @@ document.querySelectorAll(".lang-btn").forEach(btn=>{
     "© 2026 Mariano Smaldini — " + t.contact.rights;
 }
 
-
 /* AUTO DETECT */
 const urlLang = new URLSearchParams(window.location.search).get("lang");
 const savedLang = localStorage.getItem("lang");
@@ -1050,7 +1058,6 @@ window.setLanguage = setLanguage;
 applyLang(lang);
 applySemantic(lang);
 </script>
-
 
 <!-- ===============================
      I18N SYSTEM PHASE 3 (SEMANTIC)
@@ -1084,7 +1091,6 @@ function applySemantic(lang){
     }
   });
 }
-
 
 // Initial semantic apply
 applySemantic(document.documentElement.lang || "es");
