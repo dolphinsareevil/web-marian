@@ -1164,6 +1164,9 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     }
   });
 });
+</script>
+
+<!-- EMAILJS SDK -->
 <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
 
 <script>
@@ -1175,11 +1178,12 @@ document.getElementById("contact-form").addEventListener("submit", function(e){
   e.preventDefault();
 
   emailjs.sendForm("service_0yjdd1g", "template_25czfao", this)
-    .then(() => {
+    .then(function() {
       alert("Mensaje enviado correctamente");
-      this.reset();
+      document.getElementById("contact-form").reset();
     })
-    .catch(() => {
+    .catch(function(error) {
+      console.log("EmailJS error:", error);
       alert("Error al enviar el mensaje");
     });
 });
