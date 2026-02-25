@@ -450,6 +450,8 @@
         right: 20px;
     }
 }
+    
+        html { scroll-behavior: smooth; }
     </style>
 
     <!-- Structured Data -->
@@ -622,16 +624,18 @@
             </div>
         </div>
 
-        <form action="https://formspree.io/f/xaqdvyrn" method="POST" style="display: flex; flex-direction: column; gap: 30px;">
-            <input type="text" name="nombre" placeholder="Nombre" required aria-label="Nombre" style="background:none; border:none; border-bottom:1px solid #333; padding:20px 0; color:#fff; font-family:'Questrial'; font-size: 1.1rem; outline:none;">
-            <input type="email" name="email" placeholder="E-mail" required aria-label="Correo electrónico" style="background:none; border:none; border-bottom:1px solid #333; padding:20px 0; color:#fff; font-family:'Questrial'; font-size: 1.1rem; outline:none;">
-            <textarea name="mensaje" placeholder="Mensaje" required aria-label="Mensaje" rows="3" style="background:none; border:none; border-bottom:1px solid #333; padding:20px 0; color:#fff; font-family:'Questrial'; font-size: 1.1rem; outline:none;"></textarea>
-            
-            <input type="hidden" name="_subject" value="Nuevo mensaje desde marianosmaldini.com">
-            <input type="hidden" name="_captcha" value="false">
-            
-            <button type="submit" class="filter-btn magnetic" style="width: fit-content; margin-top: 20px;">Enviar</button>
-        </form>
+        <form id="contact-form" style="display: flex; flex-direction: column; gap: 30px;">
+    <input type="text" name="user_name" placeholder="Nombre" aria-label="Nombre" required 
+           style="background:none; border:none; border-bottom:1px solid #333; padding:20px 0; color:#fff; font-family:'Questrial'; font-size: 1.1rem; outline:none;">
+    
+    <input type="email" name="user_email" placeholder="E-mail" aria-label="Correo electrónico" required 
+           style="background:none; border:none; border-bottom:1px solid #333; padding:20px 0; color:#fff; font-family:'Questrial'; font-size: 1.1rem; outline:none;">
+    
+    <textarea name="message" placeholder="Mensaje" aria-label="Mensaje" rows="3" required 
+              style="background:none; border:none; border-bottom:1px solid #333; padding:20px 0; color:#fff; font-family:'Questrial'; font-size: 1.1rem; outline:none;"></textarea>
+    
+    <button type="submit" class="filter-btn magnetic" style="width: fit-content; margin-top: 20px;">Enviar</button>
+</form>
     </div>
 </section>
     </main>
@@ -1142,5 +1146,43 @@ function applySemantic(lang){
 applySemantic(document.documentElement.lang || "es");
 </script>
 
+
+<script>
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    const targetId = this.getAttribute('href');
+    if (targetId.length > 1) {
+      const targetEl = document.querySelector(targetId);
+      if (targetEl) {
+        e.preventDefault();
+        lenis.scrollTo(targetEl, {
+          offset: 0,
+          duration: 1.2,
+          easing: (t) => 1 - Math.pow(1 - t, 4)
+        });
+      }
+    }
+  });
+});
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+
+<script>
+(function(){
+  emailjs.init("TV6bsTiIZPmdOBgU2");
+})();
+
+document.getElementById("contact-form").addEventListener("submit", function(e){
+  e.preventDefault();
+
+  emailjs.sendForm("service_0yjdd1g", "template_25czfao", this)
+    .then(() => {
+      alert("Mensaje enviado correctamente");
+      this.reset();
+    })
+    .catch(() => {
+      alert("Error al enviar el mensaje");
+    });
+});
+</script>
 </body>
 </html>
