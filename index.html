@@ -379,6 +379,54 @@
 .scroll-up-arrow:hover svg {
     transform: scale(1.2);
 }
+
+/* ===============================
+   LANGUAGE SWITCH PREMIUM
+================================ */
+
+.lang-switch{
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 9999;
+    display: flex;
+    gap: 10px;
+}
+
+.lang-btn{
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.3);
+    color: #fff;
+    font-family: 'Questrial', sans-serif;
+    font-size: 0.65rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 10px 14px;
+    cursor: pointer;
+    transition: all 0.4s var(--transition);
+    opacity: 0.6;
+}
+
+.lang-btn:hover{
+    border-color: #fff;
+    opacity: 1;
+    transform: translateY(-3px);
+}
+
+.lang-btn.active{
+    background: #fff;
+    color: #000;
+    border-color: #fff;
+    opacity: 1;
+}
+
+/* Mobile adjustment */
+@media (max-width: 768px){
+    .lang-switch{
+        bottom: 20px;
+        right: 20px;
+    }
+}
     </style>
 </head>
 <body>
@@ -572,6 +620,11 @@ Mi enfoque combina la visión estética con la capacidad de ejecución práctica
         </p>
     </div>
 </footer>
+    <div class="lang-switch">
+  <button class="lang-btn" data-lang="es" onclick="setLanguage('es')">ES</button>
+  <button class="lang-btn" data-lang="en" onclick="setLanguage('en')">EN</button>
+  <button class="lang-btn" data-lang="it" onclick="setLanguage('it')">IT</button>
+</div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
@@ -789,5 +842,253 @@ function moveMarquee(direction) {
 
     renderGrid();
 </script>
+<script>
+/* ===============================
+   I18N FULL SYSTEM (SAFE VERSION)
+================================= */
+
+const I18N = {
+  es:{
+    nav:{home:"Inicio",about:"Sobre mi",works:"Trabajos",contact:"Contacto"},
+    hero_cta:"Explorar proyectos",
+    featured:"Trabajos Destacados",
+    career:"Trayectoria",
+    projects:"Proyectos",
+    filters:{
+      all:"Todos",
+      film:"Cine",
+      theatre:"Teatro",
+      tv:"TV y Reality",
+      clips:"Videoclips",
+      ads:"Publicidad"
+    },
+    contact:{
+      title:"Contacto",
+      name:"Nombre",
+      email:"E-mail",
+      message:"Mensaje",
+      send:"Enviar",
+      direct:"Canales Directos",
+      location1:"Ubicación I",
+      location2:"Ubicación II",
+      back:"Volver al inicio",
+      rights:"Todos los derechos reservados."
+    },
+    award_year:"Año 2024",
+    award_title:`GANADOR PREMIO HUGO<br>A LA MEJOR DISEÑO DE ESCENOGRAFÍA POR "EL PRINCIPITO"`,
+    bio_text:`Soy un profesional del ámbito creativo y audiovisual con más de 20 años de trayectoria ininterrumpida en la industria. Desde 2005, he volcado mi pasión y formación técnica en la dirección de arte, la realización escenográfica y el montaje, trabajando en proyectos de cine, teatro, televisión, publicidad y medios digitales.
+
+Mi enfoque combina la visión estética con la capacidad de ejecución práctica, lo que me ha permitido liderar equipos y proyectos de gran envergadura tanto en Argentina como en el exterior.`
+  },
+
+  en:{
+    nav:{home:"Home",about:"About Me",works:"Works",contact:"Contact"},
+    hero_cta:"Explore Projects",
+    featured:"Featured Works",
+    career:"Career",
+    projects:"Projects",
+    filters:{
+      all:"All",
+      film:"Film",
+      theatre:"Theatre",
+      tv:"TV & Reality",
+      clips:"Music Videos",
+      ads:"Advertising"
+    },
+    contact:{
+      title:"Contact",
+      name:"Name",
+      email:"E-mail",
+      message:"Message",
+      send:"Send",
+      direct:"Direct Channels",
+      location1:"Location I",
+      location2:"Location II",
+      back:"Back to Top",
+      rights:"All rights reserved."
+    },
+    award_year:"Year 2024",
+    award_title:`HUGO AWARD WINNER<br>BEST SET DESIGN FOR "THE LITTLE PRINCE"`,
+    bio_text:`I am a creative and audiovisual professional with more than 20 years of uninterrupted experience in the industry. Since 2005, I have devoted my passion and technical training to art direction, set design, and production, working on projects in film, theatre, television, advertising, and digital media.
+
+My approach combines aesthetic vision with practical execution, allowing me to lead large-scale teams and projects both in Argentina and internationally.`
+  },
+
+  it:{
+    nav:{home:"Home",about:"Chi Sono",works:"Progetti",contact:"Contatto"},
+    hero_cta:"Esplora i Progetti",
+    featured:"Progetti in Evidenza",
+    career:"Percorso",
+    projects:"Progetti",
+    filters:{
+      all:"Tutti",
+      film:"Cinema",
+      theatre:"Teatro",
+      tv:"TV e Reality",
+      clips:"Videoclip",
+      ads:"Pubblicità"
+    },
+    contact:{
+      title:"Contatto",
+      name:"Nome",
+      email:"E-mail",
+      message:"Messaggio",
+      send:"Invia",
+      direct:"Canali Diretti",
+      location1:"Sede I",
+      location2:"Sede II",
+      back:"Torna all’inizio",
+      rights:"Tutti i diritti riservati."
+    },
+    award_year:"Anno 2024",
+    award_title:`VINCITORE PREMIO HUGO<br>MIGLIOR SCENOGRAFIA PER "IL PICCOLO PRINCIPE"`,
+    bio_text:`Sono un professionista dell’ambito creativo e audiovisivo con oltre 20 anni di esperienza continuativa nel settore. Dal 2005 ho dedicato la mia passione e la mia formazione tecnica alla direzione artistica, alla scenografia e alla realizzazione, lavorando in progetti di cinema, teatro, televisione, pubblicità e media digitali.
+
+Il mio approccio unisce visione estetica e capacità esecutiva pratica, permettendomi di guidare team e progetti di grande scala sia in Argentina che all’estero.`
+  }
+};
+
+
+/* APPLY LANGUAGE SAFELY */
+function applyLang(lang){
+
+    // Active button state
+document.querySelectorAll(".lang-btn").forEach(btn=>{
+  btn.classList.remove("active");
+  if(btn.dataset.lang === lang){
+    btn.classList.add("active");
+  }
+});
+
+  document.documentElement.lang = lang;
+  localStorage.setItem("lang",lang);
+
+  const t = I18N[lang];
+
+  // NAV
+  document.querySelectorAll(".nav-link")[0].textContent = t.nav.home;
+  document.querySelectorAll(".nav-link")[1].textContent = t.nav.about;
+  document.querySelectorAll(".nav-link")[2].textContent = t.nav.works;
+  document.querySelectorAll(".nav-link")[3].textContent = t.nav.contact;
+
+  // MOBILE NAV
+  document.querySelectorAll(".mobile-menu a")[0].textContent = t.nav.home;
+  document.querySelectorAll(".mobile-menu a")[1].textContent = t.nav.about;
+  document.querySelectorAll(".mobile-menu a")[2].textContent = t.nav.works;
+  document.querySelectorAll(".mobile-menu a")[3].textContent = t.nav.contact;
+
+  // HERO CTA
+  document.querySelector(".hero-cta").textContent = t.hero_cta;
+
+  // SECTION TITLES
+  document.querySelector("#destacados .section-label").textContent = t.featured;
+  document.querySelector("#sobre-mi .section-label").textContent = t.career;
+  document.querySelector("#archivo .section-label").textContent = t.projects;
+  document.querySelector("#contacto .section-label").textContent = t.contact.title;
+
+  // FILTERS
+  const filterBtns = document.querySelectorAll(".filter-btn");
+  filterBtns[0].textContent = t.filters.all;
+  filterBtns[1].textContent = t.filters.film;
+  filterBtns[2].textContent = t.filters.theatre;
+  filterBtns[3].textContent = t.filters.tv;
+  filterBtns[4].textContent = t.filters.clips;
+  filterBtns[5].textContent = t.filters.ads;
+
+  // BIO
+  const bio = document.getElementById("manifesto-text");
+  bio.innerText = t.bio_text;
+
+  // Rebuild word animation safely
+  bio.innerHTML = bio.innerText.split(" ").map(w => `<span>${w} </span>`).join("");
+  gsap.to("#manifesto-text span", {
+      opacity: 1, stagger: 0.05,
+      scrollTrigger: { trigger: "#manifesto-text", start: "top 80%", end: "bottom 40%", scrub: true }
+  });
+
+  // AWARD
+  document.querySelector(".award-info span").textContent = t.award_year;
+  document.querySelector(".award-info h3").innerHTML = t.award_title;
+
+  // CONTACT FORM
+  const inputs = document.querySelectorAll("form input, form textarea");
+  inputs[0].placeholder = t.contact.name;
+  inputs[1].placeholder = t.contact.email;
+  inputs[2].placeholder = t.contact.message;
+
+  document.querySelector("form button").textContent = t.contact.send;
+
+  // FOOTER
+  const footerTexts = document.querySelectorAll("footer p");
+  footerTexts[0].textContent = t.contact.location1;
+  footerTexts[2].textContent = t.contact.location2;
+  footerTexts[4].textContent = t.contact.direct;
+  footerTexts[footerTexts.length-1].textContent =
+    "© 2026 Mariano Smaldini — " + t.contact.rights;
+}
+
+
+/* AUTO DETECT */
+const urlLang = new URLSearchParams(window.location.search).get("lang");
+const savedLang = localStorage.getItem("lang");
+let lang = urlLang || savedLang;
+
+if(!lang){
+  const navLang = navigator.language.slice(0,2);
+  if(["es","en","it"].includes(navLang)) lang = navLang;
+  else lang = "es";
+}
+function setLanguage(l){
+  applyLang(l);
+  applySemantic(l);
+  history.replaceState(null,"","?lang="+l);
+}
+
+window.setLanguage = setLanguage;
+
+// Inicialización correcta
+applyLang(lang);
+applySemantic(lang);
+</script>
+
+
+<!-- ===============================
+     I18N SYSTEM PHASE 3 (SEMANTIC)
+================================ -->
+<script>
+// Semantic dictionary (extendable)
+const I18N_SEMANTIC = {
+  es: {
+    hero_title: "Director de arte & escenógrafo",
+    hero_intro: "Trabajo en cine, teatro, televisión y publicidad.",
+    contact_cta: "Hablemos"
+  },
+  en: {
+    hero_title: "Art Director & Set Designer",
+    hero_intro: "I work across film, theatre, television and advertising.",
+    contact_cta: "Let’s talk"
+  },
+  it: {
+    hero_title: "Direttore artistico & scenografo",
+    hero_intro: "Lavoro tra cinema, teatro, televisione e pubblicità.",
+    contact_cta: "Parliamo"
+  }
+};
+
+// Apply semantic translations
+function applySemantic(lang){
+  document.querySelectorAll("[data-i18n]").forEach(el=>{
+    const key = el.dataset.i18n;
+    if(I18N_SEMANTIC[lang] && I18N_SEMANTIC[lang][key]){
+      el.textContent = I18N_SEMANTIC[lang][key];
+    }
+  });
+}
+
+
+// Initial semantic apply
+applySemantic(document.documentElement.lang || "es");
+</script>
+
 </body>
 </html>
