@@ -860,29 +860,20 @@ function moveMarquee(direction) {
     window.addEventListener('resize', () => moveMarquee(0));
     setTimeout(() => moveMarquee(0), 100);
 
-    
     function renderGrid(filter = 'all') {
         const grid = document.getElementById('works-grid');
         const filtered = filter === 'all' ? fullArchive : fullArchive.filter(p => p.cat === filter);
-
-        // Render instantly without fade-out delay
-        grid.innerHTML = filtered.map(p => `
-            <div class="project-item" ${p.yt ? `onclick="openVideo('${p.yt}')" style="cursor:pointer;"` : ''}>
-                <img src="${p.img}">
-                <div class="project-info"><h4>${p.title}</h4><p>${p.role}</p></div>
-            </div>
-        `).join('');
-
-        // Optional subtle entrance (no delay)
-        gsap.from(".project-item", { 
-            opacity: 0, 
-            scale: 0.98, 
-            duration: 0.3, 
-            stagger: 0.03, 
-            ease: "power2.out" 
-        });
-    }
-
+        gsap.to(".project-item", {
+            opacity: 0, scale: 0.9, duration: 0.3, stagger: 0.02,
+            onComplete: () => {
+                grid.innerHTML = filtered.map(p => `
+                    <div class="project-item" style="opacity:0;" ${p.yt ? `onclick="openVideo('${p.yt}')" style="cursor:pointer;"` : ''}>
+                        <img src="${p.img}">
+                        <div class="project-info"><h4>${p.title}</h4><p>${p.role}</p></div>
+                    </div>
+                `).join('');
+                gsap.to(".project-item", { opacity: 1, scale: 1, duration: 0.6, stagger: 0.08, ease: "power2.out" });
+            }
         });
     }
 
