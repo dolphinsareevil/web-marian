@@ -1192,36 +1192,39 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   });
 });
 </script>
-
 <script>
-(function(){
+document.addEventListener("DOMContentLoaded", function(){
+
   emailjs.init("TV6bsTiIZPmdOBgU2");
-})();
 
-const form = document.getElementById("contact-form");
-const statusBox = document.getElementById("form-status");
+  const form = document.getElementById("contact-form");
+  const statusBox = document.getElementById("form-status");
 
-function showStatus(){
-  statusBox.style.opacity = "1";
-  statusBox.style.transform = "translateX(-50%) translateY(0)";
-  
-  setTimeout(() => {
-    statusBox.style.opacity = "0";
-    statusBox.style.transform = "translateX(-50%) translateY(20px)";
-  }, 3000);
-}
+  if(!form) return;
 
-form.addEventListener("submit", function(e){
-  e.preventDefault();
+  function showStatus(){
+    statusBox.style.opacity = "1";
+    statusBox.style.transform = "translateX(-50%) translateY(0)";
+    
+    setTimeout(() => {
+      statusBox.style.opacity = "0";
+      statusBox.style.transform = "translateX(-50%) translateY(20px)";
+    }, 3000);
+  }
 
-  emailjs.sendForm("service_0yjdd1g", "template_25czfao", this)
-    .then(function() {
-      showStatus();
-      form.reset();
-    })
-    .catch(function(error) {
-      console.log("EmailJS error:", error);
-    });
+  form.addEventListener("submit", function(e){
+    e.preventDefault();
+
+    emailjs.sendForm("service_0yjdd1g", "template_25czfao", this)
+      .then(function() {
+        showStatus();
+        form.reset();
+      })
+      .catch(function(error) {
+        console.log("EmailJS error:", error);
+      });
+  });
+
 });
 </script>
 
