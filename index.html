@@ -449,6 +449,15 @@
         }
             
         html { scroll-behavior: smooth; }
+
+        /* Success Message Styling */
+        .form-response-msg {
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-top: 15px;
+            transition: opacity 0.5s ease;
+        }
     </style>
 
 </head>
@@ -606,7 +615,10 @@
                     <textarea name="message" placeholder="Mensaje" aria-label="Mensaje" rows="3" required 
                               style="background:none; border:none; border-bottom:1px solid #333; padding:20px 0; color:#fff; font-family:'Questrial'; font-size: 1.1rem; outline:none;"></textarea>
                     
-                    <button type="submit" class="filter-btn magnetic" style="width: fit-content; margin-top: 20px;">Enviar</button>
+                    <div style="display: flex; flex-direction: column;">
+                        <button type="submit" id="submit-btn" class="filter-btn magnetic" style="width: fit-content; margin-top: 20px;">Enviar</button>
+                        <div id="form-message" class="form-response-msg" style="display:none;"></div>
+                    </div>
                 </form>
             </div>
         </section>
@@ -752,7 +764,7 @@ My approach combines aesthetic vision with practical execution, allowing me to l
     contact:{
       title:"Contatto", name:"Nome", email:"E-mail", message:"Messaggio", send:"Invia",
       direct:"Canali Diretti", location1:"Sede I", location2:"Sede II", back:"Torna all’inizio",
-      rights:"Tutti i diritti riservati."
+      rights:"Tutti i diritti reservados."
     },
     award_year:"Anno 2024",
     award_title:`VINCITORE PREMIO HUGO<br>MIGLIOR SCENOGRAFIA PER "IL PICCOLO PRINCIPE"`,
@@ -1103,15 +1115,41 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 document.getElementById("contact-form").addEventListener("submit", function(e){
   e.preventDefault();
   const lang = document.documentElement.lang || "es";
+  const btn = document.getElementById("submit-btn");
+  const msgContainer = document.getElementById("form-message");
   
+  // Visual feedback: disable button
+  btn.style.opacity = "0.5";
+  btn.style.pointerEvents = "none";
+
   emailjs.sendForm("service_0yjdd1g", "template_25czfao", this)
     .then(function() {
-      alert(I18N[lang].form_success);
+      // Success logic
+      msgContainer.textContent = I18N[lang].form_success;
+      msgContainer.style.color = "#28a745"; // Green color
+      msgContainer.style.display = "block";
+      msgContainer.style.opacity = "1";
+      
       document.getElementById("contact-form").reset();
+      
+      // Reset button and hide message after 5 seconds
+      setTimeout(() => {
+        gsap.to(msgContainer, { opacity: 0, duration: 1, onComplete: () => {
+            msgContainer.style.display = "none";
+            btn.style.opacity = "1";
+            btn.style.pointerEvents = "all";
+        }});
+      }, 5000);
     })
     .catch(function(error) {
       console.log("EmailJS error:", error);
-      alert(I18N[lang].form_error);
+      msgContainer.textContent = I18N[lang].form_error;
+      msgContainer.style.color = "#ff4444"; // Red color
+      msgContainer.style.display = "block";
+      msgContainer.style.opacity = "1";
+      
+      btn.style.opacity = "1";
+      btn.style.pointerEvents = "all";
     });
 });
 </script>
