@@ -141,7 +141,10 @@
         /* --- SOBRE MÍ --- */
         .about { padding: 100px 8vw 150px 8vw; }
         .about-content { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 60px; align-items: center; }
-        .reveal-text { font-size: clamp(1.5rem, 3vw, 2.5rem); line-height: 1.4; color: #1a1a1a; }
+        .reveal-text { font-size: clamp(1.1rem, 1.8vw, 1.4rem) !important; /* Tamaño más elegante y legible */
+    line-height: 1.6;
+    text-align: left; /* Alineado a la izquierda para balancear con la foto */
+    color: #fff; }
         .reveal-text span { color: #fff; opacity: 0.1; }
         .about-award img { width: 100%; height: auto; border: 1px solid #222; filter: grayscale(1); transition: 0.8s var(--transition); border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
         .about-award:hover img { filter: grayscale(0); }
@@ -170,8 +173,9 @@
         /* --- MODAL --- */
         #video-modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.98); z-index: 100000; display: none; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.4s var(--transition); cursor: zoom-out; }
         #video-modal.active { display: flex; opacity: 1; }
-        .modal-content { width: 90%; max-width: 1100px; aspect-ratio: 16/9; position: relative; cursor: default; }
-        .video-wrapper iframe { width: 100%; height: 100%; border: none; }
+        .modal-content { position: relative; width: 90vw; max-width: 1100px;}
+.video-wrapper { position: relative; width: 100%; padding-top: 56.25%; }
+.video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
 
         @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
@@ -259,12 +263,14 @@
             background: #000;
         }
 
-        .bio-main-grid {
-            display: grid;
-            grid-template-columns: 1fr 1.2fr;
-            gap: 100px;
-            align-items: center;
-        }
+       .bio-main-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 60px; /* Reducimos un poco el gap para compactar */
+    align-items: start; /* El texto empieza a la misma altura que la foto */
+    max-width: 1200px; /* Limitamos el ancho total de esta sección */
+    margin: 0 auto;
+}
 
         .bio-visual {
             position: relative;
@@ -278,12 +284,22 @@
         }
 
         .bio-portrait {
-            width: 100%;
-            display: block;
-            filter: grayscale(1);
-            transition: 1.2s var(--transition);
-        }
-
+    width: 100%;
+    max-width: 400px; /* Un poco más contenida */
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.15); /* Marco sutil */
+    filter: grayscale(1);
+    transition: 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    /* Sombra de relieve (hacia abajo) */
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 30px rgba(255, 255, 255, 0.05);
+}
+        .bio-top-image {
+    width: 100%;
+    max-width: 450px; /* Un tamaño más controlado */
+    justify-self: end; /* La pega al centro del grid */
+}
         .bio-visual:hover .bio-portrait {
             filter: grayscale(0);
             transform: scale(1.03);
@@ -453,8 +469,7 @@
                 right: 20px;
             }
         }
-            
-        html { scroll-behavior: smooth; }
+
 
         /* Success Message Styling */
         .form-response-msg {
@@ -464,6 +479,7 @@
             margin-top: 15px;
             transition: opacity 0.5s ease;
         }
+
     </style>
 
 </head>
@@ -540,35 +556,16 @@
             </div>
 
 
-        <div class="bio-main-grid" style="display:flex;flex-direction:column;align-items:center;gap:80px;">
+        <div class="bio-main-grid"> <div class="bio-top-image bio-visual">
+        <img src="https://i.ibb.co/BHpZ65xm/MES.png" alt="Mariano Smaldini" class="bio-portrait">
+    </div>
 
-            <div class="bio-top-image" style="max-width:500px;width:100%;">
-                <img src="https://i.ibb.co/BHpZ65xm/MES.png"
-                     alt="Mariano Smaldini - Director de Arte y Escenógrafo" loading="eager"
-                     class="bio-portrait"
-                     style="width:100%;border-radius:12px;">
-            </div>
+    <div style="max-width:600px; text-align:left;"> 
+        <p class="reveal-text" id="manifesto-text">
+            </p>
+    </div>
 
-            <div style="max-width:850px;text-align:center;">
-                <p class="reveal-text" id="manifesto-text">
-                </p>
-            </div>
-
-            <div class="bio-award-big" style="display:flex;flex-direction:column;align-items:center;gap:30px;text-align:center;">
-                <img src="https://i.ibb.co/GYZCbK6/Premios-Hugo.png"
-                     alt="Premio Hugo 2024 - Mejor Diseño de Escenografía" loading="lazy"
-                     style="width:260px;height:auto;">
-
-                <div class="award-big-text">
-                    <span id="award-year">Año 2024</span>
-                    <h3 id="award-title">
-                        GANADOR PREMIO HUGO<br>
-                        A LA MEJOR DISEÑO DE ESCENOGRAFÍA POR "EL PRINCIPITO"
-                    </h3>
-                </div>
-            </div>
-
-        </div>
+</div>
         </section>
 
         <section class="all-works" id="archivo">
@@ -632,6 +629,7 @@
 
     <div id="video-modal">
         <div class="modal-content">
+            <button onclick="document.getElementById('video-modal').click()" style="position:absolute; top:-35px; right:0; background:none; border:none; color:#fff; font-size:1.5rem; cursor:pointer; opacity:0.6; transition:0.3s;" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.6">✕</button>
             <div class="video-wrapper" id="video-player"></div>
         </div>
     </div>
