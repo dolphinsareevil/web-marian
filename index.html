@@ -2,7 +2,6 @@
 <html lang="es">
 <head>
 
-    <!-- SEO OPTIMIZATION -->
     <meta name="description" content="Mariano Smaldini es Director de Arte y Escenógrafo internacional con trayectoria en cine, teatro, TV y publicidad. Ganador del Premio Hugo 2024 por Mejor Diseño de Escenografía.">
     <meta name="keywords" content="Mariano Smaldini, Director de Arte, Escenógrafo, Diseño de Escenografía, Cine, Teatro, TV, Premio Hugo, Dirección de Arte Argentina, Production Design">
     <meta name="author" content="Mariano Smaldini">
@@ -11,14 +10,12 @@
 
     <link rel="canonical" href="https://www.marianosmaldini.com/">
 
-    <!-- Open Graph -->
     <meta property="og:title" content="Mariano Smaldini | Director de Arte y Escenógrafo">
     <meta property="og:description" content="Director de Arte y Escenógrafo internacional. Premio Hugo 2024. Cine, Teatro, TV y Publicidad.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.marianosmaldini.com/">
     <meta property="og:image" content="https://i.ibb.co/BHpZ65xm/MES.png">
 
-    <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Mariano Smaldini | Director de Arte">
     <meta name="twitter:description" content="Premio Hugo 2024. Dirección de Arte para Cine, Teatro y TV.">
@@ -182,10 +179,10 @@
             .marquee-nav { display: flex; }
             .work-card { width: 80vw; margin-right: 30px; pointer-events: none; }
             .marquee {
-        animation: none;
-        display: flex; /* Asegura que estén en línea */
-        transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-    }
+                animation: none;
+                display: flex; /* Asegura que estén en línea */
+                transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            }
             .bg-title { display: none;font-size: 25vw; }
             .work-card img { filter: grayscale(0) !important; transform: none !important; box-shadow: 0 10px 30px rgba(0,0,0,0.5) !important; }
             .project-item img { filter: grayscale(0) !important; opacity: 1 !important; }
@@ -194,283 +191,265 @@
         @media (min-width: 769px) { .nav-desktop { display: flex; } .burger { display: none; } }
 
         /* Nueva estructura para Sobre Mí */
-.about-container-new {
-    display: grid;
-    grid-template-columns: 0.8fr 1.2fr 0.5fr; /* Tres columnas asimétricas */
-    gap: 40px;
-    align-items: center;
-    padding: 0 8vw;
-}
+        .about-container-new {
+            display: grid;
+            grid-template-columns: 0.8fr 1.2fr 0.5fr; /* Tres columnas asimétricas */
+            gap: 40px;
+            align-items: center;
+            padding: 0 8vw;
+        }
 
-.about-main-img img {
-    width: 100%;
-    height: auto;
-    border-radius: 12px;
-    filter: grayscale(1);
-    transition: 0.8s var(--transition);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.5);
-}
+        .about-main-img img {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            filter: grayscale(1);
+            transition: 0.8s var(--transition);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        }
 
-.about-main-img:hover img {
-    filter: grayscale(0);
-}
+        .about-main-img:hover img {
+            filter: grayscale(0);
+        }
 
-.about-award-side {
-    text-align: center;
-}
+        .about-award-side {
+            text-align: center;
+        }
 
-.about-award-side img {
-    width: 120px; /* Tamaño más contenido para el premio */
-    filter: grayscale(1);
-    opacity: 0.7;
-}
+        .about-award-side img {
+            width: 120px; /* Tamaño más contenido para el premio */
+            filter: grayscale(1);
+            opacity: 0.7;
+        }
 
-/* Ajustes Responsive */
-@media (max-width: 1024px) {
-    .about-container-new {
-        grid-template-columns: 1fr 1fr; /* Dos columnas en tablets */
-    }
-    .about-award-side {
-        grid-column: span 2;
-        margin-top: 30px;
-    }
-}
+        /* Ajustes Responsive */
+        @media (max-width: 1024px) {
+            .about-container-new {
+                grid-template-columns: 1fr 1fr; /* Dos columnas en tablets */
+            }
+            .about-award-side {
+                grid-column: span 2;
+                margin-top: 30px;
+            }
+        }
 
-@media (max-width: 768px) {
-    .about-container-new {
-        grid-template-columns: 1fr; /* Una columna en móvil */
-        text-align: center;
-    }
-    .about-main-img {
-        max-width: 300px;
-        margin: 0 auto;
-    }
-    /* Forzamos color en móvil como pediste antes */
-    .about-main-img img {
-        filter: grayscale(0) !important;
-    }
-}
-/* --- BIO PREMIUM INTEGRADA --- */
-.bio-premium {
-    padding: 120px 8vw;
-    background: #000;
-}
+        @media (max-width: 768px) {
+            .about-container-new {
+                grid-template-columns: 1fr; /* Una columna en móvil */
+                text-align: center;
+            }
+            .about-main-img {
+                max-width: 300px;
+                margin: 0 auto;
+            }
+            /* Forzamos color en móvil como pediste antes */
+            .about-main-img img {
+                filter: grayscale(0) !important;
+            }
+        }
+        /* --- BIO PREMIUM INTEGRADA --- */
+        .bio-premium {
+            padding: 120px 8vw;
+            background: #000;
+        }
 
-.bio-main-grid {
-    display: grid;
-    grid-template-columns: 1fr 1.2fr;
-    gap: 100px;
-    align-items: center;
-}
+        .bio-main-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 100px;
+            align-items: center;
+        }
 
-.bio-visual {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-}
+        .bio-visual {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
 
-.image-reveal-wrapper {
-    overflow: hidden;
-    border-radius: 4px;
-}
+        .image-reveal-wrapper {
+            overflow: hidden;
+            border-radius: 4px;
+        }
 
-.bio-portrait {
-    width: 100%;
-    display: block;
-    filter: grayscale(1);
-    transition: 1.2s var(--transition);
-}
+        .bio-portrait {
+            width: 100%;
+            display: block;
+            filter: grayscale(1);
+            transition: 1.2s var(--transition);
+        }
 
-.bio-visual:hover .bio-portrait {
-    filter: grayscale(0);
-    transform: scale(1.03);
-}
+        .bio-visual:hover .bio-portrait {
+            filter: grayscale(0);
+            transform: scale(1.03);
+        }
 
-/* El Premio como pie de foto Premium */
-.award-caption {
-    margin-top: 30px;
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    padding-left: 10px;
-    border-left: 1px solid rgba(255,255,255,0.2);
-}
+        /* El Premio como pie de foto Premium */
+        .award-caption {
+            margin-top: 30px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding-left: 10px;
+            border-left: 1px solid rgba(255,255,255,0.2);
+        }
 
-.award-seal-small {
-    height: 60px;
-    width: auto;
-    filter: grayscale(1) brightness(1.5);
-    opacity: 0.8;
-}
+        .award-seal-small {
+            height: 60px;
+            width: auto;
+            filter: grayscale(1) brightness(1.5);
+            opacity: 0.8;
+        }
 
-.award-text {
-    line-height: 1.2;
-}
+        .award-text {
+            line-height: 1.2;
+        }
 
-.award-year {
-    font-size: 0.7rem;
-    letter-spacing: 3px;
-    color: rgba(255,255,255,0.4);
-}
+        .award-year {
+            font-size: 0.7rem;
+            letter-spacing: 3px;
+            color: rgba(255,255,255,0.4);
+        }
 
-.award-desc {
-    font-size: 0.8rem;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    font-weight: 400;
-    margin-top: 4px;
-}
+        .award-desc {
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-weight: 400;
+            margin-top: 4px;
+        }
 
-.bio-specialties {
-    margin-top: 50px;
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    font-size: 0.7rem;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    opacity: 0.4;
-}
+        .bio-specialties {
+            margin-top: 50px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 0.7rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            opacity: 0.4;
+        }
 
-.bio-specialties .dot { width: 4px; height: 4px; background: #fff; border-radius: 50%; }
+        .bio-specialties .dot { width: 4px; height: 4px; background: #fff; border-radius: 50%; }
 
-/* --- RESPONSIVE --- */
-@media (max-width: 992px) {
-    .bio-main-grid { grid-template-columns: 1fr; gap: 60px; }
-    .bio-visual { max-width: 500px; margin: 0 auto; }
-}
+        /* --- RESPONSIVE --- */
+        @media (max-width: 992px) {
+            .bio-main-grid { grid-template-columns: 1fr; gap: 60px; }
+            .bio-visual { max-width: 500px; margin: 0 auto; }
+        }
 
-@media (max-width: 768px) {
-    .bio-portrait { filter: grayscale(0) !important; }
-    .award-seal-small { filter: grayscale(0) !important; opacity: 1; }
-    .award-caption { border-left: none; border-top: 1px solid rgba(255,255,255,0.1); padding: 20px 0 0 0; justify-content: center; }
-}
+        @media (max-width: 768px) {
+            .bio-portrait { filter: grayscale(0) !important; }
+            .award-seal-small { filter: grayscale(0) !important; opacity: 1; }
+            .award-caption { border-left: none; border-top: 1px solid rgba(255,255,255,0.1); padding: 20px 0 0 0; justify-content: center; }
+        }
 
-/* --- RESPONSIVE PREMIUM --- */
-@media (max-width: 992px) {
-    .bio-main-grid { grid-template-columns: 1fr; gap: 80px; }
-    .bio-visual { max-width: 500px; margin: 0 auto; }
-    .award-container { flex-direction: column; text-align: center; gap: 50px; }
-}
+        /* --- RESPONSIVE PREMIUM --- */
+        @media (max-width: 992px) {
+            .bio-main-grid { grid-template-columns: 1fr; gap: 80px; }
+            .bio-visual { max-width: 500px; margin: 0 auto; }
+            .award-container { flex-direction: column; text-align: center; gap: 50px; }
+        }
 
-@media (max-width: 768px) {
-    .award-name { font-size: 3rem; }
-    .experience-badge { padding: 20px; bottom: -15px; right: -15px; }
-    .bio-portrait { filter: grayscale(0) !important; }
-    .award-trophy { filter: grayscale(0) !important; width: 150px; }
-}
+        @media (max-width: 768px) {
+            .award-name { font-size: 3rem; }
+            .experience-badge { padding: 20px; bottom: -15px; right: -15px; }
+            .bio-portrait { filter: grayscale(0) !important; }
+            .award-trophy { filter: grayscale(0) !important; width: 150px; }
+        }
 
-/* Animación de pulso de borde para un efecto sofisticado */
+        /* Animación de pulso de borde para un efecto sofisticado */
         /* Animación de pulso para la flecha */
-@keyframes pulse-arrow {
-    0% { transform: translateY(0); opacity: 0.4; }
-    50% { transform: translateY(-10px); opacity: 1; }
-    100% { transform: translateY(0); opacity: 0.4; }
-}
+        @keyframes pulse-arrow {
+            0% { transform: translateY(0); opacity: 0.4; }
+            50% { transform: translateY(-10px); opacity: 1; }
+            100% { transform: translateY(0); opacity: 0.4; }
+        }
 
-.scroll-up-arrow {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 60px;
-    height: 60px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 50%;
-    color: #fff;
-    text-decoration: none;
-    transition: all 0.5s var(--transition);
-    animation: pulse-arrow 3s infinite ease-in-out;
-}
+        .scroll-up-arrow {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            color: #fff;
+            text-decoration: none;
+            transition: all 0.5s var(--transition);
+            animation: pulse-arrow 3s infinite ease-in-out;
+        }
 
-.scroll-up-arrow svg {
-    width: 20px;
-    height: 20px;
-    fill: none;
-    stroke: currentColor;
-    stroke-width: 2;
-    transition: transform 0.3s;
-}
+        .scroll-up-arrow svg {
+            width: 20px;
+            height: 20px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2;
+            transition: transform 0.3s;
+        }
 
-.scroll-up-arrow:hover {
-    animation: none;
-    background: #fff;
-    color: #000;
-    border-color: #fff;
-    opacity: 1 !important;
-}
+        .scroll-up-arrow:hover {
+            animation: none;
+            background: #fff;
+            color: #000;
+            border-color: #fff;
+            opacity: 1 !important;
+        }
 
-.scroll-up-arrow:hover svg {
-    transform: scale(1.2);
-}
+        .scroll-up-arrow:hover svg {
+            transform: scale(1.2);
+        }
 
-/* ===============================
-   LANGUAGE SWITCH PREMIUM
-================================ */
+        /* ===============================
+           LANGUAGE SWITCH PREMIUM
+        ================================ */
 
-.lang-switch{
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    z-index: 9999;
-    display: flex;
-    gap: 10px;
-}
+        .lang-switch{
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 9999;
+            display: flex;
+            gap: 10px;
+        }
 
-.lang-btn{
-    background: transparent;
-    border: 1px solid rgba(255,255,255,0.3);
-    color: #fff;
-    font-family: 'Questrial', sans-serif;
-    font-size: 0.65rem;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    padding: 10px 14px;
-    cursor: pointer;
-    transition: all 0.4s var(--transition);
-    opacity: 0.6;
-}
+        .lang-btn{
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.3);
+            color: #fff;
+            font-family: 'Questrial', sans-serif;
+            font-size: 0.65rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            padding: 10px 14px;
+            cursor: pointer;
+            transition: all 0.4s var(--transition);
+            opacity: 0.6;
+        }
 
-.lang-btn:hover{
-    border-color: #fff;
-    opacity: 1;
-    transform: translateY(-3px);
-}
+        .lang-btn:hover{
+            border-color: #fff;
+            opacity: 1;
+            transform: translateY(-3px);
+        }
 
-.lang-btn.active{
-    background: #fff;
-    color: #000;
-    border-color: #fff;
-    opacity: 1;
-}
+        .lang-btn.active{
+            background: #fff;
+            color: #000;
+            border-color: #fff;
+            opacity: 1;
+        }
 
-/* Mobile adjustment */
-@media (max-width: 768px){
-    .lang-switch{
-        bottom: 20px;
-        right: 20px;
-    }
-}
-    
+        /* Mobile adjustment */
+        @media (max-width: 768px){
+            .lang-switch{
+                bottom: 20px;
+                right: 20px;
+            }
+        }
+            
         html { scroll-behavior: smooth; }
     </style>
-
-    <!-- Structured Data -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "Mariano Smaldini",
-      "url": "https://www.marianosmaldini.com/",
-      "image": "https://i.ibb.co/BHpZ65xm/MES.png",
-      "jobTitle": "Director de Arte y Escenógrafo",
-      "award": "Premio Hugo 2024 - Mejor Diseño de Escenografía",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Buenos Aires",
-        "addressCountry": "Argentina"
-      }
-    }
-    </script>
 
 </head>
 <body>
@@ -510,22 +489,22 @@
 
     <main>
         <section class="hero">
-    <div class="hero-bg-container">
-        <div style="padding:56.25% 0 0 0; position:relative; width:100%; height:100%;">
-            <iframe
-                src="https://player.vimeo.com/video/1168230282?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&loop=1&background=1&muted=1"
-                frameborder="0"
-                allow="autoplay; fullscreen; picture-in-picture"
-                style="position:absolute; top:50%; left:50%; width:100vw; height:100vh; min-width:177.77vh; min-height:56.25vw; transform:translate(-50%, -50%); pointer-events:none; filter: brightness(0.4);"
-                title="TIMELAPse ARMADO">
-            </iframe>
-        </div>
-        <script src="https://player.vimeo.com/api/player.js"></script>
-    </div>
+            <div class="hero-bg-container">
+                <div style="padding:56.25% 0 0 0; position:relative; width:100%; height:100%;">
+                    <iframe
+                        src="https://player.vimeo.com/video/1168230282?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&loop=1&background=1&muted=1"
+                        frameborder="0"
+                        allow="autoplay; fullscreen; picture-in-picture"
+                        style="position:absolute; top:50%; left:50%; width:100vw; height:100vh; min-width:177.77vh; min-height:56.25vw; transform:translate(-50%, -50%); pointer-events:none; filter: brightness(0.4);"
+                        title="TIMELAPse ARMADO">
+                    </iframe>
+                </div>
+                <script src="https://player.vimeo.com/api/player.js"></script>
+            </div>
 
-    <h1 class="hero-title">Mariano<br>Smaldini</h1>
-    <a href="#archivo" class="hero-cta magnetic">Explorar proyectos</a>
-</section>
+            <h1 class="hero-title">Mariano<br>Smaldini</h1>
+            <a href="#archivo" class="hero-cta magnetic">Explorar proyectos</a>
+        </section>
 
         <section class="marquee-container" id="destacados">
             <div class="section-header">
@@ -540,45 +519,42 @@
         </section>
 
         <section class="bio-premium" id="sobre-mi">
-    <div class="section-header">
-        <span class="bg-title">BIO</span>
-        <h2 class="section-label">Trayectoria</h2>
-    </div>
+            <div class="section-header">
+                <span class="bg-title">BIO</span>
+                <h2 class="section-label">Trayectoria</h2>
+            </div>
 
 
-<div class="bio-main-grid" style="display:flex;flex-direction:column;align-items:center;gap:80px;">
+        <div class="bio-main-grid" style="display:flex;flex-direction:column;align-items:center;gap:80px;">
 
-    <!-- Imagen superior -->
-    <div class="bio-top-image" style="max-width:500px;width:100%;">
-        <img src="https://i.ibb.co/BHpZ65xm/MES.png"
-             alt="Mariano Smaldini - Director de Arte y Escenógrafo" loading="eager"
-             class="bio-portrait"
-             style="width:100%;border-radius:12px;">
-    </div>
+            <div class="bio-top-image" style="max-width:500px;width:100%;">
+                <img src="https://i.ibb.co/BHpZ65xm/MES.png"
+                     alt="Mariano Smaldini - Director de Arte y Escenógrafo" loading="eager"
+                     class="bio-portrait"
+                     style="width:100%;border-radius:12px;">
+            </div>
 
-    <!-- Texto original (mantiene id para GSAP e idiomas) -->
-    <div style="max-width:850px;text-align:center;">
-        <p class="reveal-text" id="manifesto-text">
-        </p>
-    </div>
+            <div style="max-width:850px;text-align:center;">
+                <p class="reveal-text" id="manifesto-text">
+                </p>
+            </div>
 
-    <!-- Premio más grande abajo -->
-    <div class="bio-award-big" style="display:flex;flex-direction:column;align-items:center;gap:30px;text-align:center;">
-        <img src="https://i.ibb.co/GYZCbK6/Premios-Hugo.png"
-             alt="Premio Hugo 2024 - Mejor Diseño de Escenografía" loading="lazy"
-             style="width:260px;height:auto;">
+            <div class="bio-award-big" style="display:flex;flex-direction:column;align-items:center;gap:30px;text-align:center;">
+                <img src="https://i.ibb.co/GYZCbK6/Premios-Hugo.png"
+                     alt="Premio Hugo 2024 - Mejor Diseño de Escenografía" loading="lazy"
+                     style="width:260px;height:auto;">
 
-        <div class="award-big-text">
-            <span id="award-year">Año 2024</span>
-            <h3 id="award-title">
-                GANADOR PREMIO HUGO<br>
-                A LA MEJOR DISEÑO DE ESCENOGRAFÍA POR "EL PRINCIPITO"
-            </h3>
+                <div class="award-big-text">
+                    <span id="award-year">Año 2024</span>
+                    <h3 id="award-title">
+                        GANADOR PREMIO HUGO<br>
+                        A LA MEJOR DISEÑO DE ESCENOGRAFÍA POR "EL PRINCIPITO"
+                    </h3>
+                </div>
+            </div>
+
         </div>
-    </div>
-
-</div>
-</section>
+        </section>
 
         <section class="all-works" id="archivo">
             <div class="section-header">
@@ -597,47 +573,43 @@
         </section>
 
         <section class="contact" id="contacto">
-    <div class="section-header">
-        <span class="bg-title">MAIL</span>
-        <h2 class="section-label">Contacto</h2>
-    </div>
-    <div class="contact-container">
-        <div style="display: flex; flex-direction: column; justify-content: flex-start;">
-
-            <div style="display: flex; flex-direction: column; line-height: 0.8; gap: 0; margin-bottom: 40px;">
-                <span style="font-size: clamp(4rem, 10vw, 8rem); font-weight: 900; letter-spacing: -2px;">hola.</span>
-                <span style="font-size: clamp(4rem, 10vw, 8rem); font-weight: 900; letter-spacing: -2px; opacity: 0.6;">ciao.</span>
-                <span style="font-size: clamp(4rem, 10vw, 8rem); font-weight: 900; letter-spacing: -2px; opacity: 0.3;">hello.</span>
+            <div class="section-header">
+                <span class="bg-title">MAIL</span>
+                <h2 class="section-label">Contacto</h2>
             </div>
+            <div class="contact-container">
+                <div style="display: flex; flex-direction: column; justify-content: flex-start;">
 
-            <div style="display: flex; gap: 20px; margin-bottom: 40px; padding-left: 5px;">
-                <a href="https://www.instagram.com/marianosmaldini" target="_blank" class="magnetic" style="color: #fff; text-decoration: none; opacity: 0.6; transition: 0.3s;">
-                    <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-                </a>
-                <a href="https://www.linkedin.com/in/mariano-smaldini" target="_blank" class="magnetic" style="color: #fff; text-decoration: none; opacity: 0.6; transition: 0.3s;">
-                    <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
-                </a>
+                    <div style="display: flex; flex-direction: column; line-height: 0.8; gap: 0; margin-bottom: 40px;">
+                        <span style="font-size: clamp(4rem, 10vw, 8rem); font-weight: 900; letter-spacing: -2px;">hola.</span>
+                        <span style="font-size: clamp(4rem, 10vw, 8rem); font-weight: 900; letter-spacing: -2px; opacity: 0.6;">ciao.</span>
+                        <span style="font-size: clamp(4rem, 10vw, 8rem); font-weight: 900; letter-spacing: -2px; opacity: 0.3;">hello.</span>
+                    </div>
+
+                    <div style="display: flex; gap: 20px; margin-bottom: 40px; padding-left: 5px;">
+                        <a href="https://www.instagram.com/marianosmaldini" target="_blank" class="magnetic" style="color: #fff; text-decoration: none; opacity: 0.6; transition: 0.3s;">
+                            <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                        </a>
+                        <a href="https://www.linkedin.com/in/mariano-smaldini" target="_blank" class="magnetic" style="color: #fff; text-decoration: none; opacity: 0.6; transition: 0.3s;">
+                            <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <form id="contact-form" style="display: flex; flex-direction: column; gap: 30px;">
+                    <input type="text" name="user_name" placeholder="Nombre" aria-label="Nombre" required 
+                           style="background:none; border:none; border-bottom:1px solid #333; padding:20px 0; color:#fff; font-family:'Questrial'; font-size: 1.1rem; outline:none;">
+                    
+                    <input type="email" name="user_email" placeholder="E-mail" aria-label="Correo electrónico" required 
+                           style="background:none; border:none; border-bottom:1px solid #333; padding:20px 0; color:#fff; font-family:'Questrial'; font-size: 1.1rem; outline:none;">
+                    
+                    <textarea name="message" placeholder="Mensaje" aria-label="Mensaje" rows="3" required 
+                              style="background:none; border:none; border-bottom:1px solid #333; padding:20px 0; color:#fff; font-family:'Questrial'; font-size: 1.1rem; outline:none;"></textarea>
+                    
+                    <button type="submit" class="filter-btn magnetic" style="width: fit-content; margin-top: 20px;">Enviar</button>
+                </form>
             </div>
-
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; font-size: 0.85rem; letter-spacing: 1px; text-transform: uppercase;">
-
-            </div>
-        </div>
-
-        <form id="contact-form" style="display: flex; flex-direction: column; gap: 30px;">
-    <input type="text" name="user_name" placeholder="Nombre" aria-label="Nombre" required 
-           style="background:none; border:none; border-bottom:1px solid #333; padding:20px 0; color:#fff; font-family:'Questrial'; font-size: 1.1rem; outline:none;">
-    
-    <input type="email" name="user_email" placeholder="E-mail" aria-label="Correo electrónico" required 
-           style="background:none; border:none; border-bottom:1px solid #333; padding:20px 0; color:#fff; font-family:'Questrial'; font-size: 1.1rem; outline:none;">
-    
-    <textarea name="message" placeholder="Mensaje" aria-label="Mensaje" rows="3" required 
-              style="background:none; border:none; border-bottom:1px solid #333; padding:20px 0; color:#fff; font-family:'Questrial'; font-size: 1.1rem; outline:none;"></textarea>
-    
-    <button type="submit" class="filter-btn magnetic" style="width: fit-content; margin-top: 20px;">Enviar</button>
-</form>
-    </div>
-</section>
+        </section>
     </main>
 
     <div id="video-modal">
@@ -646,54 +618,268 @@
         </div>
     </div>
 
-<footer style="padding: 100px 8vw 40px 8vw; border-top: 1px solid rgba(255,255,255,0.05); background: #000;">
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; align-items: start; padding-bottom: 60px;">
+    <footer style="padding: 100px 8vw 40px 8vw; border-top: 1px solid rgba(255,255,255,0.05); background: #000;">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; align-items: start; padding-bottom: 60px;">
 
-        <div style="display: flex; flex-direction: column; gap: 25px; border-left: 1px solid rgba(255,255,255,0.1); padding-left: 20px;">
-            <div style="text-transform: uppercase; letter-spacing: 2px;">
-                <p style="font-size: 0.65rem; opacity: 0.4; margin-bottom: 8px;">Ubicación I</p>
-                <p style="font-size: 0.85rem; line-height: 1.5;">Buenos Aires,<br>Argentina</p>
+            <div style="display: flex; flex-direction: column; gap: 25px; border-left: 1px solid rgba(255,255,255,0.1); padding-left: 20px;">
+                <div style="text-transform: uppercase; letter-spacing: 2px;">
+                    <p style="font-size: 0.65rem; opacity: 0.4; margin-bottom: 8px;">Ubicación I</p>
+                    <p style="font-size: 0.85rem; line-height: 1.5;">Buenos Aires,<br>Argentina</p>
+                </div>
+                <div style="text-transform: uppercase; letter-spacing: 2px;">
+                    <p style="font-size: 0.65rem; opacity: 0.4; margin-bottom: 8px;">Ubicación II</p>
+                    <p style="font-size: 0.85rem; line-height: 1.5;">Bari,<br>Italia</p>
+                </div>
             </div>
-            <div style="text-transform: uppercase; letter-spacing: 2px;">
-                <p style="font-size: 0.65rem; opacity: 0.4; margin-bottom: 8px;">Ubicación II</p>
-                <p style="font-size: 0.85rem; line-height: 1.5;">Bari,<br>Italia</p>
+
+            <div style="display: flex; flex-direction: column; gap: 25px; border-left: 1px solid rgba(255,255,255,0.1); padding-left: 20px;">
+                <div style="text-transform: uppercase; letter-spacing: 2px;">
+                    <p style="font-size: 0.65rem; opacity: 0.4; margin-bottom: 8px;">Canales Directos</p>
+                    <a href="https://wa.me/541150099121" target="_blank" style="color: #fff; text-decoration: none; font-size: 0.85rem; display: block; margin-bottom: 10px;">WhatsApp: +54 11 5009 9121</a>
+                    <a href="mailto:marianosmaldini@gmail.com" style="color: #fff; text-decoration: none; font-size: 0.85rem; display: block;">marianosmaldini@gmail.com</a>
+                </div>
+            </div>
+
+            <div style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                <a href="#" class="scroll-up-arrow" title="Volver al inicio">
+                    <svg viewBox="0 0 24 24" style="width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2;">
+                        <path d="M12 19V5M12 5L5 12M12 5L19 12" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </a>
             </div>
         </div>
 
-        <div style="display: flex; flex-direction: column; gap: 25px; border-left: 1px solid rgba(255,255,255,0.1); padding-left: 20px;">
-            <div style="text-transform: uppercase; letter-spacing: 2px;">
-                <p style="font-size: 0.65rem; opacity: 0.4; margin-bottom: 8px;">Canales Directos</p>
-                <a href="https://wa.me/541150099121" target="_blank" style="color: #fff; text-decoration: none; font-size: 0.85rem; display: block; margin-bottom: 10px;">WhatsApp: +54 11 5009 9121</a>
-                <a href="mailto:marianosmaldini@gmail.com" style="color: #fff; text-decoration: none; font-size: 0.85rem; display: block;">marianosmaldini@gmail.com</a>
-            </div>
+        <div style="width: 100%; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 30px; margin: 0 auto; text-align: center; clear: both;">
+            <p style="font-size: 0.7rem; opacity: 0.3; text-transform: uppercase; letter-spacing: 3px; display: block; width: 100%;">
+                © 2026 Mariano Smaldini — Todos los derechos reservados.
+            </p>
         </div>
-
-        <div style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
-            <a href="#" class="scroll-up-arrow" title="Volver al inicio">
-                <svg viewBox="0 0 24 24" style="width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2;">
-                    <path d="M12 19V5M12 5L5 12M12 5L19 12" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-            </a>
-        </div>
-    </div>
-
-    <div style="width: 100%; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 30px; margin: 0 auto; text-align: center; clear: both;">
-        <p style="font-size: 0.7rem; opacity: 0.3; text-transform: uppercase; letter-spacing: 3px; display: block; width: 100%;">
-            © 2026 Mariano Smaldini — Todos los derechos reservados.
-        </p>
-    </div>
-</footer>
+    </footer>
     <div class="lang-switch">
-  <button class="lang-btn" data-lang="es" onclick="setLanguage('es')">ES</button>
-  <button class="lang-btn" data-lang="en" onclick="setLanguage('en')">EN</button>
-  <button class="lang-btn" data-lang="it" onclick="setLanguage('it')">IT</button>
-</div>
+      <button class="lang-btn" data-lang="es" onclick="setLanguage('es')">ES</button>
+      <button class="lang-btn" data-lang="en" onclick="setLanguage('en')">EN</button>
+      <button class="lang-btn" data-lang="it" onclick="setLanguage('it')">IT</button>
+    </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
 
-    <script>
+<script>
+// Diccionario dinámico para traducir los roles (p.role) sin reescribir todo el array
+const roleDict = [
+    { es: "Diseño de Escenografía - Premio Hugo 2024", en: "Set Design - Hugo Award 2024", it: "Scenografia - Premio Hugo 2024" },
+    { es: "Dirección de Arte y Escenografía", en: "Art Direction & Set Design", it: "Direzione Artistica e Scenografia" },
+    { es: "Asistente de Arte / D. Gráfico", en: "Art Assistant / Graphic Designer", it: "Assistente d'Arte / Graphic Designer" },
+    { es: "Asistente de Arte / Realizador", en: "Art Assistant / Builder", it: "Assistente d'Arte / Realizzatore" },
+    { es: "Diseño Escenografía", en: "Set Design", it: "Scenografia" },
+    { es: "Utilería y Escenografía", en: "Props & Set Design", it: "Attrezzeria e Scenografia" },
+    { es: "Dirección de Arte", en: "Art Direction", it: "Direzione Artistica" },
+    { es: "Realización (Turquía - 2017)", en: "Production (Turkey - 2017)", it: "Realizzazione (Turchia - 2017)" },
+    { es: "Realización", en: "Production", it: "Realizzazione" },
+    { es: "Diseño Gráfico", en: "Graphic Design", it: "Graphic Design" },
+    { es: "Asistente de Arte", en: "Art Assistant", it: "Assistente d'Arte" },
+    { es: "Dir. Arte", en: "Art Dir.", it: "Dir. Artistica" },
+    { es: "Presente", en: "Present", it: "Presente" }
+];
+
+function translateRole(role, lang) {
+    if (lang === 'es' || !lang) return role;
+    let res = role;
+    for (const item of roleDict) {
+        if (res.includes(item.es)) {
+            res = res.replace(item.es, item[lang]);
+        }
+    }
+    return res;
+}
+
+const I18N = {
+  es:{
+    nav:{home:"Inicio",about:"Sobre mi",works:"Trabajos",contact:"Contacto"},
+    hero_cta:"Explorar proyectos",
+    featured:"Trabajos Destacados",
+    career:"Trayectoria",
+    projects:"Proyectos",
+    filters:{
+      all:"Todos", film:"Cine", theatre:"Teatro", tv:"TV y Reality", clips:"Videoclips", ads:"Publicidad"
+    },
+    contact:{
+      title:"Contacto", name:"Nombre", email:"E-mail", message:"Mensaje", send:"Enviar",
+      direct:"Canales Directos", location1:"Ubicación I", location2:"Ubicación II", back:"Volver al inicio",
+      rights:"Todos los derechos reservados."
+    },
+    award_year:"Año 2024",
+    award_title:`GANADOR PREMIO HUGO<br>A LA MEJOR DISEÑO DE ESCENOGRAFÍA POR "EL PRINCIPITO"`,
+    bio_text:`Soy un profesional del ámbito creativo y audiovisual con más de 20 años de trayectoria ininterrumpida en la industria. Desde 2005, he volcado mi pasión y formación técnica en la dirección de arte, la realización escenográfica y el montaje, trabajando en proyectos de cine, teatro, televisión, publicidad y medios digitales.
+
+Mi enfoque combina la visión estética con la capacidad de ejecución práctica, lo que me ha permitido liderar equipos y proyectos de gran envergadura tanto en Argentina como en el exterior.`,
+    form_success: "Mensaje enviado correctamente",
+    form_error: "Error al enviar el mensaje"
+  },
+  en:{
+    nav:{home:"Home",about:"About Me",works:"Works",contact:"Contact"},
+    hero_cta:"Explore Projects",
+    featured:"Featured Works",
+    career:"Career",
+    projects:"Projects",
+    filters:{
+      all:"All", film:"Film", theatre:"Theatre", tv:"TV & Reality", clips:"Music Videos", ads:"Advertising"
+    },
+    contact:{
+      title:"Contact", name:"Name", email:"E-mail", message:"Message", send:"Send",
+      direct:"Direct Channels", location1:"Location I", location2:"Location II", back:"Back to Top",
+      rights:"All rights reserved."
+    },
+    award_year:"Year 2024",
+    award_title:`HUGO AWARD WINNER<br>BEST SET DESIGN FOR "THE LITTLE PRINCE"`,
+    bio_text:`I am a creative and audiovisual professional with more than 20 years of uninterrupted experience in the industry. Since 2005, I have devoted my passion and technical training to art direction, set design, and production, working on projects in film, theatre, television, advertising, and digital media.
+
+My approach combines aesthetic vision with practical execution, allowing me to lead large-scale teams and projects both in Argentina and internationally.`,
+    form_success: "Message sent successfully",
+    form_error: "Error sending message"
+  },
+  it:{
+    nav:{home:"Home",about:"Chi Sono",works:"Progetti",contact:"Contatto"},
+    hero_cta:"Esplora i Progetti",
+    featured:"Progetti in primo piano",
+    career:"Percorso",
+    projects:"Progetti",
+    filters:{
+      all:"Tutti", film:"Cinema", theatre:"Teatro", tv:"TV e Reality", clips:"Videoclip", ads:"Pubblicità"
+    },
+    contact:{
+      title:"Contatto", name:"Nome", email:"E-mail", message:"Messaggio", send:"Invia",
+      direct:"Canali Diretti", location1:"Sede I", location2:"Sede II", back:"Torna all’inizio",
+      rights:"Tutti i diritti riservati."
+    },
+    award_year:"Anno 2024",
+    award_title:`VINCITORE PREMIO HUGO<br>MIGLIOR SCENOGRAFIA PER "IL PICCOLO PRINCIPE"`,
+    bio_text:`Sono un professionista dell’ambito creativo e audiovisivo con oltre 20 anni di esperienza continuativa nel settore. Dal 2005 ho dedicato la mia passione e la mia formazione tecnica alla direzione artistica, alla scenografia e alla realizzazione, lavorando in progetti di cinema, teatro, televisione, pubblicità e media digitali.
+
+Il mio approccio unisce visione estetica e capacità esecutiva pratica, permettendomi di guidare team e progetti di grande scala sia in Argentina che all’estero.`,
+    form_success: "Messaggio inviato con successo",
+    form_error: "Errore nell'invio del messaggio"
+  }
+};
+
+/* APPLY LANGUAGE SAFELY */
+function applyLang(lang){
+  document.querySelectorAll(".lang-btn").forEach(btn=>{
+    btn.classList.remove("active");
+    if(btn.dataset.lang === lang) btn.classList.add("active");
+  });
+
+  document.documentElement.lang = lang;
+  localStorage.setItem("lang",lang);
+  const t = I18N[lang];
+
+  // NAV
+  document.querySelectorAll(".nav-link")[0].textContent = t.nav.home;
+  document.querySelectorAll(".nav-link")[1].textContent = t.nav.about;
+  document.querySelectorAll(".nav-link")[2].textContent = t.nav.works;
+  document.querySelectorAll(".nav-link")[3].textContent = t.nav.contact;
+
+  // MOBILE NAV
+  document.querySelectorAll(".mobile-menu a")[0].textContent = t.nav.home;
+  document.querySelectorAll(".mobile-menu a")[1].textContent = t.nav.about;
+  document.querySelectorAll(".mobile-menu a")[2].textContent = t.nav.works;
+  document.querySelectorAll(".mobile-menu a")[3].textContent = t.nav.contact;
+
+  // HERO CTA & SECTION TITLES
+  document.querySelector(".hero-cta").textContent = t.hero_cta;
+  document.querySelector("#destacados .section-label").textContent = t.featured;
+  document.querySelector("#sobre-mi .section-label").textContent = t.career;
+  document.querySelector("#archivo .section-label").textContent = t.projects;
+  document.querySelector("#contacto .section-label").textContent = t.contact.title;
+
+  // FILTERS
+  const filterBtns = document.querySelectorAll(".filter-btn");
+  filterBtns[0].textContent = t.filters.all;
+  filterBtns[1].textContent = t.filters.film;
+  filterBtns[2].textContent = t.filters.theatre;
+  filterBtns[3].textContent = t.filters.tv;
+  filterBtns[4].textContent = t.filters.clips;
+  filterBtns[5].textContent = t.filters.ads;
+
+  // BIO
+  const bio = document.getElementById("manifesto-text");
+  bio.innerText = t.bio_text;
+  bio.innerHTML = bio.innerText.split(" ").map(w => `<span>${w} </span>`).join("");
+  gsap.to("#manifesto-text span", {
+      opacity: 1, stagger: 0.05,
+      scrollTrigger: { trigger: "#manifesto-text", start: "top 80%", end: "bottom 40%", scrub: true }
+  });
+
+  // AWARD (IDs corregidos)
+  const awardYearEl = document.getElementById("award-year");
+  const awardTitleEl = document.getElementById("award-title");
+  if (awardYearEl) awardYearEl.textContent = t.award_year;
+  if (awardTitleEl) awardTitleEl.innerHTML = t.award_title;
+
+  // CONTACT FORM
+  const inputs = document.querySelectorAll("#contact-form input, #contact-form textarea");
+  if(inputs.length >= 3){
+      inputs[0].placeholder = t.contact.name;
+      inputs[1].placeholder = t.contact.email;
+      inputs[2].placeholder = t.contact.message;
+  }
+  const sendBtn = document.querySelector("#contact-form button");
+  if(sendBtn) sendBtn.textContent = t.contact.send;
+
+  // FOOTER
+  const footerTexts = document.querySelectorAll("footer p");
+  footerTexts[0].textContent = t.contact.location1;
+  footerTexts[2].textContent = t.contact.location2;
+  footerTexts[4].textContent = t.contact.direct;
+  footerTexts[footerTexts.length-1].textContent = "© 2026 Mariano Smaldini — " + t.contact.rights;
+
+  // TRADUCIR ELEMENTOS DEL GRID Y MARQUEE EN VIVO (Sin reiniciar animaciones)
+  if (typeof destacadosData !== 'undefined') {
+      document.querySelectorAll('#marquee-inner .work-card').forEach((card, index) => {
+          const dataIndex = index % destacadosData.length;
+          const pData = destacadosData[dataIndex];
+          const pElement = card.querySelector('p');
+          if(pElement) pElement.textContent = translateRole(pData.role, lang);
+      });
+  }
+
+  if (typeof fullArchive !== 'undefined') {
+      document.querySelectorAll('#works-grid .project-item').forEach((item) => {
+          const titleEl = item.querySelector('h4');
+          const pEl = item.querySelector('p');
+          if (titleEl && pEl) {
+              const title = titleEl.textContent;
+              const proj = fullArchive.find(p => p.title === title);
+              if (proj) {
+                  pEl.textContent = translateRole(proj.role, lang);
+              }
+          }
+      });
+  }
+}
+
+function setLanguage(l){
+  applyLang(l);
+  history.replaceState(null,"","?lang="+l);
+}
+
+// AUTO DETECT INITIAL LANG
+const urlLang = new URLSearchParams(window.location.search).get("lang");
+const savedLang = localStorage.getItem("lang");
+let currentLang = urlLang || savedLang;
+if(!currentLang){
+  const navLang = navigator.language.slice(0,2);
+  currentLang = (["es","en","it"].includes(navLang)) ? navLang : "es";
+}
+document.documentElement.lang = currentLang;
+</script>
+
+<script>
+    /* =======================================
+       MAIN APP LOGIC
+       ======================================= */
     gsap.registerPlugin(ScrollTrigger);
 
     // Control Navbar
@@ -784,66 +970,58 @@
     };
 
     // --- CARGA DE TRABAJOS DESTACADOS ACTUALIZADA ---
-const marqueeInner = document.getElementById('marquee-inner');
-const destacadosNombres = ["LA DICHA EN MOVIMIENTO", "Yo Nena Yo Princesa", "LA PANELISTA", "EL PRINCIPITO", "RENT"];
-const destacadosData = fullArchive.filter(p => destacadosNombres.includes(p.title));
+    const marqueeInner = document.getElementById('marquee-inner');
+    const destacadosNombres = ["LA DICHA EN MOVIMIENTO", "Yo Nena Yo Princesa", "LA PANELISTA", "EL PRINCIPITO", "RENT"];
+    const destacadosData = fullArchive.filter(p => destacadosNombres.includes(p.title));
 
-// Generar HTML
-const marqueeHTML = destacadosData.map(p => `
-    <div class="work-card">
-        <div class="mobile-img-wrapper"><img src="${p.img}"></div>
-        <h3>${p.title}</h3>
-        <p>${p.role}</p>
-    </div>
-`).join('');
+    // Generar HTML
+    const marqueeHTML = destacadosData.map(p => `
+        <div class="work-card">
+            <div class="mobile-img-wrapper"><img src="${p.img}"></div>
+            <h3>${p.title}</h3>
+            <p>${translateRole(p.role, currentLang)}</p>
+        </div>
+    `).join('');
 
-// Duplicamos el contenido para permitir el efecto infinito en ambos modos
-// En desktop duplicamos para el loop infinito, en mobile no es necesario para el swipe manual
     marqueeInner.innerHTML = (window.innerWidth > 768) ? marqueeHTML + marqueeHTML : marqueeHTML;
 
     let currentIndex = 0;
-function moveMarquee(direction) {
-    const track = document.getElementById('marquee-inner');
-    const cards = track.querySelectorAll('.work-card');
-    if (cards.length === 0) return;
+    function moveMarquee(direction) {
+        const track = document.getElementById('marquee-inner');
+        const cards = track.querySelectorAll('.work-card');
+        if (cards.length === 0) return;
 
-    const totalOriginalItems = destacadosData.length;
-    const cardWidth = cards[0].offsetWidth;
-    const cardMargin = parseFloat(window.getComputedStyle(cards[0]).marginRight) || 0;
-    const fullStep = cardWidth + cardMargin;
+        const totalOriginalItems = destacadosData.length;
+        const cardWidth = cards[0].offsetWidth;
+        const cardMargin = parseFloat(window.getComputedStyle(cards[0]).marginRight) || 0;
+        const fullStep = cardWidth + cardMargin;
 
-    currentIndex += direction;
+        currentIndex += direction;
 
-    // Lógica de infinitud
-    if (currentIndex >= totalOriginalItems) {
-        // Si pasamos el final, saltamos al inicio sin animación y luego movemos
-        track.style.transition = 'none';
-        currentIndex = 0;
+        // Lógica de infinitud
+        if (currentIndex >= totalOriginalItems) {
+            track.style.transition = 'none';
+            currentIndex = 0;
+            const centerOffset = (window.innerWidth / 2) - (cardWidth / 2);
+            track.style.transform = `translateX(${-(currentIndex * fullStep - centerOffset)}px)`;
+            track.offsetHeight;
+            track.style.transition = 'transform 0.5s cubic-bezier(0.16, 1, 0.3, 1)';
+            currentIndex = 1;
+        } else if (currentIndex < 0) {
+            track.style.transition = 'none';
+            currentIndex = totalOriginalItems - 1;
+            const centerOffset = (window.innerWidth / 2) - (cardWidth / 2);
+            track.style.transform = `translateX(${-(currentIndex * fullStep - centerOffset)}px)`;
+            track.offsetHeight;
+            track.style.transition = 'transform 0.5s cubic-bezier(0.16, 1, 0.3, 1)';
+            currentIndex = totalOriginalItems - 2;
+        }
+
         const centerOffset = (window.innerWidth / 2) - (cardWidth / 2);
-        track.style.transform = `translateX(${-(currentIndex * fullStep - centerOffset)}px)`;
-
-        // Forzamos un reflow para que el navegador note el cambio sin animación
-        track.offsetHeight;
-
-        // Aplicamos el movimiento real con animación
-        track.style.transition = 'transform 0.5s cubic-bezier(0.16, 1, 0.3, 1)';
-        currentIndex = 1;
-    } else if (currentIndex < 0) {
-        // Si vamos hacia atrás del inicio
-        track.style.transition = 'none';
-        currentIndex = totalOriginalItems - 1;
-        const centerOffset = (window.innerWidth / 2) - (cardWidth / 2);
-        track.style.transform = `translateX(${-(currentIndex * fullStep - centerOffset)}px)`;
-        track.offsetHeight;
-
-        track.style.transition = 'transform 0.5s cubic-bezier(0.16, 1, 0.3, 1)';
-        currentIndex = totalOriginalItems - 2;
+        const finalX = (currentIndex * fullStep) - centerOffset;
+        track.style.transform = `translateX(${-finalX}px)`;
     }
 
-    const centerOffset = (window.innerWidth / 2) - (cardWidth / 2);
-    const finalX = (currentIndex * fullStep) - centerOffset;
-    track.style.transform = `translateX(${-finalX}px)`;
-}
     // --- LÓGICA DE DESLIZAMIENTO TÁCTIL ---
     let touchStartX = 0;
     let touchEndX = 0;
@@ -855,19 +1033,18 @@ function moveMarquee(direction) {
     marqueeInner.addEventListener('touchend', e => {
         touchEndX = e.changedTouches[0].screenX;
         const sweepDistance = touchStartX - touchEndX;
-        if (sweepDistance > 50) {
-            moveMarquee(1);
-        } else if (sweepDistance < -50) {
-            moveMarquee(-1);
-        }
+        if (sweepDistance > 50) moveMarquee(1);
+        else if (sweepDistance < -50) moveMarquee(-1);
     }, {passive: true});
 
     window.addEventListener('load', () => moveMarquee(0));
     window.addEventListener('resize', () => moveMarquee(0));
     setTimeout(() => moveMarquee(0), 100);
 
-    function renderGrid(filter = 'all') {
+    let activeFilter = 'all';
+    function renderGrid(filter = activeFilter) {
         const grid = document.getElementById('works-grid');
+        const lang = document.documentElement.lang || 'es';
         const filtered = filter === 'all' ? fullArchive : fullArchive.filter(p => p.cat === filter);
         gsap.to(".project-item", {
             opacity: 0, scale: 0.9, duration: 0.3, stagger: 0.02,
@@ -875,7 +1052,7 @@ function moveMarquee(direction) {
                 grid.innerHTML = filtered.map(p => `
                     <div class="project-item" style="opacity:0;" ${p.yt ? `onclick="openVideo('${p.yt}')" style="cursor:pointer;"` : ''}>
                         <img src="${p.img}">
-                        <div class="project-info"><h4>${p.title}</h4><p>${p.role}</p></div>
+                        <div class="project-info"><h4>${p.title}</h4><p>${translateRole(p.role, lang)}</p></div>
                     </div>
                 `).join('');
                 gsap.to(".project-item", { opacity: 1, scale: 1, duration: 0.6, stagger: 0.08, ease: "power2.out" });
@@ -886,6 +1063,7 @@ function moveMarquee(direction) {
     function filterProjects(cat, btn) {
         document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
+        activeFilter = cat;
         renderGrid(cat);
     }
 
@@ -893,259 +1071,10 @@ function moveMarquee(direction) {
     function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
     requestAnimationFrame(raf);
 
-    const textEl = document.getElementById('manifesto-text');
-    textEl.innerHTML = textEl.innerText.split(" ").map(w => `<span>${w} </span>`).join("");
-    gsap.to("#manifesto-text span", {
-        opacity: 1, stagger: 0.05,
-        scrollTrigger: { trigger: "#manifesto-text", start: "top 80%", end: "bottom 40%", scrub: true }
-    });
-
-    renderGrid();
+    // Call Apply Language Immediately (Now that all elements are ready)
+    applyLang(currentLang);
+    renderGrid(activeFilter);
 </script>
-<script>
-/* ===============================
-   I18N FULL SYSTEM (SAFE VERSION)
-================================= */
-
-const I18N = {
-  es:{
-    nav:{home:"Inicio",about:"Sobre mi",works:"Trabajos",contact:"Contacto"},
-    hero_cta:"Explorar proyectos",
-    featured:"Trabajos Destacados",
-    career:"Trayectoria",
-    projects:"Proyectos",
-    filters:{
-      all:"Todos",
-      film:"Cine",
-      theatre:"Teatro",
-      tv:"TV y Reality",
-      clips:"Videoclips",
-      ads:"Publicidad"
-    },
-    contact:{
-      title:"Contacto",
-      name:"Nombre",
-      email:"E-mail",
-      message:"Mensaje",
-      send:"Enviar",
-      direct:"Canales Directos",
-      location1:"Ubicación I",
-      location2:"Ubicación II",
-      back:"Volver al inicio",
-      rights:"Todos los derechos reservados."
-    },
-    award_year:"Año 2024",
-    award_title:`GANADOR PREMIO HUGO<br>A LA MEJOR DISEÑO DE ESCENOGRAFÍA POR "EL PRINCIPITO"`,
-    bio_text:`Soy un profesional del ámbito creativo y audiovisual con más de 20 años de trayectoria ininterrumpida en la industria. Desde 2005, he volcado mi pasión y formación técnica en la dirección de arte, la realización escenográfica y el montaje, trabajando en proyectos de cine, teatro, televisión, publicidad y medios digitales.
-
-Mi enfoque combina la visión estética con la capacidad de ejecución práctica, lo que me ha permitido liderar equipos y proyectos de gran envergadura tanto en Argentina como en el exterior.`
-  },
-
-  en:{
-    nav:{home:"Home",about:"About Me",works:"Works",contact:"Contact"},
-    hero_cta:"Explore Projects",
-    featured:"Featured Works",
-    career:"Career",
-    projects:"Projects",
-    filters:{
-      all:"All",
-      film:"Film",
-      theatre:"Theatre",
-      tv:"TV & Reality",
-      clips:"Music Videos",
-      ads:"Advertising"
-    },
-    contact:{
-      title:"Contact",
-      name:"Name",
-      email:"E-mail",
-      message:"Message",
-      send:"Send",
-      direct:"Direct Channels",
-      location1:"Location I",
-      location2:"Location II",
-      back:"Back to Top",
-      rights:"All rights reserved."
-    },
-    award_year:"Year 2024",
-    award_title:`HUGO AWARD WINNER<br>BEST SET DESIGN FOR "THE LITTLE PRINCE"`,
-    bio_text:`I am a creative and audiovisual professional with more than 20 years of uninterrupted experience in the industry. Since 2005, I have devoted my passion and technical training to art direction, set design, and production, working on projects in film, theatre, television, advertising, and digital media.
-
-My approach combines aesthetic vision with practical execution, allowing me to lead large-scale teams and projects both in Argentina and internationally.`
-  },
-
-  it:{
-    nav:{home:"Home",about:"Chi Sono",works:"Progetti",contact:"Contatto"},
-    hero_cta:"Esplora i Progetti",
-    featured:"Progetti in primo piano",
-    career:"Percorso",
-    projects:"Progetti",
-    filters:{
-      all:"Tutti",
-      film:"Cinema",
-      theatre:"Teatro",
-      tv:"TV e Reality",
-      clips:"Videoclip",
-      ads:"Pubblicità"
-    },
-    contact:{
-      title:"Contatto",
-      name:"Nome",
-      email:"E-mail",
-      message:"Messaggio",
-      send:"Invia",
-      direct:"Canali Diretti",
-      location1:"Sede I",
-      location2:"Sede II",
-      back:"Torna all’inizio",
-      rights:"Tutti i diritti riservati."
-    },
-    award_year:"Anno 2024",
-    award_title:`VINCITORE PREMIO HUGO<br>MIGLIOR SCENOGRAFIA PER "IL PICCOLO PRINCIPE"`,
-    bio_text:`Sono un professionista dell’ambito creativo e audiovisivo con oltre 20 anni di esperienza continuativa nel settore. Dal 2005 ho dedicato la mia passione e la mia formazione tecnica alla direzione artistica, alla scenografia e alla realizzazione, lavorando in progetti di cinema, teatro, televisione, pubblicità e media digitali.
-
-Il mio approccio unisce visione estetica e capacità esecutiva pratica, permettendomi di guidare team e progetti di grande scala sia in Argentina che all’estero.`
-  }
-};
-
-/* APPLY LANGUAGE SAFELY */
-function applyLang(lang){
-
-    // Active button state
-document.querySelectorAll(".lang-btn").forEach(btn=>{
-  btn.classList.remove("active");
-  if(btn.dataset.lang === lang){
-    btn.classList.add("active");
-  }
-});
-
-  document.documentElement.lang = lang;
-  localStorage.setItem("lang",lang);
-
-  const t = I18N[lang];
-
-  // NAV
-  document.querySelectorAll(".nav-link")[0].textContent = t.nav.home;
-  document.querySelectorAll(".nav-link")[1].textContent = t.nav.about;
-  document.querySelectorAll(".nav-link")[2].textContent = t.nav.works;
-  document.querySelectorAll(".nav-link")[3].textContent = t.nav.contact;
-
-  // MOBILE NAV
-  document.querySelectorAll(".mobile-menu a")[0].textContent = t.nav.home;
-  document.querySelectorAll(".mobile-menu a")[1].textContent = t.nav.about;
-  document.querySelectorAll(".mobile-menu a")[2].textContent = t.nav.works;
-  document.querySelectorAll(".mobile-menu a")[3].textContent = t.nav.contact;
-
-  // HERO CTA
-  document.querySelector(".hero-cta").textContent = t.hero_cta;
-
-  // SECTION TITLES
-  document.querySelector("#destacados .section-label").textContent = t.featured;
-  document.querySelector("#sobre-mi .section-label").textContent = t.career;
-  document.querySelector("#archivo .section-label").textContent = t.projects;
-  document.querySelector("#contacto .section-label").textContent = t.contact.title;
-
-  // FILTERS
-  const filterBtns = document.querySelectorAll(".filter-btn");
-  filterBtns[0].textContent = t.filters.all;
-  filterBtns[1].textContent = t.filters.film;
-  filterBtns[2].textContent = t.filters.theatre;
-  filterBtns[3].textContent = t.filters.tv;
-  filterBtns[4].textContent = t.filters.clips;
-  filterBtns[5].textContent = t.filters.ads;
-
-  // BIO
-  const bio = document.getElementById("manifesto-text");
-  bio.innerText = t.bio_text;
-
-  // Rebuild word animation safely
-  bio.innerHTML = bio.innerText.split(" ").map(w => `<span>${w} </span>`).join("");
-  gsap.to("#manifesto-text span", {
-      opacity: 1, stagger: 0.05,
-      scrollTrigger: { trigger: "#manifesto-text", start: "top 80%", end: "bottom 40%", scrub: true }
-  });
-
-  // AWARD
-  document.querySelector(".award-info span").textContent = t.award_year;
-  document.querySelector(".award-info h3").innerHTML = t.award_title;
-
-  // CONTACT FORM
-  const inputs = document.querySelectorAll("form input, form textarea");
-  inputs[0].placeholder = t.contact.name;
-  inputs[1].placeholder = t.contact.email;
-  inputs[2].placeholder = t.contact.message;
-
-  document.querySelector("form button").textContent = t.contact.send;
-
-  // FOOTER
-  const footerTexts = document.querySelectorAll("footer p");
-  footerTexts[0].textContent = t.contact.location1;
-  footerTexts[2].textContent = t.contact.location2;
-  footerTexts[4].textContent = t.contact.direct;
-  footerTexts[footerTexts.length-1].textContent =
-    "© 2026 Mariano Smaldini — " + t.contact.rights;
-}
-
-/* AUTO DETECT */
-const urlLang = new URLSearchParams(window.location.search).get("lang");
-const savedLang = localStorage.getItem("lang");
-let lang = urlLang || savedLang;
-
-if(!lang){
-  const navLang = navigator.language.slice(0,2);
-  if(["es","en","it"].includes(navLang)) lang = navLang;
-  else lang = "es";
-}
-function setLanguage(l){
-  applyLang(l);
-  applySemantic(l);
-  history.replaceState(null,"","?lang="+l);
-}
-
-window.setLanguage = setLanguage;
-
-// Inicialización correcta
-applyLang(lang);
-applySemantic(lang);
-</script>
-
-<!-- ===============================
-     I18N SYSTEM PHASE 3 (SEMANTIC)
-================================ -->
-<script>
-// Semantic dictionary (extendable)
-const I18N_SEMANTIC = {
-  es: {
-    hero_title: "Director de arte & escenógrafo",
-    hero_intro: "Trabajo en cine, teatro, televisión y publicidad.",
-    contact_cta: "Hablemos"
-  },
-  en: {
-    hero_title: "Art Director & Set Designer",
-    hero_intro: "I work across film, theatre, television and advertising.",
-    contact_cta: "Let’s talk"
-  },
-  it: {
-    hero_title: "Direttore artistico & scenografo",
-    hero_intro: "Lavoro tra cinema, teatro, televisione e pubblicità.",
-    contact_cta: "Parliamo"
-  }
-};
-
-// Apply semantic translations
-function applySemantic(lang){
-  document.querySelectorAll("[data-i18n]").forEach(el=>{
-    const key = el.dataset.i18n;
-    if(I18N_SEMANTIC[lang] && I18N_SEMANTIC[lang][key]){
-      el.textContent = I18N_SEMANTIC[lang][key];
-    }
-  });
-}
-
-// Initial semantic apply
-applySemantic(document.documentElement.lang || "es");
-</script>
-
 
 <script>
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -1166,9 +1095,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 });
 </script>
 
-<!-- EMAILJS SDK -->
-<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
-
 <script>
 (function(){
   emailjs.init("TV6bsTiIZPmdOBgU2");
@@ -1176,15 +1102,16 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
 document.getElementById("contact-form").addEventListener("submit", function(e){
   e.preventDefault();
-
+  const lang = document.documentElement.lang || "es";
+  
   emailjs.sendForm("service_0yjdd1g", "template_25czfao", this)
     .then(function() {
-      alert("Mensaje enviado correctamente");
+      alert(I18N[lang].form_success);
       document.getElementById("contact-form").reset();
     })
     .catch(function(error) {
       console.log("EmailJS error:", error);
-      alert("Error al enviar el mensaje");
+      alert(I18N[lang].form_error);
     });
 });
 </script>
