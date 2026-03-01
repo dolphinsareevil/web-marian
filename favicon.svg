@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <radialGradient id="bg" cx="40%" cy="35%" r="70%">
+      <stop offset="0%" stop-color="#5f5952"/>
+      <stop offset="65%" stop-color="#2e2925"/>
+      <stop offset="100%" stop-color="#181512"/>
+    </radialGradient>
+    <linearGradient id="ring" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f2ede6"/>
+      <stop offset="30%" stop-color="#c7beb3"/>
+      <stop offset="70%" stop-color="#9f958a"/>
+      <stop offset="100%" stop-color="#ece6de"/>
+    </linearGradient>
+    <linearGradient id="mark" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f4efe8"/>
+      <stop offset="50%" stop-color="#cac1b5"/>
+      <stop offset="100%" stop-color="#a59b8f"/>
+    </linearGradient>
+    <filter id="soft" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="6" stdDeviation="4" flood-color="#000" flood-opacity=".6"/>
+    </filter>
+  </defs>
+
+  <circle cx="256" cy="256" r="240" fill="url(#ring)"/>
+  <circle cx="256" cy="256" r="216" fill="#110f0d"/>
+  <circle cx="256" cy="256" r="208" fill="url(#bg)"/>
+
+  <g fill="url(#mark)" filter="url(#soft)">
+    <rect x="112" y="165" width="48" height="190" rx="24" transform="rotate(19 136 260)"/>
+    <rect x="170" y="165" width="48" height="190" rx="24" transform="rotate(19 194 260)"/>
+    <rect x="228" y="165" width="48" height="190" rx="24" transform="rotate(19 252 260)"/>
+    <path d="M292 170h124c40 0 57 43 27 74l-60 63h56c40 0 57 43 27 74-13 13-28 20-47 20H292c-24 0-39-27-27-47l68-72h-41c-24 0-39-27-27-47l74-78c5-6 13-10 23-10z"/>
+  </g>
+</svg>
