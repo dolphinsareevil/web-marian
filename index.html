@@ -1048,7 +1048,7 @@ document.documentElement.lang = currentLang;
 
     // Generar HTML
     const marqueeHTML = destacadosData.map(p => `
-        <div class="work-card" ${p.yt ? `onclick="openVideo('${p.yt}')" style="cursor:pointer;"` : ''}>
+        <div class="work-card ${p.yt ? 'has-video' : ''}" ${p.yt ? `data-yt="${p.yt}" style="cursor:pointer;"` : ''}>
             <div class="mobile-img-wrapper work-thumb">
                 <img src="${p.img}">
                 ${p.yt ? '<span class="play-badge">Play</span>' : ''}
@@ -1069,6 +1069,7 @@ document.documentElement.lang = currentLang;
     let dragStartTranslate = 0;
     let marqueeCurrentTranslate = 0;
     let marqueeAutoTimer = null;
+    let marqueePointerDownTarget = null;
 
     function getMarqueeMetrics() {
         const cards = marqueeInner.querySelectorAll('.work-card');
@@ -1141,6 +1142,7 @@ document.documentElement.lang = currentLang;
 
     marqueeInner.addEventListener('pointerdown', (e) => {
         if (e.button !== 0) return;
+        marqueePointerDownTarget = e.target.closest('.work-card.has-video');
         marqueeInner.setPointerCapture(e.pointerId);
         startMarqueeDrag(e.clientX);
     });
@@ -1152,10 +1154,19 @@ document.documentElement.lang = currentLang;
     });
 
     marqueeInner.addEventListener('pointerup', (e) => {
+        const dx = Math.abs(e.clientX - dragStartX);
+        const clickedVideoCard = marqueePointerDownTarget;
         endMarqueeDrag(e.clientX);
+
+        if (dx < 8 && clickedVideoCard) {
+            const ytId = clickedVideoCard.dataset.yt;
+            if (ytId) openVideo(ytId);
+        }
+        marqueePointerDownTarget = null;
     });
 
     marqueeInner.addEventListener('pointercancel', () => {
+        marqueePointerDownTarget = null;
         if (!isDraggingMarquee) return;
         isDraggingMarquee = false;
         marqueeInner.classList.remove('dragging');
