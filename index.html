@@ -121,7 +121,8 @@
 
         /* --- MARQUEE --- */
         .marquee-container { overflow: hidden; padding-bottom: 100px; }
-        .marquee { display: flex; width: max-content; animation: scroll 40s linear infinite; }
+        .marquee { display: flex; width: max-content; will-change: transform; cursor: grab; user-select: none; touch-action: pan-y; }
+        .marquee.dragging { cursor: grabbing; }
         .work-card { width: 450px; margin-right: 60px; pointer-events: auto; }
         .work-card img { width: 100%; aspect-ratio: 16/10; object-fit: cover; filter: grayscale(1); transition: 0.5s var(--transition); border: 1px solid #222; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
         .work-card:hover img { filter: grayscale(0); transform: translateY(-10px); box-shadow: 0 20px 40px rgba(255,255,255,0.05); }
@@ -131,12 +132,10 @@
 .work-card:hover { 
     cursor: pointer; 
 }
-.marquee:has(.work-card:hover) { 
-    animation-play-state: paused; 
-}
 
-        .marquee-nav { display: none; position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); gap: 10px; z-index: 10; width: 100%; justify-content: center; }
-        .marquee-arrow { background: none; border: 1px solid #fff; color: #fff; width: 80px; height: 40px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; cursor: pointer; transition: all 0.3s var(--transition); }
+        .marquee-nav { position: absolute; top: 50%; left: 0; transform: translateY(-50%); z-index: 10; width: 100%; display: flex; justify-content: space-between; padding: 0 2vw; pointer-events: none; }
+        .marquee-arrow { pointer-events: auto; background: rgba(0,0,0,0.65); border: 1px solid rgba(255,255,255,0.55); color: #fff; width: 52px; height: 52px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; cursor: pointer; transition: all 0.3s var(--transition); }
+        .marquee-arrow:hover { background: #fff; color: #000; border-color: #fff; transform: scale(1.06); }
 
         /* --- SOBRE MÍ --- */
         .about { padding: 100px 8vw 150px 8vw; }
@@ -186,13 +185,13 @@
             .works-grid { grid-template-columns: 1fr; }
             .about-content { grid-template-columns: 1fr; }
             .about-award { order: -1; max-width: 500px; margin-bottom: 40px; }
-            .marquee-nav { display: flex; }
             .work-card { width: 80vw; margin-right: 30px; pointer-events: none; }
             .marquee {
-                animation: none;
                 display: flex; /* Asegura que estén en línea */
                 transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
             }
+            .marquee-nav { padding: 0 4vw; }
+            .marquee-arrow { width: 44px; height: 44px; font-size: 1.3rem; }
             .bg-title { display: none;font-size: 25vw; }
             .work-card img { filter: grayscale(0) !important; transform: none !important; box-shadow: 0 10px 30px rgba(0,0,0,0.5) !important; }
             .project-item img { filter: grayscale(0) !important; opacity: 1 !important; }
@@ -999,63 +998,88 @@ document.documentElement.lang = currentLang;
         </div>
     `).join('');
 
-    marqueeInner.innerHTML = (window.innerWidth > 768) ? marqueeHTML + marqueeHTML : marqueeHTML;
+    marqueeInner.innerHTML = marqueeHTML;
 
     let currentIndex = 0;
-    function moveMarquee(direction) {
-        const track = document.getElementById('marquee-inner');
-        const cards = track.querySelectorAll('.work-card');
-        if (cards.length === 0) return;
+    let isDraggingMarquee = false;
+    let dragStartX = 0;
+    let dragStartTranslate = 0;
+    let marqueeCurrentTranslate = 0;
 
-        const totalOriginalItems = destacadosData.length;
+    function getMarqueeMetrics() {
+        const cards = marqueeInner.querySelectorAll('.work-card');
+        if (!cards.length) return null;
         const cardWidth = cards[0].offsetWidth;
         const cardMargin = parseFloat(window.getComputedStyle(cards[0]).marginRight) || 0;
         const fullStep = cardWidth + cardMargin;
-
-        currentIndex += direction;
-
-        // Lógica de infinitud
-        if (currentIndex >= totalOriginalItems) {
-            track.style.transition = 'none';
-            currentIndex = 0;
-            const centerOffset = (window.innerWidth / 2) - (cardWidth / 2);
-            track.style.transform = `translateX(${-(currentIndex * fullStep - centerOffset)}px)`;
-            track.offsetHeight;
-            track.style.transition = 'transform 0.5s cubic-bezier(0.16, 1, 0.3, 1)';
-            currentIndex = 1;
-        } else if (currentIndex < 0) {
-            track.style.transition = 'none';
-            currentIndex = totalOriginalItems - 1;
-            const centerOffset = (window.innerWidth / 2) - (cardWidth / 2);
-            track.style.transform = `translateX(${-(currentIndex * fullStep - centerOffset)}px)`;
-            track.offsetHeight;
-            track.style.transition = 'transform 0.5s cubic-bezier(0.16, 1, 0.3, 1)';
-            currentIndex = totalOriginalItems - 2;
-        }
-
         const centerOffset = (window.innerWidth / 2) - (cardWidth / 2);
-        const finalX = (currentIndex * fullStep) - centerOffset;
-        track.style.transform = `translateX(${-finalX}px)`;
+        return { cards, fullStep, centerOffset };
     }
 
-    // --- LÓGICA DE DESLIZAMIENTO TÁCTIL ---
-    let touchStartX = 0;
-    let touchEndX = 0;
+    function setMarqueeTranslate(x, animate = true) {
+        marqueeCurrentTranslate = x;
+        marqueeInner.style.transition = animate ? 'transform 0.45s cubic-bezier(0.16, 1, 0.3, 1)' : 'none';
+        marqueeInner.style.transform = `translateX(${x}px)`;
+    }
 
-    marqueeInner.addEventListener('touchstart', e => {
-        touchStartX = e.changedTouches[0].screenX;
-    }, {passive: true});
+    function syncMarqueeToIndex(animate = true) {
+        const metrics = getMarqueeMetrics();
+        if (!metrics) return;
+        const maxIndex = destacadosData.length - 1;
+        currentIndex = Math.max(0, Math.min(currentIndex, maxIndex));
+        const target = -(currentIndex * metrics.fullStep - metrics.centerOffset);
+        setMarqueeTranslate(target, animate);
+    }
 
-    marqueeInner.addEventListener('touchend', e => {
-        touchEndX = e.changedTouches[0].screenX;
-        const sweepDistance = touchStartX - touchEndX;
-        if (sweepDistance > 50) moveMarquee(1);
-        else if (sweepDistance < -50) moveMarquee(-1);
-    }, {passive: true});
+    function moveMarquee(direction) {
+        currentIndex += direction;
+        syncMarqueeToIndex(true);
+    }
 
-    window.addEventListener('load', () => moveMarquee(0));
-    window.addEventListener('resize', () => moveMarquee(0));
-    setTimeout(() => moveMarquee(0), 100);
+    function pointerX(e) {
+        if (e.touches && e.touches.length) return e.touches[0].clientX;
+        if (e.changedTouches && e.changedTouches.length) return e.changedTouches[0].clientX;
+        return e.clientX;
+    }
+
+    function startMarqueeDrag(e) {
+        const isTouch = !!e.touches;
+        if (!isTouch && e.button !== 0) return;
+        isDraggingMarquee = true;
+        dragStartX = pointerX(e);
+        dragStartTranslate = marqueeCurrentTranslate;
+        marqueeInner.classList.add('dragging');
+        marqueeInner.style.transition = 'none';
+    }
+
+    function moveMarqueeDrag(e) {
+        if (!isDraggingMarquee) return;
+        const dx = pointerX(e) - dragStartX;
+        setMarqueeTranslate(dragStartTranslate + dx, false);
+    }
+
+    function endMarqueeDrag(e) {
+        if (!isDraggingMarquee) return;
+        const dx = pointerX(e) - dragStartX;
+        const threshold = 50;
+        if (dx < -threshold) currentIndex += 1;
+        else if (dx > threshold) currentIndex -= 1;
+        isDraggingMarquee = false;
+        marqueeInner.classList.remove('dragging');
+        syncMarqueeToIndex(true);
+    }
+
+    marqueeInner.addEventListener('mousedown', startMarqueeDrag);
+    window.addEventListener('mousemove', moveMarqueeDrag);
+    window.addEventListener('mouseup', endMarqueeDrag);
+
+    marqueeInner.addEventListener('touchstart', startMarqueeDrag, { passive: true });
+    window.addEventListener('touchmove', moveMarqueeDrag, { passive: true });
+    window.addEventListener('touchend', endMarqueeDrag, { passive: true });
+
+    window.addEventListener('load', () => syncMarqueeToIndex(false));
+    window.addEventListener('resize', () => syncMarqueeToIndex(false));
+    setTimeout(() => syncMarqueeToIndex(false), 100);
 
     let activeFilter = 'all';
     function renderGrid(filter = activeFilter) {
