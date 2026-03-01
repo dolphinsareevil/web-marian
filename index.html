@@ -138,8 +138,40 @@
 }
 
         .marquee-nav { position: absolute; top: 50%; left: 0; transform: translateY(-50%); z-index: 10; width: 100%; display: flex; justify-content: space-between; padding: 0 2vw; pointer-events: none; }
-        .marquee-arrow { pointer-events: auto; background: rgba(0,0,0,0.65); border: 1px solid rgba(255,255,255,0.55); color: #fff; width: 52px; height: 52px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; cursor: pointer; transition: all 0.3s var(--transition); }
-        .marquee-arrow:hover { background: #fff; color: #000; border-color: #fff; transform: scale(1.06); }
+        .marquee-arrow {
+            pointer-events: auto;
+            background: linear-gradient(145deg, rgba(255,255,255,0.18), rgba(255,255,255,0.05));
+            border: 1px solid rgba(255,255,255,0.35);
+            color: #fff;
+            width: 56px;
+            height: 56px;
+            border-radius: 999px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.35rem;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 8px 22px rgba(0,0,0,0.45), inset 0 0 0 1px rgba(255,255,255,0.1);
+            transition: transform 0.35s var(--transition), box-shadow 0.35s var(--transition), border-color 0.35s var(--transition), background 0.35s var(--transition);
+        }
+        .marquee-arrow:hover {
+            transform: translateY(-2px) scale(1.06);
+            border-color: rgba(255,255,255,0.7);
+            background: linear-gradient(145deg, rgba(255,255,255,0.28), rgba(255,255,255,0.1));
+            box-shadow: 0 12px 30px rgba(0,0,0,0.55), inset 0 0 0 1px rgba(255,255,255,0.18);
+        }
+        .marquee-arrow:active { transform: scale(0.98); }
+        .marquee-arrow:focus-visible {
+            outline: 2px solid rgba(255,255,255,0.9);
+            outline-offset: 3px;
+        }
+        .marquee-arrow span {
+            line-height: 1;
+            transform: translateY(-1px);
+            text-shadow: 0 2px 10px rgba(255,255,255,0.3);
+        }
 
         /* --- SOBRE MÍ --- */
         .about { padding: 100px 8vw 150px 8vw; }
@@ -165,6 +197,26 @@
         .project-item img { width: 100%; height: 100%; object-fit: cover; opacity: 0.3; filter: grayscale(1); transition: 0.8s; border-radius: 12px; }
         .project-item:hover { transform: scale(1.02); box-shadow: 0 25px 50px rgba(0,0,0,0.9); }
         .project-item:hover img { opacity: 1; filter: grayscale(0); }
+        .work-thumb { position: relative; display: block; }
+        .play-badge {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            padding: 8px 14px;
+            border: 1px solid rgba(255,255,255,0.65);
+            border-radius: 999px;
+            background: rgba(0,0,0,0.55);
+            color: #fff;
+            font-size: 0.65rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            pointer-events: none;
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.4);
+        }
+        .work-card:hover .play-badge,
+        .project-item:hover .play-badge { background: rgba(255,255,255,0.14); border-color: rgba(255,255,255,0.9); }
         .project-info { position: absolute; bottom: 25px; left: 25px; pointer-events: none; }
         .project-info h4 { font-size: 1.3rem; text-transform: uppercase; font-weight: 400; letter-spacing: 1px; }
         .project-info p { font-size: 0.8rem; opacity: 0.8; text-transform: uppercase; margin-top: 5px; }
@@ -189,13 +241,14 @@
             .works-grid { grid-template-columns: 1fr; }
             .about-content { grid-template-columns: 1fr; }
             .about-award { order: -1; max-width: 500px; margin-bottom: 40px; }
-            .work-card { width: 80vw; margin-right: 30px; pointer-events: none; }
+            .work-card { width: 80vw; margin-right: 30px; pointer-events: auto; }
             .marquee {
                 display: flex; /* Asegura que estén en línea */
                 transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
             }
             .marquee-nav { padding: 0 4vw; }
-            .marquee-arrow { width: 44px; height: 44px; font-size: 1.3rem; }
+            .marquee-arrow { width: 46px; height: 46px; font-size: 1.2rem; }
+            .play-badge { top: 12px; right: 12px; padding: 7px 12px; font-size: 0.58rem; letter-spacing: 1.6px; }
             .bg-title { display: none;font-size: 25vw; }
             .work-card img { filter: grayscale(0) !important; transform: none !important; box-shadow: 0 10px 30px rgba(0,0,0,0.5) !important; }
             .project-item img { filter: grayscale(0) !important; opacity: 1 !important; }
@@ -547,8 +600,8 @@
             </div>
             <div class="marquee" id="marquee-inner"></div>
             <div class="marquee-nav">
-                <button class="marquee-arrow" onclick="moveMarquee(-1)">&#10229;</button>
-                <button class="marquee-arrow" onclick="moveMarquee(1)">&#10230;</button>
+                <button class="marquee-arrow" onclick="moveMarquee(-1)" aria-label="Proyecto anterior"><span>←</span></button>
+                <button class="marquee-arrow" onclick="moveMarquee(1)" aria-label="Proyecto siguiente"><span>→</span></button>
             </div>
         </section>
 
@@ -928,32 +981,32 @@ document.documentElement.lang = currentLang;
     const fullArchive = [
         { title: "Hudson Kitchenware", cat: "publicidad", role: "Dirección de Arte (2025)", yt: "sK9T29gghi0", img: "https://img.youtube.com/vi/sK9T29gghi0/maxresdefault.jpg" },
         { title: "EL PRINCIPITO", cat: "teatro", role: "Diseño de Escenografía - Premio Hugo 2024", img: "https://i.ibb.co/5hLTcYBg/image.png" },
-        { title: "RENT", cat: "teatro", role: "Diseño Escenografía (2024)", img: "https://media.licdn.com/dms/image/v2/D4D22AQGOh09_oONuDg/feedshare-shrink_1280/feedshare-shrink_1280/0/1719446287457?e=1773273600&v=beta&t=tV95Hr3cz9_-_PADxxO8HZE2aGzm1qEqjCL5PPmZnCo" },
-        { title: "FEAT (Zeppelin/RTVE)", cat: "tv", role: "Dirección de Arte (2024)", img: "https://images.produ.com/wp-content/uploads/2024/01/11110232/bigwp-FeatRTVEZeppelin.jpg" },
+        { title: "RENT", cat: "teatro", role: "Diseño Escenografía (2024)", yt: "Kojy6x9JcO0", img: "https://media.licdn.com/dms/image/v2/D4D22AQGOh09_oONuDg/feedshare-shrink_1280/feedshare-shrink_1280/0/1719446287457?e=1773273600&v=beta&t=tV95Hr3cz9_-_PADxxO8HZE2aGzm1qEqjCL5PPmZnCo" },
+        { title: "FEAT (Zeppelin/RTVE)", cat: "tv", role: "Dirección de Arte (2024)", yt: "74WT8xDioBY", img: "https://images.produ.com/wp-content/uploads/2024/01/11110232/bigwp-FeatRTVEZeppelin.jpg" },
         { title: "Zoom Bazar", cat: "publicidad", role: "Dirección de Arte (2023)", yt: "24vc-HxOi3E", img: "https://img.youtube.com/vi/24vc-HxOi3E/maxresdefault.jpg" },
-        { title: "UNLaM TV", cat: "tv", role: "Dirección de Arte y Escenografía (2019-2022)", img: "https://scontent.faep8-1.fna.fbcdn.net/v/t1.6435-9/78485083_2406283956304540_36845304661671936_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=13d280&_nc_ohc=YQgCjVka12UQ7kNvwHXDuOy&_nc_oc=AdlgfaOBh_7rPx6SncdY2W8zB_s87URUHf8mdnryd5RzsruIsG7f5VvMTZmdTkDg6z4&_nc_zt=23&_nc_ht=scontent.faep8-1.fna&_nc_gid=c1CaS9BSBEFnduk2EuFAAg&oh=00_AfueTiEP9vtyYc1k0EYTSzcTkjYbVgDBHzqRlB_9-agokQ&oe=69C2D930" },
-        { title: "CANAL DE LA CIUDAD", cat: "tv", role: "Utilería y Escenografía (2017-Presente)", img: "https://static.buenosaires.gob.ar/sites/default/files/media/image/2022/10/27/c8acd9a87363661b5391363d7d5d041b65888b53.jpg" },
-        { title: "LA PANELISTA", cat: "cine", role: "Dirección de Arte (2021)", img: "https://ar.cienradios.com/resizer/v2/OGSQJW6RUJFWFFWUZTT3QONMLI.png?width=1200&height=600&auth=01ebb9bbcb5fa673768a51207f6af07423b0ff6a272b2f208ea04b2d1ac0ca9f&smart=true&quality=85" },
-        { title: "Yo Nena Yo Princesa", cat: "cine", role: "Dirección de Arte (2016)", img: "https://www.informador.mx/__export/1656112331089/sites/elinformador/img/2022/06/24/yo_nena_yo_princesa_1_crop1656112321747.jpg_554688468.jpg" },
-        { title: "SURVIVOR", cat: "tv", role: "Realización (Turquía - 2017)", img: "https://static.wikia.nocookie.net/survivor/images/b/b5/SanJuanDelSurReunion.jpg" },
-        { title: "QUIERO VIVIR A TU LADO", cat: "tv", role: "Diseño Gráfico - Pol-ka (2016)", img: "https://i.ytimg.com/vi/Y3FtB_aTTIc/sddefault.jpg" },
+        { title: "UNLaM TV", cat: "tv", role: "Dirección de Arte y Escenografía (2019-2022)", yt: "4yyGIhQU89U", img: "https://scontent.faep8-1.fna.fbcdn.net/v/t1.6435-9/78485083_2406283956304540_36845304661671936_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=13d280&_nc_ohc=YQgCjVka12UQ7kNvwHXDuOy&_nc_oc=AdlgfaOBh_7rPx6SncdY2W8zB_s87URUHf8mdnryd5RzsruIsG7f5VvMTZmdTkDg6z4&_nc_zt=23&_nc_ht=scontent.faep8-1.fna&_nc_gid=c1CaS9BSBEFnduk2EuFAAg&oh=00_AfueTiEP9vtyYc1k0EYTSzcTkjYbVgDBHzqRlB_9-agokQ&oe=69C2D930" },
+        { title: "CANAL DE LA CIUDAD", cat: "tv", role: "Utilería y Escenografía (2017-Presente)", yt: "8eXmFFIliCY", img: "https://static.buenosaires.gob.ar/sites/default/files/media/image/2022/10/27/c8acd9a87363661b5391363d7d5d041b65888b53.jpg" },
+        { title: "LA PANELISTA", cat: "cine", role: "Dirección de Arte (2021)", yt: "e0g1RnfuVtA", img: "https://ar.cienradios.com/resizer/v2/OGSQJW6RUJFWFFWUZTT3QONMLI.png?width=1200&height=600&auth=01ebb9bbcb5fa673768a51207f6af07423b0ff6a272b2f208ea04b2d1ac0ca9f&smart=true&quality=85" },
+        { title: "Yo Nena Yo Princesa", cat: "cine", role: "Dirección de Arte (2016)", yt: "OF78_BsBYkc", img: "https://www.informador.mx/__export/1656112331089/sites/elinformador/img/2022/06/24/yo_nena_yo_princesa_1_crop1656112321747.jpg_554688468.jpg" },
+        { title: "SURVIVOR", cat: "tv", role: "Realización (Turquía - 2017)", yt: "mjdgrJkehTs", img: "https://static.wikia.nocookie.net/survivor/images/b/b5/SanJuanDelSurReunion.jpg" },
+        { title: "QUIERO VIVIR A TU LADO", cat: "tv", role: "Diseño Gráfico - Pol-ka (2016)", yt: "mKH9Xoyt4bY", img: "https://i.ytimg.com/vi/Y3FtB_aTTIc/sddefault.jpg" },
         { title: "Movimiento #1 - Emir Abdul", cat: "clips", role: "Fuego Films (2016)", yt: "vfDK6WHcFa8", img: "https://img.youtube.com/vi/vfDK6WHcFa8/maxresdefault.jpg" },
         { title: "Movimiento #2 - Flor Vigna", cat: "clips", role: "Fuego Films (2016)", yt: "Fo_RFeZWXfI", img: "https://img.youtube.com/vi/Fo_RFeZWXfI/maxresdefault.jpg" },
         { title: "Banco Hipotecario", cat: "publicidad", role: "Asistente de Arte (2015)", yt: "OfR7Zw28yC8", img: "https://img.youtube.com/vi/OfR7Zw28yC8/maxresdefault.jpg" },
-        { title: "JUNGLE NEST", cat: "tv", role: "Asistente de Arte / D. Gráfico - Disney (2014-2015)", img: "https://disney.images.edge.bamgrid.com/ripcut-delivery/v2/variant/disney/cfe3d030-7bae-401c-ac1f-ab74646e02b2/compose?aspectRatio=1.78&format=webp&width=1200" },
+        { title: "JUNGLE NEST", cat: "tv", role: "Asistente de Arte / D. Gráfico - Disney (2014-2015)", yt: "4SsWD8Xupfk", img: "https://disney.images.edge.bamgrid.com/ripcut-delivery/v2/variant/disney/cfe3d030-7bae-401c-ac1f-ab74646e02b2/compose?aspectRatio=1.78&format=webp&width=1200" },
         { title: "La Farruca", cat: "publicidad", role: "Dirección de Arte (2014)", yt: "JfM3zEgIIik", img: "https://img.youtube.com/vi/JfM3zEgIIik/maxresdefault.jpg" },
         { title: "Asepxia", cat: "publicidad", role: "Dirección de Arte (2014)", yt: "KKqXii-orRs", img: "https://img.youtube.com/vi/KKqXii-orRs/hqdefault.jpg" },
         { title: "Abel Pintos - Oncemil", cat: "clips", role: "Cinematica Films (2014)", yt: "UBs_HSlrpOM", img: "https://img.youtube.com/vi/UBs_HSlrpOM/maxresdefault.jpg" },
         { title: "La Farruca", cat: "publicidad", role: "Dirección de Arte (2013)", yt: "a95MZEZtaUM", img: "https://img.youtube.com/vi/a95MZEZtaUM/hqdefault.jpg" },
-        { title: "SOLAMENTE VOS", cat: "tv", role: "Diseño Gráfico (2012-2013)", img: "https://images.produ.com/programas/0118/Solamente-vos-Natpe.jpg" },
+        { title: "SOLAMENTE VOS", cat: "tv", role: "Diseño Gráfico (2012-2013)", yt: "QW2pE0-Kis0", img: "https://images.produ.com/programas/0118/Solamente-vos-Natpe.jpg" },
         { title: "PETER PUNK 2", cat: "tv", role: "Asistente de Arte / Realizador - Disney (2011-2012)", img: "https://disney.images.edge.bamgrid.com/ripcut-delivery/v2/variant/disney/795a07c6-3d37-4e5a-9be2-7b3a5429f3a3/compose?aspectRatio=1.78&format=webp&width=1200" },
-        { title: "ROCK BONES", cat: "teatro", role: "Dir. Arte - Gran Rex (2012)", img: "https://i.ytimg.com/vi/1lBwQs-DS3U/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLBNhGHkcUbspOvQiMqERscp6Zs9UQ" },
-        { title: "LA DICHA EN MOVIMIENTO", cat: "cine", role: "Dirección de Arte (2012)", img: "https://www.otroscines.com/media/cache/imagen_principal/images/fotos/la-dicha-en-movimiento-1200.jpg" },
-        { title: "GIGANTES DEL CATCH", cat: "tv", role: "Dirección de Arte / Realizador (2011)", img: "https://quarone.com.ar/wp-content/uploads/2020/10/GIGANTES-DEL-CATCH-03.jpg" },
-        { title: "VIOLETTA", cat: "tv", role: "Asistente de Arte - Disney/Pol-ka (2011)", img: "https://disney.images.edge.bamgrid.com/ripcut-delivery/v2/variant/disney/0135fd22-255f-441c-8935-af0d59fe7fac/compose?aspectRatio=1.78&format=webp&width=1200" },
-        { title: "PETER PUNK", cat: "tv", role: "Asistente de Arte / Realizador - Disney (2010-2011)", img: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiBkshp3AnIieww0jlmcjf17Qs3Kyw4WXz8BQisRxdgQffREyi34AtGYvVa6hJo8KH_0UFV8IYmy5BjqBzsCX0yeDeb2p3kz4Hu0hkDJhz8keUgzNq7kDj6szfOCG31nAWgXK9807E0FCI/s1600/1280+(1).jpg" },
-        { title: "VIUDAS DE LOS JUEVES", cat: "cine", role: "Asistente de Arte (2009)", img: "https://filasiete.com/wp-content/uploads/2010/03/viudasjueves-1068x712.jpg" },
-        { title: "CRÓNICA DE UNA FUGA", cat: "cine", role: "Asistente de Arte (2006)", img: "https://assets.mubicdn.net/images/film/22699/image-w856.jpg?1745492188" },
+        { title: "ROCK BONES", cat: "teatro", role: "Dir. Arte - Gran Rex (2012)", yt: "H-tJhbASHNE", img: "https://i.ytimg.com/vi/1lBwQs-DS3U/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLBNhGHkcUbspOvQiMqERscp6Zs9UQ" },
+        { title: "LA DICHA EN MOVIMIENTO", cat: "cine", role: "Dirección de Arte (2012)", yt: "AL3W_njZYm0", img: "https://www.otroscines.com/media/cache/imagen_principal/images/fotos/la-dicha-en-movimiento-1200.jpg" },
+        { title: "GIGANTES DEL CATCH", cat: "tv", role: "Dirección de Arte / Realizador (2011)", yt: "FXDfc2mmzsw", img: "https://quarone.com.ar/wp-content/uploads/2020/10/GIGANTES-DEL-CATCH-03.jpg" },
+        { title: "VIOLETTA", cat: "tv", role: "Asistente de Arte - Disney/Pol-ka (2011)", yt: "kiZEdN98F7c", img: "https://disney.images.edge.bamgrid.com/ripcut-delivery/v2/variant/disney/0135fd22-255f-441c-8935-af0d59fe7fac/compose?aspectRatio=1.78&format=webp&width=1200" },
+        { title: "PETER PUNK", cat: "tv", role: "Asistente de Arte / Realizador - Disney (2010-2011)", yt: "5JYz1woze94", img: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiBkshp3AnIieww0jlmcjf17Qs3Kyw4WXz8BQisRxdgQffREyi34AtGYvVa6hJo8KH_0UFV8IYmy5BjqBzsCX0yeDeb2p3kz4Hu0hkDJhz8keUgzNq7kDj6szfOCG31nAWgXK9807E0FCI/s1600/1280+(1).jpg" },
+        { title: "VIUDAS DE LOS JUEVES", cat: "cine", role: "Asistente de Arte (2009)", yt: "lG0F-h5IKVQ", img: "https://filasiete.com/wp-content/uploads/2010/03/viudasjueves-1068x712.jpg" },
+        { title: "CRÓNICA DE UNA FUGA", cat: "cine", role: "Asistente de Arte (2006)", yt: "caDWPT0m4pw", img: "https://assets.mubicdn.net/images/film/22699/image-w856.jpg?1745492188" },
         { title: "Abel Pintos & Vanesa Martin", cat: "clips", role: "Fuego Films", yt: "VxcEcH06ckM", img: "https://img.youtube.com/vi/VxcEcH06ckM/maxresdefault.jpg" },
         { title: "V-one - El ultimo romántico", cat: "clips", role: "Fuego Films", yt: "D9oXE5k1F3o", img: "https://img.youtube.com/vi/D9oXE5k1F3o/maxresdefault.jpg" },
         { title: "Toco para vos - Vete de mi vida", cat: "clips", role: "Fuego Films", yt: "C5iPx5sFP3U", img: "https://img.youtube.com/vi/C5iPx5sFP3U/maxresdefault.jpg" },
@@ -995,8 +1048,11 @@ document.documentElement.lang = currentLang;
 
     // Generar HTML
     const marqueeHTML = destacadosData.map(p => `
-        <div class="work-card">
-            <div class="mobile-img-wrapper"><img src="${p.img}"></div>
+        <div class="work-card ${p.yt ? 'has-video' : ''}" ${p.yt ? `data-yt="${p.yt}" style="cursor:pointer;"` : ''}>
+            <div class="mobile-img-wrapper work-thumb">
+                <img src="${p.img}">
+                ${p.yt ? '<span class="play-badge">Play</span>' : ''}
+            </div>
             <h3>${p.title}</h3>
             <p>${translateRole(p.role, currentLang)}</p>
         </div>
@@ -1004,13 +1060,16 @@ document.documentElement.lang = currentLang;
 
     marqueeInner.innerHTML = marqueeHTML;
 
-    let currentIndex = 0;
+    const isDesktopViewport = () => window.innerWidth >= 769;
+
+    let currentIndex = (isDesktopViewport() && destacadosData.length > 1) ? 1 : 0;
     let isDraggingMarquee = false;
     let isMarqueeHovered = false;
     let dragStartX = 0;
     let dragStartTranslate = 0;
     let marqueeCurrentTranslate = 0;
     let marqueeAutoTimer = null;
+    let marqueePointerDownTarget = null;
 
     function getMarqueeMetrics() {
         const cards = marqueeInner.querySelectorAll('.work-card');
@@ -1038,7 +1097,14 @@ document.documentElement.lang = currentLang;
         const metrics = getMarqueeMetrics();
         if (!metrics) return;
         normalizeMarqueeIndex();
-        const target = -(currentIndex * metrics.fullStep - metrics.centerOffset);
+
+        const totalWidth = metrics.cards.length * metrics.fullStep;
+        const minTranslate = Math.min(0, window.innerWidth - totalWidth);
+        const maxTranslate = 0;
+
+        const centeredTarget = -(currentIndex * metrics.fullStep - metrics.centerOffset);
+        const target = Math.min(maxTranslate, Math.max(minTranslate, centeredTarget));
+
         setMarqueeTranslate(target, animate);
     }
 
@@ -1076,6 +1142,7 @@ document.documentElement.lang = currentLang;
 
     marqueeInner.addEventListener('pointerdown', (e) => {
         if (e.button !== 0) return;
+        marqueePointerDownTarget = e.target.closest('.work-card.has-video');
         marqueeInner.setPointerCapture(e.pointerId);
         startMarqueeDrag(e.clientX);
     });
@@ -1087,10 +1154,19 @@ document.documentElement.lang = currentLang;
     });
 
     marqueeInner.addEventListener('pointerup', (e) => {
+        const dx = Math.abs(e.clientX - dragStartX);
+        const clickedVideoCard = marqueePointerDownTarget;
         endMarqueeDrag(e.clientX);
+
+        if (dx < 8 && clickedVideoCard) {
+            const ytId = clickedVideoCard.dataset.yt;
+            if (ytId) openVideo(ytId);
+        }
+        marqueePointerDownTarget = null;
     });
 
     marqueeInner.addEventListener('pointercancel', () => {
+        marqueePointerDownTarget = null;
         if (!isDraggingMarquee) return;
         isDraggingMarquee = false;
         marqueeInner.classList.remove('dragging');
@@ -1124,8 +1200,9 @@ document.documentElement.lang = currentLang;
             opacity: 0, scale: 0.9, duration: 0.3, stagger: 0.02,
             onComplete: () => {
                 grid.innerHTML = filtered.map(p => `
-                    <div class="project-item" style="opacity:0;" ${p.yt ? `onclick="openVideo('${p.yt}')" style="cursor:pointer;"` : ''}>
+                    <div class="project-item ${p.yt ? 'has-video' : ''}" style="opacity:0;" ${p.yt ? `onclick="openVideo('${p.yt}')" style="cursor:pointer;"` : ''}>
                         <img src="${p.img}">
+                        ${p.yt ? '<span class="play-badge">Play</span>' : ''}
                         <div class="project-info"><h4>${p.title}</h4><p>${translateRole(p.role, lang)}</p></div>
                     </div>
                 `).join('');
