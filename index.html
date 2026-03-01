@@ -1036,31 +1036,23 @@ document.documentElement.lang = currentLang;
         syncMarqueeToIndex(true);
     }
 
-    function pointerX(e) {
-        if (e.touches && e.touches.length) return e.touches[0].clientX;
-        if (e.changedTouches && e.changedTouches.length) return e.changedTouches[0].clientX;
-        return e.clientX;
-    }
-
-    function startMarqueeDrag(e) {
-        const isTouch = !!e.touches;
-        if (!isTouch && e.button !== 0) return;
+    function startMarqueeDrag(clientX) {
         isDraggingMarquee = true;
-        dragStartX = pointerX(e);
+        dragStartX = clientX;
         dragStartTranslate = marqueeCurrentTranslate;
         marqueeInner.classList.add('dragging');
         marqueeInner.style.transition = 'none';
     }
 
-    function moveMarqueeDrag(e) {
+    function moveMarqueeDrag(clientX) {
         if (!isDraggingMarquee) return;
-        const dx = pointerX(e) - dragStartX;
+        const dx = clientX - dragStartX;
         setMarqueeTranslate(dragStartTranslate + dx, false);
     }
 
-    function endMarqueeDrag(e) {
+    function endMarqueeDrag(clientX) {
         if (!isDraggingMarquee) return;
-        const dx = pointerX(e) - dragStartX;
+        const dx = clientX - dragStartX;
         const threshold = 50;
         if (dx < -threshold) currentIndex += 1;
         else if (dx > threshold) currentIndex -= 1;
@@ -1069,13 +1061,30 @@ document.documentElement.lang = currentLang;
         syncMarqueeToIndex(true);
     }
 
-    marqueeInner.addEventListener('mousedown', startMarqueeDrag);
-    window.addEventListener('mousemove', moveMarqueeDrag);
-    window.addEventListener('mouseup', endMarqueeDrag);
+    marqueeInner.addEventListener('dragstart', (e) => e.preventDefault());
 
-    marqueeInner.addEventListener('touchstart', startMarqueeDrag, { passive: true });
-    window.addEventListener('touchmove', moveMarqueeDrag, { passive: true });
-    window.addEventListener('touchend', endMarqueeDrag, { passive: true });
+    marqueeInner.addEventListener('pointerdown', (e) => {
+        if (e.button !== 0) return;
+        marqueeInner.setPointerCapture(e.pointerId);
+        startMarqueeDrag(e.clientX);
+    });
+
+    marqueeInner.addEventListener('pointermove', (e) => {
+        if (!isDraggingMarquee) return;
+        e.preventDefault();
+        moveMarqueeDrag(e.clientX);
+    });
+
+    marqueeInner.addEventListener('pointerup', (e) => {
+        endMarqueeDrag(e.clientX);
+    });
+
+    marqueeInner.addEventListener('pointercancel', () => {
+        if (!isDraggingMarquee) return;
+        isDraggingMarquee = false;
+        marqueeInner.classList.remove('dragging');
+        syncMarqueeToIndex(true);
+    });
 
     window.addEventListener('load', () => syncMarqueeToIndex(false));
     window.addEventListener('resize', () => syncMarqueeToIndex(false));
