@@ -344,7 +344,7 @@
     max-width: 400px; /* Un poco más contenida */
     aspect-ratio: 1/1;
     object-fit: cover;
-    border-radius: 50%;
+    border-radius: 14px;
     border: 1px solid rgba(255, 255, 255, 0.15); /* Marco sutil */
     filter: grayscale(1);
     transition: 1.2s cubic-bezier(0.16, 1, 0.3, 1);
@@ -396,6 +396,65 @@
             margin-top: 4px;
         }
 
+        .distinction-strip {
+            margin: -10px auto 90px;
+            max-width: 980px;
+            padding: 0 8vw;
+        }
+
+        .distinction-card {
+            border: 1px solid rgba(255,255,255,0.14);
+            border-radius: 14px;
+            padding: 24px;
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            gap: 20px;
+            align-items: center;
+            background: linear-gradient(145deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02));
+            box-shadow: 0 14px 40px rgba(0,0,0,0.45);
+        }
+
+        .distinction-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 1px solid rgba(255,255,255,0.35);
+            display: grid;
+            place-items: center;
+            font-size: 1.2rem;
+            color: #fff;
+            background: rgba(0,0,0,0.45);
+        }
+
+        .distinction-text small {
+            display: block;
+            font-size: 0.65rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            opacity: 0.6;
+            margin-bottom: 5px;
+        }
+
+        .distinction-text h3 {
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-weight: 400;
+        }
+
+        .distinction-img {
+            width: 180px;
+            max-width: 100%;
+            filter: grayscale(1) brightness(1.15);
+            opacity: 0.9;
+            transition: 0.4s var(--transition);
+        }
+
+        .distinction-card:hover .distinction-img {
+            filter: grayscale(0) brightness(1.1);
+            opacity: 1;
+        }
+
         .bio-specialties {
             margin-top: 50px;
             display: flex;
@@ -419,6 +478,9 @@
             .bio-portrait { filter: grayscale(0) !important; }
             .award-seal-small { filter: grayscale(0) !important; opacity: 1; }
             .award-caption { border-left: none; border-top: 1px solid rgba(255,255,255,0.1); padding: 20px 0 0 0; justify-content: center; }
+            .distinction-card { grid-template-columns: 1fr; text-align: center; }
+            .distinction-icon { margin: 0 auto; }
+            .distinction-img { margin: 0 auto; width: 150px; }
         }
 
         /* --- RESPONSIVE PREMIUM --- */
@@ -622,6 +684,17 @@
     </div>
 
 </div>
+        </section>
+
+        <section class="distinction-strip" aria-label="Distinción obtenida">
+            <div class="distinction-card">
+                <div class="distinction-icon" aria-hidden="true">🏆</div>
+                <div class="distinction-text">
+                    <small>Distinción</small>
+                    <h3>Premio Hugo obtenido — Mejor Diseño de Escenografía</h3>
+                </div>
+                <img class="distinction-img" src="https://i.ibb.co/Y4G1nXpQ/Premios-Hugo.png" alt="Distinción Premio Hugo">
+            </div>
         </section>
 
         <section class="all-works" id="archivo">
@@ -984,8 +1057,8 @@ document.documentElement.lang = currentLang;
         { title: "RENT", cat: "teatro", role: "Diseño Escenografía (2024)", yt: "Kojy6x9JcO0", img: "https://media.licdn.com/dms/image/v2/D4D22AQGOh09_oONuDg/feedshare-shrink_1280/feedshare-shrink_1280/0/1719446287457?e=1773273600&v=beta&t=tV95Hr3cz9_-_PADxxO8HZE2aGzm1qEqjCL5PPmZnCo" },
         { title: "FEAT (Zeppelin/RTVE)", cat: "tv", role: "Dirección de Arte (2024)", yt: "74WT8xDioBY", img: "https://images.produ.com/wp-content/uploads/2024/01/11110232/bigwp-FeatRTVEZeppelin.jpg" },
         { title: "Zoom Bazar", cat: "publicidad", role: "Dirección de Arte (2023)", yt: "24vc-HxOi3E", img: "https://img.youtube.com/vi/24vc-HxOi3E/maxresdefault.jpg" },
-        { title: "UNLaM TV", cat: "tv", role: "Dirección de Arte y Escenografía (2019-2022)", img: "https://scontent.faep8-1.fna.fbcdn.net/v/t1.6435-9/78485083_2406283956304540_36845304661671936_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=13d280&_nc_ohc=YQgCjVka12UQ7kNvwHXDuOy&_nc_oc=AdlgfaOBh_7rPx6SncdY2W8zB_s87URUHf8mdnryd5RzsruIsG7f5VvMTZmdTkDg6z4&_nc_zt=23&_nc_ht=scontent.faep8-1.fna&_nc_gid=c1CaS9BSBEFnduk2EuFAAg&oh=00_AfueTiEP9vtyYc1k0EYTSzcTkjYbVgDBHzqRlB_9-agokQ&oe=69C2D930" },
-        { title: "CANAL DE LA CIUDAD", cat: "tv", role: "Utilería y Escenografía (2017-Presente)", img: "https://static.buenosaires.gob.ar/sites/default/files/media/image/2022/10/27/c8acd9a87363661b5391363d7d5d041b65888b53.jpg" },
+        { title: "UNLaM TV", cat: "tv", role: "Dirección de Arte y Escenografía (2019-2022)", yt: "4yyGIhQU89U", img: "https://scontent.faep8-1.fna.fbcdn.net/v/t1.6435-9/78485083_2406283956304540_36845304661671936_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=13d280&_nc_ohc=YQgCjVka12UQ7kNvwHXDuOy&_nc_oc=AdlgfaOBh_7rPx6SncdY2W8zB_s87URUHf8mdnryd5RzsruIsG7f5VvMTZmdTkDg6z4&_nc_zt=23&_nc_ht=scontent.faep8-1.fna&_nc_gid=c1CaS9BSBEFnduk2EuFAAg&oh=00_AfueTiEP9vtyYc1k0EYTSzcTkjYbVgDBHzqRlB_9-agokQ&oe=69C2D930" },
+        { title: "CANAL DE LA CIUDAD", cat: "tv", role: "Utilería y Escenografía (2017-Presente)", yt: "8eXmFFIliCY", img: "https://static.buenosaires.gob.ar/sites/default/files/media/image/2022/10/27/c8acd9a87363661b5391363d7d5d041b65888b53.jpg" },
         { title: "LA PANELISTA", cat: "cine", role: "Dirección de Arte (2021)", yt: "e0g1RnfuVtA", img: "https://ar.cienradios.com/resizer/v2/OGSQJW6RUJFWFFWUZTT3QONMLI.png?width=1200&height=600&auth=01ebb9bbcb5fa673768a51207f6af07423b0ff6a272b2f208ea04b2d1ac0ca9f&smart=true&quality=85" },
         { title: "Yo Nena Yo Princesa", cat: "cine", role: "Dirección de Arte (2016)", yt: "OF78_BsBYkc", img: "https://www.informador.mx/__export/1656112331089/sites/elinformador/img/2022/06/24/yo_nena_yo_princesa_1_crop1656112321747.jpg_554688468.jpg" },
         { title: "SURVIVOR", cat: "tv", role: "Realización (Turquía - 2017)", yt: "mjdgrJkehTs", img: "https://static.wikia.nocookie.net/survivor/images/b/b5/SanJuanDelSurReunion.jpg" },
@@ -1000,10 +1073,10 @@ document.documentElement.lang = currentLang;
         { title: "La Farruca", cat: "publicidad", role: "Dirección de Arte (2013)", yt: "a95MZEZtaUM", img: "https://img.youtube.com/vi/a95MZEZtaUM/hqdefault.jpg" },
         { title: "SOLAMENTE VOS", cat: "tv", role: "Diseño Gráfico (2012-2013)", yt: "QW2pE0-Kis0", img: "https://images.produ.com/programas/0118/Solamente-vos-Natpe.jpg" },
         { title: "PETER PUNK 2", cat: "tv", role: "Asistente de Arte / Realizador - Disney (2011-2012)", img: "https://disney.images.edge.bamgrid.com/ripcut-delivery/v2/variant/disney/795a07c6-3d37-4e5a-9be2-7b3a5429f3a3/compose?aspectRatio=1.78&format=webp&width=1200" },
-        { title: "ROCK BONES", cat: "teatro", role: "Dir. Arte - Gran Rex (2012)", img: "https://i.ytimg.com/vi/1lBwQs-DS3U/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLBNhGHkcUbspOvQiMqERscp6Zs9UQ" },
+        { title: "ROCK BONES", cat: "teatro", role: "Dir. Arte - Gran Rex (2012)", yt: "H-tJhbASHNE", img: "https://i.ytimg.com/vi/1lBwQs-DS3U/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLBNhGHkcUbspOvQiMqERscp6Zs9UQ" },
         { title: "LA DICHA EN MOVIMIENTO", cat: "cine", role: "Dirección de Arte (2012)", yt: "AL3W_njZYm0", img: "https://www.otroscines.com/media/cache/imagen_principal/images/fotos/la-dicha-en-movimiento-1200.jpg" },
-        { title: "GIGANTES DEL CATCH", cat: "tv", role: "Dirección de Arte / Realizador (2011)", img: "https://quarone.com.ar/wp-content/uploads/2020/10/GIGANTES-DEL-CATCH-03.jpg" },
-        { title: "VIOLETTA", cat: "tv", role: "Asistente de Arte - Disney/Pol-ka (2011)", img: "https://disney.images.edge.bamgrid.com/ripcut-delivery/v2/variant/disney/0135fd22-255f-441c-8935-af0d59fe7fac/compose?aspectRatio=1.78&format=webp&width=1200" },
+        { title: "GIGANTES DEL CATCH", cat: "tv", role: "Dirección de Arte / Realizador (2011)", yt: "FXDfc2mmzsw", img: "https://quarone.com.ar/wp-content/uploads/2020/10/GIGANTES-DEL-CATCH-03.jpg" },
+        { title: "VIOLETTA", cat: "tv", role: "Asistente de Arte - Disney/Pol-ka (2011)", yt: "kiZEdN98F7c", img: "https://disney.images.edge.bamgrid.com/ripcut-delivery/v2/variant/disney/0135fd22-255f-441c-8935-af0d59fe7fac/compose?aspectRatio=1.78&format=webp&width=1200" },
         { title: "PETER PUNK", cat: "tv", role: "Asistente de Arte / Realizador - Disney (2010-2011)", yt: "5JYz1woze94", img: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiBkshp3AnIieww0jlmcjf17Qs3Kyw4WXz8BQisRxdgQffREyi34AtGYvVa6hJo8KH_0UFV8IYmy5BjqBzsCX0yeDeb2p3kz4Hu0hkDJhz8keUgzNq7kDj6szfOCG31nAWgXK9807E0FCI/s1600/1280+(1).jpg" },
         { title: "VIUDAS DE LOS JUEVES", cat: "cine", role: "Asistente de Arte (2009)", yt: "lG0F-h5IKVQ", img: "https://filasiete.com/wp-content/uploads/2010/03/viudasjueves-1068x712.jpg" },
         { title: "CRÓNICA DE UNA FUGA", cat: "cine", role: "Asistente de Arte (2006)", yt: "caDWPT0m4pw", img: "https://assets.mubicdn.net/images/film/22699/image-w856.jpg?1745492188" },
