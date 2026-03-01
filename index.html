@@ -1036,7 +1036,9 @@ document.documentElement.lang = currentLang;
 
     marqueeInner.innerHTML = marqueeHTML;
 
-    let currentIndex = 0;
+    const isDesktopViewport = () => window.innerWidth >= 769;
+
+    let currentIndex = (isDesktopViewport() && destacadosData.length > 1) ? 1 : 0;
     let isDraggingMarquee = false;
     let isMarqueeHovered = false;
     let dragStartX = 0;
@@ -1070,7 +1072,14 @@ document.documentElement.lang = currentLang;
         const metrics = getMarqueeMetrics();
         if (!metrics) return;
         normalizeMarqueeIndex();
-        const target = -(currentIndex * metrics.fullStep - metrics.centerOffset);
+
+        const totalWidth = metrics.cards.length * metrics.fullStep;
+        const minTranslate = Math.min(0, window.innerWidth - totalWidth);
+        const maxTranslate = 0;
+
+        const centeredTarget = -(currentIndex * metrics.fullStep - metrics.centerOffset);
+        const target = Math.min(maxTranslate, Math.max(minTranslate, centeredTarget));
+
         setMarqueeTranslate(target, animate);
     }
 
