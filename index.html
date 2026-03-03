@@ -697,8 +697,8 @@
             <div class="distinction-card">
                 <div class="distinction-icon" aria-hidden="true">🏆</div>
                 <div class="distinction-text">
-                    <small>Distinción</small>
-                    <h3>Premio Hugo obtenido — Mejor Diseño de Escenografía por "El Principito — Teatro Opera 2025"</h3>
+                    <small id="distinction-label">Distinción</small>
+                    <h3 id="distinction-title">Premio Hugo obtenido — Mejor Diseño de Escenografía por "El Principito — Teatro Opera 2025</h3>
                 </div>
                 <img class="distinction-img" src="https://i.ibb.co/Y4G1nXpQ/Premios-Hugo.png" alt="Distinción Premio Hugo">
             </div>
@@ -864,6 +864,8 @@ const I18N = {
     },
     award_year:"Año 2024",
     award_title:`GANADOR PREMIO HUGO<br>AL MEJOR DISEÑO DE ESCENOGRAFÍA POR "EL PRINCIPITO"`,
+    distinction_label:"Distinción",
+    distinction_title:'Premio Hugo obtenido — Mejor Diseño de Escenografía por "El Principito — Teatro Opera 2025',
     bio_text:`Soy un profesional del ámbito creativo y audiovisual con más de 20 años de trayectoria ininterrumpida en la industria. Desde 2005, he volcado mi pasión y formación técnica en la dirección de arte, la realización escenográfica y el montaje, trabajando en proyectos de cine, teatro, televisión, publicidad y medios digitales.
 
 Mi enfoque combina la visión estética con la capacidad de ejecución práctica, lo que me ha permitido liderar equipos y proyectos de gran envergadura tanto en Argentina como en el exterior.`,
@@ -886,6 +888,8 @@ Mi enfoque combina la visión estética con la capacidad de ejecución práctica
     },
     award_year:"Year 2024",
     award_title:`HUGO AWARD WINNER<br>BEST SET DESIGN FOR "THE LITTLE PRINCE"`,
+    distinction_label:"Distinction",
+    distinction_title:'Hugo Award received — Best Set Design for "The Little Prince" — Teatro Opera 2025',
     bio_text:`I am a creative and audiovisual professional with over 20 years of continuous industry experience. Since 2005, I have applied my technical expertise and passion to art direction, production, and set design across film, theatre, television, advertising, and digital media.
 
 My approach combines aesthetic vision with practical execution, allowing me to lead large-scale teams and projects both in Argentina and internationally.`,
@@ -908,6 +912,8 @@ My approach combines aesthetic vision with practical execution, allowing me to l
     },
     award_year:"Anno 2024",
     award_title:`VINCITORE PREMIO HUGO<br>MIGLIOR SCENOGRAFIA PER "IL PICCOLO PRINCIPE"`,
+    distinction_label:"Distinzione",
+    distinction_title:'Premio Hugo ottenuto — Miglior Scenografia per "Il Piccolo Principe" — Teatro Opera 2025',
     bio_text:`Sono un professionista dell’ambito creativo e audiovisivo con oltre 20 anni di esperienza continuativa nel settore. Dal 2005 ho dedicato la mia passione e la mia formazione tecnica alla direzione artistica, alla scenografia e alla realizzazione, lavorando in progetti di cinema, teatro, televisione, pubblicità e media digitali.
 
 Il mio approccio unisce visione estetica e capacità esecutiva pratica, permettendomi di guidare team e progetti di grande scala sia in Argentina che all’estero.`,
@@ -969,6 +975,12 @@ function applyLang(lang){
   const awardTitleEl = document.getElementById("award-title");
   if (awardYearEl) awardYearEl.textContent = t.award_year;
   if (awardTitleEl) awardTitleEl.innerHTML = t.award_title;
+
+  // DISTINCTION STRIP
+  const distinctionLabelEl = document.getElementById("distinction-label");
+  const distinctionTitleEl = document.getElementById("distinction-title");
+  if (distinctionLabelEl) distinctionLabelEl.textContent = t.distinction_label;
+  if (distinctionTitleEl) distinctionTitleEl.textContent = t.distinction_title;
 
   // CONTACT FORM
   const inputs = document.querySelectorAll("#contact-form input, #contact-form textarea");
