@@ -37,7 +37,7 @@
  
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mariano Smaldini | Director de Arte & Escenógrafo</title>
-    <link href="https://fonts.googleapis.com/css2?family=Questrial&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Questrial&display=swap" rel="stylesheet">
     <style>
         :root { --bg: #000; --text: #fff; --transition: cubic-bezier(0.16, 1, 0.3, 1); }
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -67,30 +67,30 @@
         /* --- NAVEGACIÓN --- */
         .nav-desktop {
             position: absolute; top: 0; width: 100%; z-index: 1000;
-            display: none; justify-content: center; padding: 30px 0;
+            display: none; justify-content: center; padding: 36px 0 0;
             transition: 0.5s var(--transition);
         }
-        .nav-desktop.scrolled { backdrop-filter: blur(10px); background: rgba(0,0,0,0.5); padding: 15px 0; position: fixed; }
+        .nav-desktop.scrolled { backdrop-filter: blur(8px); background: rgba(220,215,207,0.92); padding: 16px 0; position: fixed; }
 
         .nav-container {
-            width: 100%; max-width: 1400px; padding: 0 8vw;
-            display: flex; justify-content: space-between; align-items: center;
+            width: min(100%, 1300px); padding: 0 8vw;
+            display: flex; justify-content: center; align-items: center;
         }
 
-        .nav-logo img { height: 45px; filter: brightness(0) invert(1); transition: 0.4s var(--transition); }
+        .nav-logo { display: none; }
 
-        .nav-desktop ul { display: flex; gap: 30px; list-style: none; }
+        .nav-desktop ul { display: flex; gap: clamp(20px, 4vw, 78px); list-style: none; }
         .nav-link {
-            text-decoration: none; color: #fff; font-size: 0.7rem;
-            letter-spacing: 3px; text-transform: uppercase; opacity: 0.5;
+            text-decoration: none; color: #222; font-size: 0.9rem;
+            letter-spacing: 4px; text-transform: uppercase; opacity: 0.85;
             transition: 0.4s var(--transition); position: relative; padding: 5px 0;
         }
         .nav-link::after {
             content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 1px;
-            background-color: #fff; transform: scaleX(0); transform-origin: right;
+            background-color: #222; transform: scaleX(0); transform-origin: right;
             transition: transform 0.4s var(--transition);
         }
-        .nav-link:hover { opacity: 1; transform: translateY(-3px); }
+        .nav-link:hover { opacity: 1; transform: translateY(-2px); }
         .nav-link:hover::after { transform: scaleX(1); transform-origin: left; }
 
         .burger { position: fixed; top: 25px; right: 25px; z-index: 10001; cursor: pointer; width: 30px; height: 20px; display: flex; flex-direction: column; justify-content: space-between; }
@@ -111,11 +111,75 @@
         .mobile-menu a { color: #fff; text-decoration: none; font-size: clamp(2.5rem, 12vw, 4.5rem); text-transform: uppercase; display: block; padding: 40px 0; letter-spacing: 2px; line-height: 1; transition: 0.4s; }
 
         /* --- HERO --- */
-        .hero { min-height: 100vh; position: relative; overflow: hidden; display: flex; flex-direction: column; align-items: center; justify-content: center; padding-top: 80px; margin-bottom: 80px; }
-        .hero::after { content: ""; position: absolute; inset: 0; background-image: url('https://grainy-gradients.vercel.app/noise.svg'); opacity: 0.08; pointer-events: none; z-index: 4; }
-        .hero-title { font-size: clamp(4rem, 14vw, 16vw); text-align: center; line-height: 0.85; z-index: 5; text-transform: uppercase; font-weight: 400; letter-spacing: -0.02em; mix-blend-mode: difference; }
-        .hero-cta { z-index: 6; margin-top: 40px; margin-bottom: 80px; text-decoration: none; color: #fff; font-size: 0.8rem; letter-spacing: 4px; text-transform: uppercase; padding: 15px 30px; border: 1px solid rgba(255,255,255,0.3); transition: 0.4s var(--transition); border-radius: 4px; }
-        .hero-cta:hover { background: #fff; color: #000; border-color: #fff; }
+        .hero {
+            min-height: 100vh;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 140px 8vw 90px;
+            margin: 0;
+            color: #1f1f1f;
+            isolation: isolate;
+        }
+        .hero::before {
+            content: "";
+            position: absolute;
+            inset: 22px;
+            border: 1px solid rgba(34, 34, 34, 0.35);
+            z-index: 3;
+            pointer-events: none;
+        }
+        .hero::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: rgba(226, 220, 211, 0.9);
+            z-index: 2;
+            pointer-events: none;
+        }
+        .hero-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(5rem, 16vw, 13rem);
+            text-align: left;
+            line-height: 0.82;
+            z-index: 5;
+            font-weight: 500;
+            letter-spacing: -0.01em;
+            text-transform: none;
+        }
+        .hero-cta {
+            z-index: 6;
+            margin-top: 52px;
+            text-decoration: none;
+            color: #252525;
+            font-size: clamp(0.95rem, 1.8vw, 1.05rem);
+            letter-spacing: 1px;
+            text-transform: none;
+            padding: 16px 34px;
+            border: 1px solid rgba(34,34,34,0.4);
+            transition: 0.4s var(--transition);
+            border-radius: 0;
+            align-self: flex-start;
+        }
+        .hero-cta:hover { background: #222; color: #ece7de; border-color: #222; }
+        .hero-content { width: min(100%, 980px); z-index: 5; position: relative; margin-left: clamp(20px, 7vw, 90px); }
+        .hero-subtitle { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 4vw, 3.4rem); margin-top: 12px; letter-spacing: 0.03em; }
+        .hero-meta { margin-top: 56px; font-size: clamp(1.2rem, 2.3vw, 2.1rem); font-family: 'Cormorant Garamond', serif; }
+        .hero-location { margin-top: 8px; font-size: clamp(1rem, 2vw, 1.8rem); }
+        .hero-side-label {
+            position: absolute;
+            left: 40px;
+            top: 50%;
+            transform: translateY(-50%) rotate(-90deg);
+            transform-origin: left top;
+            z-index: 5;
+            font-size: 2rem;
+            letter-spacing: 1px;
+            font-family: 'Cormorant Garamond', serif;
+        }
         .hero-bg-container {
             position: absolute;
             top: 0;
@@ -125,7 +189,7 @@
             z-index: 1;
             background: #000 url('https://i.ibb.co/BHpZ65xm/MES.png') center/cover no-repeat;
         }
-        .hero-bg-video { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.4) grayscale(0); transform: scale(1.1); }
+        .hero-bg-video { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.35) grayscale(0.2); transform: scale(1.1); }
 
         /* --- TÍTULOS IMPACTANTES (BACKGROUND TEXT) --- */
         .section-header { position: relative; padding: 100px 0 60px 0; display: flex; align-items: center; justify-content: center; overflow: hidden; }
@@ -253,7 +317,13 @@
 
         @media (max-width: 768px) {
             .nav-desktop { display: none; }
-            .hero-title { font-size: 18vw; }
+            .hero { padding: 120px 8vw 70px; }
+            .hero::before { inset: 12px; }
+            .hero-title { font-size: clamp(4rem, 20vw, 6.2rem); }
+            .hero-content { margin-left: 18px; }
+            .hero-meta { margin-top: 30px; font-size: 1.9rem; }
+            .hero-location { font-size: 1.2rem; }
+            .hero-side-label { display: none; }
             .contact-container { grid-template-columns: 1fr; }
             .works-grid { grid-template-columns: 1fr; }
             .about-content { grid-template-columns: 1fr; }
@@ -641,14 +711,11 @@
 
     <nav class="nav-desktop" id="navbar">
         <div class="nav-container">
-            <a href="#" class="nav-logo">
-                <img src="https://i.ibb.co/2QtDbqj/MS-Logo-3.png" alt="Mariano Smaldini - Director de Arte y Escenógrafo" loading="eager">
-            </a>
             <ul>
-                <li><a href="#" class="nav-link magnetic">Inicio</a></li>
-                <li><a href="#sobre-mi" class="nav-link magnetic">Sobre mi</a></li>
-                <li><a href="#archivo" class="nav-link magnetic">Trabajos</a></li>
-                <li><a href="#contacto" class="nav-link magnetic">Contacto</a></li>
+                <li><a href="#" class="nav-link magnetic">Art Direction</a></li>
+                <li><a href="#sobre-mi" class="nav-link magnetic">Set Design</a></li>
+                <li><a href="#archivo" class="nav-link magnetic">Scenography</a></li>
+                <li><a href="#contacto" class="nav-link magnetic">UX Thinking</a></li>
             </ul>
         </div>
     </nav>
@@ -667,8 +734,13 @@
                 </div>
             </div>
 
-            <h1 class="hero-title">Mariano<br>Smaldini</h1>
-            <a href="#archivo" class="hero-cta magnetic">Explorar proyectos</a>
+            <p class="hero-side-label">Sozzih009 244d</p>
+            <div class="hero-content">
+                <h1 class="hero-title">Mariano<br>SMALDINI</h1>
+                <p class="hero-meta">Art Director — Set Designer</p>
+                <p class="hero-location">Based in Buenos Aires</p>
+                <a href="#archivo" class="hero-cta magnetic">View Projects →</a>
+            </div>
         </section>
 
         <section class="marquee-container" id="destacados">
@@ -858,8 +930,8 @@ function translateRole(role, lang) {
 
 const I18N = {
   es:{
-    nav:{home:"Inicio",about:"Sobre mi",works:"Trabajos",contact:"Contacto"},
-    hero_cta:"Explorar proyectos",
+    nav:{home:"Art Direction",about:"Set Design",works:"Scenography",contact:"UX Thinking"},
+    hero_cta:"View Projects →",
     featured:"Trabajos Destacados",
     career:"Trayectoria",
     projects:"Proyectos",
@@ -882,8 +954,8 @@ Mi enfoque combina la visión estética con la capacidad de ejecución práctica
     form_error: "Error al enviar el mensaje"
   },
   en:{
-    nav:{home:"Home",about:"About Me",works:"Works",contact:"Contact"},
-    hero_cta:"Explore Projects",
+    nav:{home:"Art Direction",about:"Set Design",works:"Scenography",contact:"UX Thinking"},
+    hero_cta:"View Projects →",
     featured:"Featured Works",
     career:"Career",
     projects:"Projects",
@@ -906,8 +978,8 @@ My approach combines aesthetic vision with practical execution, allowing me to l
     form_error: "Error sending message"
   },
   it:{
-    nav:{home:"Home",about:"Chi Sono",works:"Progetti",contact:"Contatto"},
-    hero_cta:"Esplora i Progetti",
+    nav:{home:"Art Direction",about:"Set Design",works:"Scenography",contact:"UX Thinking"},
+    hero_cta:"View Projects →",
     featured:"Progetti in primo piano",
     career:"Percorso",
     projects:"Progetti",
