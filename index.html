@@ -112,6 +112,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         .hero { min-height: 100vh; position: relative; overflow: hidden; display: flex; flex-direction: column; align-items: center; justify-content: center; padding-top: 80px; margin-bottom: 80px; }
         .hero::after { content: ""; position: absolute; inset: 0; background-image: url('https://grainy-gradients.vercel.app/noise.svg'); opacity: 0.08; pointer-events: none; z-index: 4; }
         .hero-title { font-size: clamp(4rem, 14vw, 16vw); text-align: center; line-height: 0.85; z-index: 5; text-transform: uppercase; font-weight: 400; letter-spacing: -0.02em; mix-blend-mode: difference; }
+        .hero-subtitle { z-index: 5; margin-top: 20px; text-align: center; font-size: clamp(1rem, 2.2vw, 1.5rem); letter-spacing: 0.35em; text-transform: uppercase; font-weight: 400; }
         .hero-cta { z-index: 6; margin-top: 40px; margin-bottom: 80px; text-decoration: none; color: #fff; font-size: 0.8rem; letter-spacing: 4px; text-transform: uppercase; padding: 15px 30px; border: 1px solid rgba(255,255,255,0.3); transition: 0.4s var(--transition); border-radius: 4px; }
         .hero-cta:hover { background: #fff; color: #000; border-color: #fff; }
         .hero-bg-container {
@@ -657,18 +658,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <main>
         <section class="hero">
             <div class="hero-bg-container">
-                <div style="padding:56.25% 0 0 0; position:relative; width:100%; height:100%;">
-                    <iframe
-                        src="https://www.youtube.com/embed/y825RAVi460?autoplay=1&mute=1&controls=0&loop=1&playlist=y825RAVi460&playsinline=1&rel=0&modestbranding=1"
-                        frameborder="0"
-                        allow="autoplay; fullscreen; picture-in-picture; encrypted-media"
-                        style="position:absolute; top:50%; left:50%; width:100vw; height:100vh; min-width:177.77vh; min-height:56.25vw; transform:translate(-50%, -50%); pointer-events:none; filter: brightness(0.4);"
-                        title="Hero Background Video">
-                    </iframe>
-                </div>
+                <video
+                    class="hero-bg-video"
+                    autoplay
+                    muted
+                    loop
+                    playsinline
+                    preload="auto"
+                    aria-label="Hero Background Video">
+                    <source src="https://www.dropbox.com/scl/fi/2lxdt9olvtlnz14v7znym/making_of_rent_timelapse.webm?rlkey=6wiodtpil2boaqgg13euruozh&st=m25rhoi0&raw=1" type="video/webm">
+                </video>
             </div>
 
             <h1 class="hero-title">Mariano<br>Smaldini</h1>
+            <h2 class="hero-subtitle">DIRECTOR DE ARTE Y ESCENÓGRAFO</h2>
             <a href="#archivo" class="hero-cta magnetic">Explorar proyectos</a>
         </section>
 
