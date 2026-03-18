@@ -35,7 +35,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
  
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mariano Smaldini | Director de Arte & Escenógrafo</title>
-    <link href="https://fonts.googleapis.com/css2?family=Questrial&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Playfair+Display:ital@1&family=Questrial&display=swap" rel="stylesheet">
     <style>
         :root { --bg: #000; --text: #fff; --transition: cubic-bezier(0.16, 1, 0.3, 1); }
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -111,7 +111,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         /* --- HERO --- */
         .hero { min-height: 100vh; position: relative; overflow: hidden; display: flex; flex-direction: column; align-items: center; justify-content: center; padding-top: 80px; margin-bottom: 80px; }
         .hero::after { content: ""; position: absolute; inset: 0; background-image: url('https://grainy-gradients.vercel.app/noise.svg'); opacity: 0.08; pointer-events: none; z-index: 4; }
-        .hero-title { font-size: clamp(4rem, 14vw, 16vw); text-align: center; line-height: 0.85; z-index: 5; text-transform: uppercase; font-weight: 400; letter-spacing: -0.02em; mix-blend-mode: difference; }
+        .hero-title { font-size: clamp(4rem, 14vw, 16vw); text-align: center; line-height: 0.85; z-index: 5; text-transform: uppercase; font-family: 'Montserrat', sans-serif; font-weight: 700; letter-spacing: -0.02em; mix-blend-mode: difference; }
+        .hero-subtitle { margin-top: 18px; z-index: 5; text-align: center; font-family: 'Playfair Display', serif; font-style: italic; font-size: clamp(1.2rem, 2.5vw, 2.2rem); letter-spacing: 0.02em; }
         .hero-cta { z-index: 6; margin-top: 40px; margin-bottom: 80px; text-decoration: none; color: #fff; font-size: 0.8rem; letter-spacing: 4px; text-transform: uppercase; padding: 15px 30px; border: 1px solid rgba(255,255,255,0.3); transition: 0.4s var(--transition); border-radius: 4px; }
         .hero-cta:hover { background: #fff; color: #000; border-color: #fff; }
         .hero-bg-container {
@@ -669,6 +670,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </div>
 
             <h1 class="hero-title">Mariano<br>Smaldini</h1>
+            <p class="hero-subtitle">Dirección de arte &amp; escenografía</p>
             <a href="#archivo" class="hero-cta magnetic">Explorar proyectos</a>
         </section>
 
