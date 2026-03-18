@@ -863,6 +863,7 @@ function translateRole(role, lang) {
 const I18N = {
   es:{
     nav:{home:"Inicio",about:"Sobre mi",works:"Trabajos",contact:"Contacto"},
+    hero_subtitle:"DIRECTOR DE ARTE Y ESCENÓGRAFO",
     hero_cta:"Explorar proyectos",
     featured:"Trabajos Destacados",
     career:"Trayectoria",
@@ -887,6 +888,7 @@ Mi enfoque combina la visión estética con la capacidad de ejecución práctica
   },
   en:{
     nav:{home:"Home",about:"About Me",works:"Works",contact:"Contact"},
+    hero_subtitle:"ART DIRECTOR AND SET DESIGNER",
     hero_cta:"Explore Projects",
     featured:"Featured Works",
     career:"Career",
@@ -911,6 +913,7 @@ My approach combines aesthetic vision with practical execution, allowing me to l
   },
   it:{
     nav:{home:"Home",about:"Chi Sono",works:"Progetti",contact:"Contatto"},
+    hero_subtitle:"DIRETTORE ARTISTICO E SCENOGRAFO",
     hero_cta:"Esplora i Progetti",
     featured:"Progetti in primo piano",
     career:"Percorso",
@@ -959,6 +962,7 @@ function applyLang(lang){
   document.querySelectorAll(".mobile-menu a")[3].textContent = t.nav.contact;
 
   // HERO CTA & SECTION TITLES
+  document.querySelector(".hero-subtitle").textContent = t.hero_subtitle;
   document.querySelector(".hero-cta").textContent = t.hero_cta;
   document.querySelector("#destacados .section-label").textContent = t.featured;
   document.querySelector("#sobre-mi .section-label").textContent = t.career;
